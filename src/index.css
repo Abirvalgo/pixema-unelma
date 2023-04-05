@@ -6,8 +6,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+@font-face {
+  font-family: 'Exo 2';
+  src: local('Exo 2'), url(./assets/fonts/Exo2.ttf) format('truetype');
 }

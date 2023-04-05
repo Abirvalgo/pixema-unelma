@@ -1,0 +1,9 @@
+@import "src/assets/mixins";
+@import "src/assets/colors";
+
+.container{
+  @include h1();
+  width: 200px;
+  height: 200px;
+  background-color: green ;
+}

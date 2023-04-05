@@ -1,0 +1,49 @@
+@mixin font{
+  font-family: 'Exo 2', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+}
+//Primary & focus headlines
+@mixin h1{
+  @include font();
+  font-size: 40px;
+  line-height: 60px;
+}
+//Secondary headlines, Group stacks
+@mixin h2{
+  @include font();
+  font-size: 24px;
+  line-height: 36px;
+}
+//Tertiary headlines,List headlines
+@mixin h3{
+  @include font();
+  font-size: 20px;
+  line-height: 32px;
+}
+//Navigation bar title,List items
+@mixin s1{
+  @include font();
+  font-size: 18px;
+  line-height: 24px;
+}
+//Quaternary headlines,Titles
+@mixin s2{
+  @include font();
+  font-size: 16px;
+  line-height: 24px;
+}
+//Buttons
+@mixin s3{
+  @include font();
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+}
+@mixin b1{
+  font-family: 'Exo 2', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
