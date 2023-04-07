@@ -1,3 +1,5 @@
+@import "colors";
+
 @mixin font{
   font-family: 'Exo 2', sans-serif;
   font-style: normal;
@@ -30,13 +32,13 @@
 //Quaternary headlines,Titles
 @mixin s2{
   @include font();
+  font-weight: 700;
   font-size: 16px;
   line-height: 24px;
 }
 //Buttons
 @mixin s3{
   @include font();
-  font-weight: 700;
   font-size: 16px;
   line-height: 24px;
 }
@@ -46,4 +48,22 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+}
+
+@mixin button{
+  @include s3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 56px;
+  background: $primary;
+  border-radius: 10px;
+  color: $white;
+  &:hover{
+    cursor: pointer;
+  }
+  &::selection {
+    background: transparent;
+  }
 }

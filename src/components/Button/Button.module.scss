@@ -1,0 +1,27 @@
+@import "src/assets/colors";
+@import "src/assets/mixins";
+
+
+.primaryButton {
+  @include button;
+    &:not(.disabledButton):hover{
+    background: $primary-secondary;
+  }
+}
+
+.secondaryButton{
+  @include button;
+  background: $graphite;
+  &:not(.disabledButton):hover{
+    color: $light;
+    background: $graphite;
+  }
+}
+
+.disabledButton {
+  color: $light;
+  background: $secondary;
+  &:hover {
+    cursor: not-allowed;
+  }
+}
