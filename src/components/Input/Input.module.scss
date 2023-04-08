@@ -7,7 +7,7 @@
   align-items: center;
   height: 56px;
   //max-width: 438px;
-  max-width: 1000px;
+  max-width: 1184px;
 }
 
 .input {
@@ -30,7 +30,7 @@
   &:focus{
     border: 2px solid $primary;
   }
-  &:active{
+  &:active:hover{
     border: none;
   }
 }

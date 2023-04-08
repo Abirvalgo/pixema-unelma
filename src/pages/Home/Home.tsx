@@ -29,42 +29,8 @@ const Home = () => {
   const onNameChange = (name: string) => {
     setName(name);
   };
-
-  return (
-    <>
-      <Button
-        onClick={onButtonClick}
-        title={"Кнопка"}
-        type={ButtonType.Primary}
-      />
-      <Button
-        onClick={onButtonClick}
-        title={"Кнопка"}
-        type={ButtonType.Primary}
-        disabled
-      />
-      <Switch />
-      <div className={styles.svgFill}>
-        <HomeIcon />
-      </div>
-      <SettingsIcon />
-      <FavoritesIcon />
-      <TrendsIcon />
-      <UserIcon />
-      <div className={styles.svgFillBookmark}>
-        <BookmarkIcon />
-      </div>
-      <ShareIcon />
-      <ShareButton onClick={() => {}} />
-      <Input
-        type="text"
-        value={name}
-        placeholder={"Placeholder"}
-        onChange={onNameChange}
-        filters={"string"}
-      />
-    </>
-  );
+  //TODO http://localhost:3000/test
+  return <></>;
 };
 
 export default Home;
@@ -72,3 +38,53 @@ export default Home;
 /*<div className={styles.container}>Font check</div>*/
 /*<div>{singlePost?.name}</div>*/
 /*<img src={singlePost?.poster} />*/
+
+// const singlePost = useSelector(postSelectors.getSinglePost);
+// const dispatch = useDispatch();
+// const onButtonClick = () => {};
+//
+// useEffect(() => {
+//   dispatch(getSinglePost({}));
+// }, []);
+// const [name, setName] = useState("");
+// const onNameChange = (name: string) => {
+//   setName(name);
+// };
+// return (
+//     <>
+//         <Button
+//             onClick={onButtonClick}
+//             title={"Кнопка"}
+//             type={ButtonType.Primary}
+//         />
+//         <Button
+//             onClick={onButtonClick}
+//             title={"Кнопка"}
+//             type={ButtonType.Primary}
+//             disabled
+//         />
+//         <Switch />
+//         <div className={styles.svgFill}>
+//             <HomeIcon />
+//         </div>
+//         <SettingsIcon />
+//         <FavoritesIcon />
+//         <TrendsIcon />
+//         <UserIcon />
+//         <div className={styles.svgFillBookmark}>
+//             <BookmarkIcon />
+//         </div>
+//         <ShareIcon />
+//         <ShareButton onClick={() => {}} />
+//         <Input
+//             type="text"
+//             value={name}
+//             placeholder={"Placeholder"}
+//             onChange={onNameChange}
+//             filters={"string"}
+//         />
+//     </>
+// );
+// };
+//
+// export default Home;

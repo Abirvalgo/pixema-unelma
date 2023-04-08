@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import Test from "./Test";
+import PagesContainer from "./PagesContainer";
 
 export enum RoutesList {
   Home = "/",
@@ -23,8 +24,10 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={RoutesList.Home} element={<Home />}></Route>
-        <Route path={RoutesList.Test} element={<Test />}></Route>
+        <Route path={RoutesList.Home} element={<PagesContainer />}>
+          <Route path={RoutesList.Home} element={<Home />}></Route>
+          <Route path={RoutesList.Test} element={<Test />}></Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

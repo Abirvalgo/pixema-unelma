@@ -1,0 +1,18 @@
+@import "src/assets/colors";
+@import "src/assets/mixins";
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100vw;
+  height: 100vh;
+  padding: 40px 64px 64px;
+  background: $black;
+}
+.footer{
+  display: flex;
+  @include s2;
+  font-weight: 500;
+  color: $light;
+}

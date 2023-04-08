@@ -6,3 +6,4 @@ export { UserIcon } from "./UserIcon";
 export { BookmarkIcon } from "./BookmarkIcon";
 export { ShareIcon } from "./ShareIcon";
 export { FilterIcon } from "./FilterIcon";
+export { PixemaIcon } from "./PixemaIcon";
