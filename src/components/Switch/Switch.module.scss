@@ -46,9 +46,19 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(12px);
 }
+
 .slider.round {
   border-radius: 20px;
 }
 .slider.round:before {
   border-radius: 50%;
 }
+///disabled styles
+input:disabled + span{
+  background: $secondary;
+  pointer-events: none;
+}
+input:disabled + .slider:before {
+  background-color: $light;}
+input:checked:disabled + .slider:before {
+  background-color: $primary-secondary;}

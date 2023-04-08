@@ -14,3 +14,18 @@ code {
   font-family: 'Exo 2';
   src: local('Exo 2'), url(./assets/fonts/Exo2.ttf) format('truetype');
 }
+*,
+*::before,
+*::after,
+*:focus,
+*:hover{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline:none;
+}
+img {
+  max-width: 100%;
+  display: block;
+}

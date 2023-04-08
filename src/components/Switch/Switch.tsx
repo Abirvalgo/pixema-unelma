@@ -17,6 +17,7 @@ const Switch: FC<SwitchProps> = ({ checked, disabled }) => {
           type="checkbox"
           checked={isChecked}
           onChange={() => setIsChecked(!isChecked)}
+          className={styles.ifDisabled}
         />
         <span className={classNames(styles.slider, styles.round, {})}></span>
       </label>

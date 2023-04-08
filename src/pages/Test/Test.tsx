@@ -5,7 +5,7 @@ import Button from "../../components/Button";
 import { ButtonType } from "../../utils/@globalTypes";
 import Switch from "../../components/Switch";
 import { HomeIcon } from "../../assets/icons";
-import styles from "./Home.module.scss";
+import styles from "./Test.module.scss";
 import {
   BookmarkIcon,
   FavoritesIcon,
@@ -16,8 +16,9 @@ import {
 } from "../../assets/icons";
 import ShareButton from "../../components/ShareButton";
 import Input from "../../components/Input";
+import Home from "../Home";
 
-const Home = () => {
+const Test = () => {
   const singlePost = useSelector(postSelectors.getSinglePost);
   const dispatch = useDispatch();
   const onButtonClick = () => {};
@@ -67,7 +68,7 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Test;
 
 /*<div className={styles.container}>Font check</div>*/
 /*<div>{singlePost?.name}</div>*/

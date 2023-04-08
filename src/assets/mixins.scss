@@ -67,3 +67,41 @@
     background: transparent;
   }
 }
+// закрашивает мелкие кнопки (home, trends etc.)
+@mixin svgFill{
+    box-sizing: border-box;
+    display: flex;
+    width: 24px;
+    height: 24px;
+    &:active{
+      svg > path {
+        fill: $primary;
+      }
+    }
+    &:hover {
+      cursor: pointer;
+      svg > path {
+        fill: $primary-secondary;
+      }}
+    &:disabled {
+      svg > path {
+        fill: $graphite;
+      }}
+  }
+@mixin svgFillBookmark{
+  box-sizing: border-box;
+  display: flex;
+  width: 24px;
+  height: 24px;
+  &:hover {
+    cursor: pointer;
+    svg > path {
+      fill: $white;
+      stroke:$white;
+    }}
+  &:disabled {
+    svg > path {
+      fill: $light;
+      stroke:$light;
+    }}
+}
