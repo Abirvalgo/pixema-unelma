@@ -4,12 +4,16 @@ const API = create({
   baseURL: "https://unelmamovie.com/api/v1",
 });
 // offset: number, search?: string, ordering?: string
-const getPosts = () => {
+const getAllPosts = (perPage: number, page?: number) => {
   return API.get(
-    "/blog/posts/",
-    {},
+    "/titles",
+    {
+      perPage: 10,
+      page: 1,
+    },
     {
       headers: {
+        Accept: `application/json`,
         Authorization: `Bearer 550|FkMZF07j8VDcFwVGtBlKazWe8qVGM8GFrM3CPuFe`,
       },
     }
@@ -29,6 +33,6 @@ const getSinglePost = (token: string) => {
 };
 
 export default {
-  getPosts,
+  getAllPosts,
   getSinglePost,
 };
