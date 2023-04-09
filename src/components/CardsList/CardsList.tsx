@@ -9,7 +9,7 @@ type CardsListProps = {
 };
 const CardsList: FC<CardsListProps> = ({ cardsList }) => {
   return cardsList.length > 0 ? (
-    <div>
+    <div className={styles.container}>
       {cardsList.map((item, index) => {
         return <Card key={item.id} card={item} />;
       })}

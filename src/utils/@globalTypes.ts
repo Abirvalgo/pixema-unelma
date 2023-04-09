@@ -2,6 +2,8 @@ export enum ButtonType {
   Primary = "Primary",
   Secondary = "Secondary",
   Error = "Error",
+  Bookmark = "Bookmark",
+  Share = "Share",
 }
 export type CardType = {
   id: number;

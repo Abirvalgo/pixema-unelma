@@ -13,6 +13,7 @@
     "@types/react-dom": "^18.0.0",
     "apisauce": "^3.0.0",
     "classnames": "^2.3.2",
+    "lottie-react": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",

@@ -1,0 +1,13 @@
+@import "src/assets/colors";
+@import "src/assets/mixins";
+
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.description{
+@include h3;
+  color: $secondary;
+}

@@ -4,12 +4,21 @@ const API = create({
   baseURL: "https://unelmamovie.com/api/v1",
 });
 // offset: number, search?: string, ordering?: string
-const getAllPosts = (perPage: number, page?: number) => {
+const getAllPosts = (
+  perPage: number,
+  page?: number,
+  release_date?: string,
+  released?: string,
+  country?: string
+) => {
   return API.get(
-    "/titles",
+    `/titles`,
     {
       perPage: 10,
       page: 1,
+      order: `popularity:desc`,
+      released: `2022,2023`,
+      country: `us`,
     },
     {
       headers: {
@@ -19,9 +28,9 @@ const getAllPosts = (perPage: number, page?: number) => {
     }
   );
 };
-const getSinglePost = (token: string) => {
+const getSinglePost = (id: string) => {
   return API.get(
-    "/titles/1",
+    `/titles/${id}`,
     {},
     {
       headers: {

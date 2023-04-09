@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import classNames from "classnames";
 import styles from "./Button.module.scss";
 import { ButtonType } from "../../utils/@globalTypes";
+import { BookmarkIcon, ShareIcon } from "../../assets/icons";
 
 type ButtonProps = {
   title?: string;
@@ -12,20 +13,46 @@ type ButtonProps = {
 const btnStyles = {
   [ButtonType.Primary]: styles.primaryButton,
   [ButtonType.Secondary]: styles.secondaryButton,
+  [ButtonType.Bookmark]: styles.bookmarkButton,
+  [ButtonType.Share]: styles.shareButton,
   [ButtonType.Error]: styles.errorButton,
 };
 
 const Button: FC<ButtonProps> = ({ title, onClick, disabled, type }) => {
   const buttonClassName = btnStyles[type];
   return (
-    <div
-      onClick={onClick}
-      className={classNames(buttonClassName, {
-        [styles.disabledButton]: disabled,
-      })}
-    >
-      {title}
-    </div>
+    <>
+      {type === ButtonType.Bookmark && (
+        <div
+          className={classNames(styles.leftPart, {
+            [styles.disabledButtonShare]: disabled,
+          })}
+          onClick={onClick}
+        >
+          <BookmarkIcon />
+        </div>
+      )}
+      {type === ButtonType.Share && (
+        <div
+          className={classNames(styles.rightPart, {
+            [styles.disabledButtonShare]: disabled,
+          })}
+          onClick={onClick}
+        >
+          <ShareIcon />
+        </div>
+      )}
+      {type !== ButtonType.Share && type !== ButtonType.Bookmark && (
+        <div
+          onClick={onClick}
+          className={classNames(buttonClassName, {
+            [styles.disabledButton]: disabled,
+          })}
+        >
+          {title}
+        </div>
+      )}
+    </>
   );
 };
 

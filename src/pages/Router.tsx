@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import Test from "./Test";
 import PagesContainer from "./PagesContainer";
+import SelectedMovie from "./SelectedMovie";
 
 export enum RoutesList {
   Home = "/",
@@ -18,6 +19,7 @@ export enum RoutesList {
   NewPassword = "/new-password",
   Default = "*",
   Test = "/test",
+  SelectedMovie = "/titles/:id",
 }
 
 const Router = () => {
@@ -27,6 +29,10 @@ const Router = () => {
         <Route path={RoutesList.Home} element={<PagesContainer />}>
           <Route path={RoutesList.Home} element={<Home />}></Route>
           <Route path={RoutesList.Test} element={<Test />}></Route>
+          <Route
+            path={RoutesList.SelectedMovie}
+            element={<SelectedMovie />}
+          ></Route>
         </Route>
       </Routes>
     </BrowserRouter>

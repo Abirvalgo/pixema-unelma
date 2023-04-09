@@ -4,6 +4,7 @@
   font-family: 'Exo 2', sans-serif;
   font-style: normal;
   font-weight: 600;
+  color: $white;
 }
 
 //Primary & focus headlines
@@ -52,9 +53,10 @@
 @mixin b1 {
   font-family: 'Exo 2', sans-serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 16px;
   line-height: 24px;
+  color: $white;
 }
 
 @mixin button {

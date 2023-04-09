@@ -33,17 +33,6 @@ const Test = () => {
 
   return (
     <>
-      <Button
-        onClick={onButtonClick}
-        title={"Кнопка"}
-        type={ButtonType.Primary}
-      />
-      <Button
-        onClick={onButtonClick}
-        title={"Кнопка"}
-        type={ButtonType.Primary}
-        disabled
-      />
       <Switch />
       <div className={styles.svgFill}>
         <HomeIcon />

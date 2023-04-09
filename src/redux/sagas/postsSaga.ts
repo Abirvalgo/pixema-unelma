@@ -6,10 +6,12 @@ import {
   getAllPosts,
   getSinglePost,
   setAllPosts,
+  setLoading,
   setSinglePost,
 } from "../reducers/postSlice";
 
 function* getSinglePostWorker(action: PayloadAction<string>) {
+  yield put(setLoading(true));
   const { ok, data, problem }: ApiResponse<any> = yield call(
     API.getSinglePost,
     action.payload
@@ -19,9 +21,11 @@ function* getSinglePostWorker(action: PayloadAction<string>) {
   } else {
     console.warn("Error getting post", problem);
   }
+  yield put(setLoading(false));
 }
 
 function* getAllPostsWorker(action: PayloadAction<any>) {
+  yield put(setLoading(true));
   const { ok, data, problem }: ApiResponse<any> = yield call(
     API.getAllPosts,
     action.payload
@@ -32,6 +36,7 @@ function* getAllPostsWorker(action: PayloadAction<any>) {
   } else {
     console.warn("Error getting post", problem);
   }
+  yield put(setLoading(false));
 }
 export default function* postsSaga() {
   yield all([takeLatest(getSinglePost, getSinglePostWorker)]);
