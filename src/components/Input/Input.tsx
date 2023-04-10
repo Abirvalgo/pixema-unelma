@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FC } from "react";
 import styles from "./Input.module.scss";
 import { FilterIcon } from "../../assets/icons";
+import classNames from "classnames";
 
 type InputType = {
   title?: string;
@@ -27,22 +28,24 @@ const Input: FC<InputType> = ({
     onChange(e.target.value);
   };
   return (
-    <div className={styles.container}>
-      {title && <div>{title}</div>}
-      <input
-        className={styles.input}
-        type={type}
-        value={value}
-        placeholder={placeholder}
-        disabled={disabled}
-        onChange={onChangeInput}
-      />
-      {filters && (
-        <div className={styles.filter}>
-          <FilterIcon />
-        </div>
-      )}
-    </div>
+    <>
+      {title && <div className={styles.title}>{title}</div>}
+      <div className={styles.container}>
+        <input
+          className={styles.input}
+          type={type}
+          value={value}
+          placeholder={placeholder}
+          disabled={disabled}
+          onChange={onChangeInput}
+        />
+        {filters && (
+          <div className={styles.filter}>
+            <FilterIcon />
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

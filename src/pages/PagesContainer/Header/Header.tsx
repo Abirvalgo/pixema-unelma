@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import styles from "./Header.module.scss";
 import { PixemaIcon, UserIcon } from "../../../assets/icons";
 import Input from "../../../components/Input";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [search, setSearch] = useState("");
   const onChangeSearch = (search: string) => {
     setSearch(search);
+  };
+  const navigate = useNavigate();
+  const onSignInClick = () => {
+    navigate(`/sign-in`);
   };
 
   return (
@@ -21,8 +26,9 @@ const Header = () => {
           placeholder={"Search"}
           onChange={onChangeSearch}
         />
-        <div className={styles.userIcon}>
+        <div className={styles.userIcon} onClick={onSignInClick}>
           <UserIcon />
+          Sign In
         </div>
       </div>
     </>

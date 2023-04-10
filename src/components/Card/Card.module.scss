@@ -1,11 +1,11 @@
 @import "src/assets/colors";
 @import "src/assets/mixins";
 
-.test{
+.test {
   color: white;
 }
 
-.container{
+.container {
   display: flex;
   position: relative;
   flex-direction: column;
@@ -14,23 +14,38 @@
   justify-content: space-between;
   width: 266px;
   height: 433px;
-  & > img{
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  & > img {
     width: 266px;
     height: 357px;
     border-radius: 20px;
+    background: rgba(0, 0, 0, .5);
+    opacity: 1;
+    transition: opacity .2s linear;
+
+  }
+
+  & > img:hover {
+    opacity: 0.7;
   }
 }
-.rating{
+
+.rating {
   @include s3;
   display: flex;
   position: absolute;
-top: 20px;
+  top: 20px;
   left: 20px;
   justify-content: center;
   align-items: center;
   width: 37px;
   height: 28px;
   color: $white;
-  background-color:$green ;
+  background-color: $green;
   border-radius: 6px;
+  z-index: 2;
 }

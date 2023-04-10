@@ -17,4 +17,3 @@ const Home = () => {
 };
 
 export default Home;
-// {allPosts && <div>{allPosts[0].name}</div>}

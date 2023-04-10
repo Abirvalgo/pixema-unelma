@@ -11,10 +11,10 @@ const PagesContainer = () => {
         <Header />
         <SideBar />
         <Outlet />
-        {/*<Button onClick={() => {}} type={ButtonType.Primary} title="Кнопка" />*/}
       </div>
+      <div className={styles.empty}></div>
       <div className={styles.footer}>© All Rights Reserved</div>
-      // TODO разобраться со скачущим при загрузке footer и шириной Outlet
+      /// TODO разобраться со скачущим при загрузке footer и шириной Outlet
       (почему не влазит 1490px)
     </div>
   );

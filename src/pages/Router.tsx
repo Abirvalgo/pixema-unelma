@@ -4,6 +4,9 @@ import Home from "./Home";
 import Test from "./Test";
 import PagesContainer from "./PagesContainer";
 import SelectedMovie from "./SelectedMovie";
+import SignIn from "./FormContainer/SignIn";
+import SignUp from "./FormContainer/SignUp";
+import ResetPassword from "./FormContainer/ResetPassword";
 
 export enum RoutesList {
   Home = "/",
@@ -20,6 +23,7 @@ export enum RoutesList {
   Default = "*",
   Test = "/test",
   SelectedMovie = "/titles/:id",
+  Account = "/",
 }
 
 const Router = () => {
@@ -34,6 +38,12 @@ const Router = () => {
             element={<SelectedMovie />}
           ></Route>
         </Route>
+        <Route path={RoutesList.SignIn} element={<SignIn />}></Route>
+        <Route path={RoutesList.SignUp} element={<SignUp />}></Route>
+        <Route
+          path={RoutesList.ResetPassword}
+          element={<ResetPassword />}
+        ></Route>
       </Routes>
     </BrowserRouter>
   );
