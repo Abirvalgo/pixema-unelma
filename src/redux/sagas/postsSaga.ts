@@ -5,9 +5,11 @@ import API from "../api";
 import {
   getAllPosts,
   getSinglePost,
+  getTrendPosts,
   setAllPosts,
   setLoading,
   setSinglePost,
+  setTrendPosts,
 } from "../reducers/postSlice";
 
 function* getSinglePostWorker(action: PayloadAction<string>) {
@@ -38,7 +40,23 @@ function* getAllPostsWorker(action: PayloadAction<any>) {
   }
   yield put(setLoading(false));
 }
+
+function* getTrendPostsWorker(action: PayloadAction<any>) {
+  yield put(setLoading(true));
+  const { ok, data, problem }: ApiResponse<any> = yield call(
+    API.getTrendPosts,
+    action.payload
+  );
+  if (ok && data) {
+    yield put(setTrendPosts(data.pagination.data));
+    console.log(setTrendPosts(data.pagination.data));
+  } else {
+    console.warn("Error getting post", problem);
+  }
+  yield put(setLoading(false));
+}
 export default function* postsSaga() {
   yield all([takeLatest(getSinglePost, getSinglePostWorker)]);
   yield all([takeLatest(getAllPosts, getAllPostsWorker)]);
+  yield all([takeLatest(getTrendPosts, getTrendPostsWorker)]);
 }

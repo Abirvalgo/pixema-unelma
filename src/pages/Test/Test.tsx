@@ -114,4 +114,4 @@ export default Test;
 // );
 // };
 //
-// export default Home;
+// export default Trends;

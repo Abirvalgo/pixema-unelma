@@ -14,10 +14,9 @@ const PagesContainer = () => {
       </div>
       <div className={styles.empty}></div>
       <div className={styles.footer}>© All Rights Reserved</div>
-      /// TODO разобраться со скачущим при загрузке footer и шириной Outlet
-      (почему не влазит 1490px)
     </div>
   );
 };
 
 export default PagesContainer;
+/// TODO разобраться со скачущим при загрузке footer и шириной Outlet (почему не влазит 1490px)

@@ -7,11 +7,14 @@ import SelectedMovie from "./SelectedMovie";
 import SignIn from "./FormContainer/SignIn";
 import SignUp from "./FormContainer/SignUp";
 import ResetPassword from "./FormContainer/ResetPassword";
+import Trends from "./Trends";
+import Favorites from "./Favorites";
+import Settings from "./Settings";
 
 export enum RoutesList {
   Home = "/",
   Trends = "/trends",
-  Favourites = "/favourites",
+  Favorites = "/favorites",
   Settings = "/settings",
   Search = "/search",
   SignIn = "/sign-in",
@@ -32,6 +35,9 @@ const Router = () => {
       <Routes>
         <Route path={RoutesList.Home} element={<PagesContainer />}>
           <Route path={RoutesList.Home} element={<Home />}></Route>
+          <Route path={RoutesList.Trends} element={<Trends />}></Route>
+          <Route path={RoutesList.Favorites} element={<Favorites />}></Route>
+          <Route path={RoutesList.Settings} element={<Settings />}></Route>
           <Route path={RoutesList.Test} element={<Test />}></Route>
           <Route
             path={RoutesList.SelectedMovie}

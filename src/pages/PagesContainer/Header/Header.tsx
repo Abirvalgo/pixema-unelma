@@ -46,7 +46,7 @@ export default Header;
 //         <div className={styles.iconsWrapper}>
 //           <div className={styles.svgFill}>
 //             <HomeIcon />
-//             <p>Home</p>
+//             <p>Trends</p>
 //           </div>
 //           <div className={styles.svgFill}>
 //             <TrendsIcon />

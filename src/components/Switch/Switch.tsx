@@ -21,7 +21,6 @@ const Switch: FC<SwitchProps> = ({ checked, disabled }) => {
         />
         <span className={classNames(styles.slider, styles.round, {})}></span>
       </label>
-      <p>{isChecked ? "Selected" : "Unchecked"}</p>
     </div>
   );
 };

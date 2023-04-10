@@ -1,0 +1,78 @@
+@import "src/assets/colors";
+@import "src/assets/mixins.scss";
+
+.container {
+  max-width: 1184px;
+  width: 100%;
+}
+
+.inputName {
+  @include h2;
+  margin-bottom: 16px;
+}
+input{
+  height: 56px;
+  :hover{
+    height: 56px;
+  }
+}
+.boxWrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 40px;
+  background: $dark;
+  height: 168px;
+  gap: 40px;
+  border-radius: 10px;
+  margin-bottom: 40px;
+
+  .inputWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+  }
+  .inputWrapperLeft{
+    display: flex;
+    width: 50%;
+  }
+  .inputWrapperRight{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+}
+.boxWrapperHeight{
+  height: 280px;
+}
+.switchWrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  align-items: center;
+  padding: 24px 40px;
+  background: $dark;
+  border-radius: 10px;
+  margin-bottom: 40px;
+
+}
+.themeTextWrapper{
+  display: flex;
+  flex-direction: column;
+  .themeTextTop{
+    @include s2;
+  }
+  .themeTextBottom{
+    @include b1;
+    color: $light;
+  }
+}
+.buttonWrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 40px;
+  &>div{
+    width: 266px;
+  }
+}

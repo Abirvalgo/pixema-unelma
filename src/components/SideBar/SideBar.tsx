@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import styles from "./SideBar.module.scss";
 import {
   FavoritesIcon,
@@ -13,6 +13,20 @@ const SideBar = () => {
   const onHomeClick = () => {
     navigate(`/`);
   };
+  const onTrendsClick = () => {
+    navigate(`/trends`);
+  };
+  const onFavoritesClick = () => {
+    navigate(`/favorites`);
+  };
+  const onSettingsClick = () => {
+    navigate(`/settings`);
+  };
+  // const onClick1 = (text: string) => {
+  //   navigate(`/${text}`);
+  // };
+  //TODO сократить (строки 25-26. ругается на что-то при onClick)
+
   return (
     <div className={styles.leftContainer}>
       <div className={styles.iconsWrapper}>
@@ -20,15 +34,15 @@ const SideBar = () => {
           <HomeIcon />
           <p>Home</p>
         </div>
-        <div className={styles.svgFill}>
+        <div className={styles.svgFill} onClick={onTrendsClick}>
           <TrendsIcon />
           <p>Trends</p>
         </div>
-        <div className={styles.svgFill}>
+        <div className={styles.svgFill} onClick={onFavoritesClick}>
           <FavoritesIcon />
           <p>Favorites</p>
         </div>
-        <div className={styles.svgFill}>
+        <div className={styles.svgFill} onClick={onSettingsClick}>
           <SettingsIcon />
           <p>Settings</p>
         </div>
