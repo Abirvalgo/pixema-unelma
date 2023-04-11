@@ -55,6 +55,19 @@ const getTrendPosts = (
     }
   );
 };
+
+const getRelatedPosts = (id: string) => {
+  return API.get(
+    `/titles/${id}/related`,
+    {},
+    {
+      headers: {
+        Accept: `application/json`,
+        Authorization: `Bearer 550|FkMZF07j8VDcFwVGtBlKazWe8qVGM8GFrM3CPuFe`,
+      },
+    }
+  );
+};
 const getSinglePost = (id: string) => {
   return API.get(
     `/titles/${id}`,
@@ -72,4 +85,5 @@ export default {
   getAllPosts,
   getSinglePost,
   getTrendPosts,
+  getRelatedPosts,
 };

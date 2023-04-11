@@ -1,2 +1,17 @@
 @import "src/assets/colors";
 @import "src/assets/mixins";
+
+.container{
+  display: flex;
+  flex-direction: column;
+  max-width: 1184px;
+  gap: 56px;
+}
+.recommended{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.text{
+  @include h2;
+}

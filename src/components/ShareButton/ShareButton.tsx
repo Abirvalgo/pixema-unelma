@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import styles from "./ShareButton.module.scss";
 import { BookmarkIcon, ShareIcon } from "../../assets/icons";
-import { ButtonType } from "../../utils/@globalTypes";
 import classNames from "classnames";
 
 type ShareButtonProps = {

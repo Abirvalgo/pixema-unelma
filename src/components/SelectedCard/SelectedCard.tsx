@@ -1,7 +1,16 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import styles from "./SelectedCard.module.scss";
 import { ButtonType, SingleCardType } from "../../utils/@globalTypes";
 import Button from "../Button";
+import Loader from "../Loader";
+import CardsList from "../CardsList";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getAllPosts,
+  getRelatedPosts,
+  getSinglePost,
+  postSelectors,
+} from "../../redux/reducers/postSlice";
 
 export type SelectedMovieProps = {
   singleCard: SingleCardType;
@@ -17,8 +26,8 @@ const SelectedCard: FC<SelectedMovieProps> = ({ singleCard }) => {
     country,
     rating,
     runtime,
+    id,
   } = singleCard;
-
   return (
     <>
       <div className={styles.container}>
@@ -52,7 +61,16 @@ const SelectedCard: FC<SelectedMovieProps> = ({ singleCard }) => {
             <div className={styles.smallInfoWrapper}>
               <div className={styles.title}>BoxOffice</div>
               <div className={styles.content}>
-                {revenue ? revenue : `Unavailable`}
+                {revenue
+                  ? `${
+                      revenue
+                        .toLocaleString("en-US", {
+                          style: "currency",
+                          currency: "USD",
+                        })
+                        .split(".")[0]
+                    }`
+                  : `Unavailable`}
               </div>
             </div>
             <div className={styles.smallInfoWrapper}>
@@ -60,6 +78,22 @@ const SelectedCard: FC<SelectedMovieProps> = ({ singleCard }) => {
               <div className={styles.content}>
                 {country ? country : `Unavailable`}
               </div>
+            </div>
+            <div className={styles.smallInfoWrapper}>
+              <div className={styles.title}>Production</div>
+              <div className={styles.content}>{`Test`}</div>
+            </div>
+            <div className={styles.smallInfoWrapper}>
+              <div className={styles.title}>Actors</div>
+              <div className={styles.content}>{`Test`}</div>
+            </div>
+            <div className={styles.smallInfoWrapper}>
+              <div className={styles.title}>Director</div>
+              <div className={styles.content}>{`Test`}</div>
+            </div>
+            <div className={styles.smallInfoWrapper}>
+              <div className={styles.title}>Writers</div>
+              <div className={styles.content}>{`Test`}</div>
             </div>
           </div>
         </div>

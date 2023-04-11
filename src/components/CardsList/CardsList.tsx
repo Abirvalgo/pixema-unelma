@@ -15,7 +15,7 @@ const CardsList: FC<CardsListProps> = ({ cardsList }) => {
       })}
     </div>
   ) : (
-    <div>Error</div>
+    <div className={styles.error}>Error</div>
   );
 };
 

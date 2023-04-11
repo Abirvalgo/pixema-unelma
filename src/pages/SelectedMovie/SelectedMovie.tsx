@@ -1,10 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSinglePost, postSelectors } from "../../redux/reducers/postSlice";
+import {
+  getRelatedPosts,
+  getSinglePost,
+  postSelectors,
+} from "../../redux/reducers/postSlice";
 import SelectedCard from "../../components/SelectedCard";
 import styles from "./SelectedMovie.module.scss";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
+import Related from "../Related";
 
 const SelectedMovie = () => {
   const singlePost = useSelector(postSelectors.getSinglePost);
@@ -16,11 +21,20 @@ const SelectedMovie = () => {
   useEffect(() => {
     if (id) {
       dispatch(getSinglePost(id));
+      dispatch(getRelatedPosts(id));
     }
-  }, []);
+  }, [id]);
 
   return (
-    <>{isLoading ? <Loader /> : <SelectedCard singleCard={singlePost} />}</>
+    <>
+      <div className={styles.container}>
+        {isLoading ? <Loader /> : <SelectedCard singleCard={singlePost} />}
+        <div className={styles.recommended}>
+          <div className={styles.text}>Recommendations</div>
+          <Related />
+        </div>
+      </div>
+    </>
   );
 };
 

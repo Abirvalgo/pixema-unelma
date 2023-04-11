@@ -25,7 +25,6 @@
 
 .infoContainer{
   max-width: 878px;
-  border: 1px solid white;
   .name{
     @include h1;
     margin-bottom: 24px;
@@ -53,6 +52,7 @@
       justify-content: center;
       align-items: center;
       background-color:$graphite ;
+      border-radius: 6px;
     }
   }
   .description{

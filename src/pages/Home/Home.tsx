@@ -19,9 +19,9 @@ const Home = () => {
   return (
     <>
       {isLoading ? <Loader /> : <CardsList cardsList={allPosts} />}
-      <div className={styles.button}>
-        <Button onClick={() => {}} type={ButtonType.Secondary} />
-      </div>
+      {/*<div className={styles.button}>*/}
+      {/*  <Button onClick={() => {}} type={ButtonType.Secondary} />*/}
+      {/*</div>*/}
     </>
   );
 };
