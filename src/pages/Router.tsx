@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import Test from "./Test";
@@ -10,6 +10,8 @@ import ResetPassword from "./FormContainer/ResetPassword";
 import Trends from "./Trends";
 import Favorites from "./Favorites";
 import Settings from "./Settings";
+import { useDispatch, useSelector } from "react-redux";
+import { AuthSelectors, getUserInfo } from "../redux/reducers/authSlice";
 
 export enum RoutesList {
   Home = "/",
@@ -30,6 +32,14 @@ export enum RoutesList {
 }
 
 const Router = () => {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(getUserInfo());
+    }
+  }, [isLoggedIn]);
   return (
     <BrowserRouter>
       <Routes>

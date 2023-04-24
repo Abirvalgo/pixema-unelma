@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import styles from "./SignIn.module.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Input from "../../../components/Input";
 import { ButtonType } from "../../../utils/@globalTypes";
 import Button from "../../../components/Button";
 import { RoutesList } from "../../Router";
 import FormContainer from "../FormContainer";
+import { useDispatch } from "react-redux";
+import { signInUser } from "../../../redux/reducers/authSlice";
 
 const SignIn = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const onChangeEmail = (value: string) => {
@@ -15,6 +19,14 @@ const SignIn = () => {
   };
   const onChangePassword = (value: string) => {
     setPassword(value);
+  };
+  const onSignInClick = () => {
+    dispatch(
+      signInUser({
+        data: { email, password, token_name: "random" },
+        callback: () => navigate(RoutesList.Home),
+      })
+    );
   };
   return (
     <FormContainer formTitle={"Sign In"}>
@@ -42,7 +54,7 @@ const SignIn = () => {
           <Button
             title={"Sign In"}
             type={ButtonType.Primary}
-            onClick={() => {}}
+            onClick={onSignInClick}
           />
         </div>
         <div className={styles.text}>

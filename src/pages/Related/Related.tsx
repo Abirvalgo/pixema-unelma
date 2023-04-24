@@ -8,10 +8,10 @@ const Trends = () => {
   const relatedPosts = useSelector(postSelectors.getRelatedPosts);
   const dispatch = useDispatch();
   const isLoading = useSelector(postSelectors.getIsLoading);
-
-  useEffect(() => {
-    dispatch(getRelatedPosts({}));
-  }, []);
+  //
+  // useEffect(() => {
+  //   dispatch(getRelatedPosts({}));
+  // }, []); тут не нужно (хз) только в selected movie
   return <>{isLoading ? <Loader /> : <CardsList cardsList={relatedPosts} />}</>;
 };
 

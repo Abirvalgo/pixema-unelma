@@ -1,9 +1,37 @@
 import { create } from "apisauce";
+import { SignInUserData, SignUpUserData } from "../reducers/@types";
+import { pixemaToken } from "../../utils/constants";
 
 const API = create({
   baseURL: "https://unelmamovie.com/api/v1",
 });
 
+const signUpUser = (data: SignUpUserData) => {
+  return API.post(`/auth/register`, data, {
+    headers: {
+      Accept: `application/json`,
+    },
+  });
+};
+const signInUser = (data: SignInUserData) => {
+  return API.post(`/auth/login`, data, {
+    headers: {
+      Accept: `application/json`,
+    },
+  });
+};
+const getUserInfo = () => {
+  return API.get(
+    "/user-profile/me/",
+    {},
+    {
+      headers: {
+        Accept: `application/json`,
+        Authorization: `Bearer ${pixemaToken}`,
+      },
+    }
+  );
+};
 const getAllPosts = (
   perPage: number,
   page?: number,
@@ -23,7 +51,8 @@ const getAllPosts = (
     {
       headers: {
         Accept: `application/json`,
-        Authorization: `Bearer 550|FkMZF07j8VDcFwVGtBlKazWe8qVGM8GFrM3CPuFe`,
+        Authorization: `Bearer ${pixemaToken}`,
+        // Authorization: `Bearer 550|FkMZF07j8VDcFwVGtBlKazWe8qVGM8GFrM3CPuFe`,
       },
     }
   );
@@ -50,7 +79,7 @@ const getTrendPosts = (
     {
       headers: {
         Accept: `application/json`,
-        Authorization: `Bearer 550|FkMZF07j8VDcFwVGtBlKazWe8qVGM8GFrM3CPuFe`,
+        Authorization: `Bearer ${pixemaToken}`,
       },
     }
   );
@@ -63,7 +92,7 @@ const getRelatedPosts = (id: string) => {
     {
       headers: {
         Accept: `application/json`,
-        Authorization: `Bearer 550|FkMZF07j8VDcFwVGtBlKazWe8qVGM8GFrM3CPuFe`,
+        Authorization: `Bearer ${pixemaToken}`,
       },
     }
   );
@@ -75,7 +104,7 @@ const getSinglePost = (id: string) => {
     {
       headers: {
         Accept: `application/json`,
-        Authorization: `Bearer 550|FkMZF07j8VDcFwVGtBlKazWe8qVGM8GFrM3CPuFe`,
+        Authorization: `Bearer ${pixemaToken}`,
       },
     }
   );
@@ -86,4 +115,7 @@ export default {
   getSinglePost,
   getTrendPosts,
   getRelatedPosts,
+  signUpUser,
+  signInUser,
+  getUserInfo,
 };

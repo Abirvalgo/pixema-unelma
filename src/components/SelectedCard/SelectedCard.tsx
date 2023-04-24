@@ -2,6 +2,7 @@ import React, { FC, useEffect } from "react";
 import styles from "./SelectedCard.module.scss";
 import { ButtonType, SingleCardType } from "../../utils/@globalTypes";
 import Button from "../Button";
+import { DateTime } from "luxon";
 import Loader from "../Loader";
 import CardsList from "../CardsList";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,6 +29,7 @@ const SelectedCard: FC<SelectedMovieProps> = ({ singleCard }) => {
     runtime,
     id,
   } = singleCard;
+  const newDate = new Date(release_date);
   return (
     <>
       <div className={styles.container}>
@@ -54,7 +56,9 @@ const SelectedCard: FC<SelectedMovieProps> = ({ singleCard }) => {
               <div className={styles.title}>Released</div>
               {release_date && (
                 <div className={styles.content}>
-                  {release_date.slice(0, 10)}
+                  {DateTime.fromISO(release_date)
+                    .setLocale("en")
+                    .toFormat("dd MMMM yyyy")}
                 </div>
               )}
             </div>

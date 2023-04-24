@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import styles from "./SignUp.module.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Input from "../../../components/Input";
 import { ButtonType } from "../../../utils/@globalTypes";
 import Button from "../../../components/Button";
 import { RoutesList } from "../../Router";
 import FormContainer from "../FormContainer";
-
+import { useDispatch } from "react-redux";
+import { signUpUser } from "../../../redux/reducers/authSlice";
+//TODO name не используется при отправке на сервер
 const SignUp = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,6 +27,19 @@ const SignUp = () => {
   };
   const onChangeConfirmPass = (value: string) => {
     setConfirmPass(value);
+  };
+  const onSignUpClick = () => {
+    dispatch(
+      signUpUser({
+        data: {
+          email,
+          password,
+          password_confirmation: confirmPass,
+          token_name: "randomToken",
+        },
+        callback: () => navigate(RoutesList.SignIn),
+      })
+    );
   };
   return (
     <FormContainer formTitle={"Sign Up"}>
@@ -52,7 +69,7 @@ const SignUp = () => {
           <Input
             title={"Confirm Password"}
             type={"password"}
-            value={password}
+            value={confirmPass}
             placeholder="Confirm Password"
             onChange={onChangeConfirmPass}
           />
@@ -61,7 +78,7 @@ const SignUp = () => {
           <Button
             title={"Sign Up"}
             type={ButtonType.Primary}
-            onClick={() => {}}
+            onClick={onSignUpClick}
           />
         </div>
         <div className={styles.text}>
@@ -74,5 +91,4 @@ const SignUp = () => {
     </FormContainer>
   );
 };
-//TODO сделать как child (а не outlet)?????
 export default SignUp;

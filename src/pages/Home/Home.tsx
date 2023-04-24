@@ -3,22 +3,34 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts, postSelectors } from "../../redux/reducers/postSlice";
 import CardsList from "../../components/CardsList";
 import Loader from "../../components/Loader";
-import Button from "../../components/Button";
-import { ButtonType } from "../../utils/@globalTypes";
 import styles from "./Home.module.scss";
+import { AuthSelectors } from "../../redux/reducers/authSlice";
+import EmptyState from "../../components/EmptyState";
 
 const Home = () => {
   const allPosts = useSelector(postSelectors.getAllPosts);
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
   const isLoading = useSelector(postSelectors.getIsLoading);
+  const userInfo = useSelector(AuthSelectors.getUserInfo);
 
   useEffect(() => {
-    dispatch(getAllPosts({}));
-  }, []);
-  //TODO http://localhost:3000/test
+    isLoggedIn && dispatch(getAllPosts({}));
+  }, [isLoggedIn]);
   return (
     <>
-      {isLoading ? <Loader /> : <CardsList cardsList={allPosts} />}
+      {isLoggedIn ? (
+        isLoading ? (
+          <Loader />
+        ) : (
+          <CardsList cardsList={allPosts} />
+        )
+      ) : (
+        <div className={styles.emptyState}>
+          <EmptyState description="Sign In required to browse this website" />
+        </div>
+      )}
+
       {/*<div className={styles.button}>*/}
       {/*  <Button onClick={() => {}} type={ButtonType.Secondary} />*/}
       {/*</div>*/}

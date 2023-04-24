@@ -3,17 +3,22 @@ import styles from "./Header.module.scss";
 import { PixemaIcon, UserIcon } from "../../../assets/icons";
 import Input from "../../../components/Input";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { AuthSelectors } from "../../../redux/reducers/authSlice";
+import UserName from "../../../components/UserName";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
+  const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
+  const userInfo = useSelector(AuthSelectors.getUserInfo);
+  const userName = userInfo?.user.display_name;
   const onChangeSearch = (search: string) => {
     setSearch(search);
   };
-  const navigate = useNavigate();
   const onSignInClick = () => {
     navigate(`/sign-in`);
   };
-
   return (
     <>
       <div className={styles.header}>
@@ -26,10 +31,19 @@ const Header = () => {
           placeholder={"Search"}
           onChange={onChangeSearch}
         />
-        <div className={styles.userIcon} onClick={onSignInClick}>
-          <UserIcon />
-          Sign In
-        </div>
+        {isLoggedIn ? (
+          userInfo && (
+            <div className={styles.userIcon} onClick={onSignInClick}>
+              <UserName username={userName} />
+              {userName}
+            </div>
+          )
+        ) : (
+          <div className={styles.userIcon} onClick={onSignInClick}>
+            <UserIcon />
+            Sign In
+          </div>
+        )}
       </div>
     </>
   );

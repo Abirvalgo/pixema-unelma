@@ -72,8 +72,10 @@ function* getRelatedPostsWorker(action: PayloadAction<any>) {
   yield put(setLoading(false));
 }
 export default function* postsSaga() {
-  yield all([takeLatest(getSinglePost, getSinglePostWorker)]);
-  yield all([takeLatest(getAllPosts, getAllPostsWorker)]);
-  yield all([takeLatest(getTrendPosts, getTrendPostsWorker)]);
-  yield all([takeLatest(getRelatedPosts, getRelatedPostsWorker)]);
+  yield all([
+    takeLatest(getSinglePost, getSinglePostWorker),
+    takeLatest(getAllPosts, getAllPostsWorker),
+    takeLatest(getTrendPosts, getTrendPostsWorker),
+    takeLatest(getRelatedPosts, getRelatedPostsWorker),
+  ]);
 }
