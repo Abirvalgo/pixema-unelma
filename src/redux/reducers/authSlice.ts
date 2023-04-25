@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { SignInUserPayload, SignUpUserPayload } from "./@types";
 import { ACCESS_TOKEN } from "../../utils/constants";
-import { GetUserInfo, SignInUserResponse, UserLogin } from "../sagas/@types";
+import { GetUserInfo } from "../sagas/@types";
 
 type AuthType = {
   isLoggedIn: boolean;
@@ -21,9 +21,6 @@ const authSlice = createSlice({
     setLoggedIn: (state, action: PayloadAction<boolean>) => {
       state.isLoggedIn = action.payload;
     },
-    // setUserInfo: (state, action: PayloadAction<UserLogin>) => {
-    //   state.userInfo = action.payload;
-    // },
     getUserInfo: (_, __: PayloadAction<undefined>) => {},
     setUserInfo: (state, action: PayloadAction<GetUserInfo | null>) => {
       state.userInfo = action.payload;

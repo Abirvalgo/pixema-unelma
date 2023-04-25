@@ -7,16 +7,16 @@ import styles from "./Home.module.scss";
 import { AuthSelectors } from "../../redux/reducers/authSlice";
 import EmptyState from "../../components/EmptyState";
 
+//TODO если не залогинен, то ставить disabled  поля в Settings
 const Home = () => {
   const allPosts = useSelector(postSelectors.getAllPosts);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
   const isLoading = useSelector(postSelectors.getIsLoading);
-  const userInfo = useSelector(AuthSelectors.getUserInfo);
 
   useEffect(() => {
-    isLoggedIn && dispatch(getAllPosts({}));
-  }, [isLoggedIn]);
+    dispatch(getAllPosts({}));
+  }, []);
   return (
     <>
       {isLoggedIn ? (
@@ -30,10 +30,6 @@ const Home = () => {
           <EmptyState description="Sign In required to browse this website" />
         </div>
       )}
-
-      {/*<div className={styles.button}>*/}
-      {/*  <Button onClick={() => {}} type={ButtonType.Secondary} />*/}
-      {/*</div>*/}
     </>
   );
 };

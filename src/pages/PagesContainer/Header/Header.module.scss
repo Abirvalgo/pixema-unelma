@@ -1,10 +1,11 @@
 @import "src/assets/colors";
 @import "src/assets/mixins";
 
-.container{
+.container {
   display: flex;
 }
-.header{
+
+.header {
   display: flex;
   flex-direction: row;
   height: 56px;
@@ -17,7 +18,8 @@
   margin-right: 126px;
 }
 
-.userIcon{
+.userIcon {
+  position: relative;
   @include s2;
   display: flex;
   flex-direction: row;
@@ -25,7 +27,58 @@
   gap: 20px;
   margin-left: 40px;
   height: 56px;
-&:hover{
-  cursor: pointer;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
+
+.arrowRight {
+  border: solid $light;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+.arrowDown {
+  border: solid $light;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+}
+
+.buttonsWrapper {
+  display: flex;
+  background-color: $graphite;
+  border-radius: 10px;
+  flex-direction: column;
+  gap: 1px;
+  position: absolute;
+  top: 70px;
+  width: 267px;
+  z-index: 3;
+  & :first-child{
+    border-radius: 10px 10px 0 0;
+    background-color: $dark;
+  }
+  & :last-child{
+    border-radius: 0 0 10px 10px;
+    background-color: $dark;
+  }
+  & :first-child:not(.disabledButton):hover{
+    background-color: $dark;
+    color: $primary;
+  }
+  & :last-child:not(.disabledButton):hover{
+    background-color: $dark;
+    color: $primary;
+  }
+}
+.userIcon>.buttonsWrapper:first-child:hover{
+  color: green;
+}
+.hidden{
+  display: none;
 }

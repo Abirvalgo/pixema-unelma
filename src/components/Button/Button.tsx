@@ -9,6 +9,8 @@ type ButtonProps = {
   onClick: () => void;
   type: ButtonType;
   disabled?: boolean;
+  onMouseOver?: (e: MouseEvent) => void;
+  onMouseOut?: (e: MouseEvent) => void;
 };
 const btnStyles = {
   [ButtonType.Primary]: styles.primaryButton,

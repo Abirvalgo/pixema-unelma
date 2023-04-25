@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import styles from "./SideBar.module.scss";
 import {
   FavoritesIcon,
@@ -22,10 +22,6 @@ const SideBar = () => {
   const onSettingsClick = () => {
     navigate(`/settings`);
   };
-  // const onClick1 = (text: string) => {
-  //   navigate(`/${text}`);
-  // };
-  //TODO сократить (строки 25-26. ругается на что-то при onClick)
 
   return (
     <div className={styles.leftContainer}>

@@ -1,6 +1,5 @@
 import { create } from "apisauce";
 import { SignInUserData, SignUpUserData } from "../reducers/@types";
-import { pixemaToken } from "../../utils/constants";
 
 const API = create({
   baseURL: "https://unelmamovie.com/api/v1",
@@ -22,18 +21,18 @@ const signInUser = (data: SignInUserData) => {
 };
 const getUserInfo = () => {
   return API.get(
-    "/user-profile/me/",
+    "/user-profile/me",
     {},
     {
       headers: {
         Accept: `application/json`,
-        Authorization: `Bearer ${pixemaToken}`,
+        Authorization: `Bearer ${localStorage.getItem("pixemaToken")}`,
       },
     }
   );
 };
 const getAllPosts = (
-  perPage: number,
+  perPage?: number,
   page?: number,
   release_date?: string,
   released?: string,
@@ -51,8 +50,7 @@ const getAllPosts = (
     {
       headers: {
         Accept: `application/json`,
-        Authorization: `Bearer ${pixemaToken}`,
-        // Authorization: `Bearer 550|FkMZF07j8VDcFwVGtBlKazWe8qVGM8GFrM3CPuFe`,
+        Authorization: `Bearer ${localStorage.getItem("pixemaToken")}`,
       },
     }
   );
@@ -79,7 +77,7 @@ const getTrendPosts = (
     {
       headers: {
         Accept: `application/json`,
-        Authorization: `Bearer ${pixemaToken}`,
+        Authorization: `Bearer ${localStorage.getItem("pixemaToken")}`,
       },
     }
   );
@@ -92,7 +90,7 @@ const getRelatedPosts = (id: string) => {
     {
       headers: {
         Accept: `application/json`,
-        Authorization: `Bearer ${pixemaToken}`,
+        Authorization: `Bearer ${localStorage.getItem("pixemaToken")}`,
       },
     }
   );
@@ -104,7 +102,7 @@ const getSinglePost = (id: string) => {
     {
       headers: {
         Accept: `application/json`,
-        Authorization: `Bearer ${pixemaToken}`,
+        Authorization: `Bearer ${localStorage.getItem("pixemaToken")}`,
       },
     }
   );

@@ -1,7 +1,6 @@
 import React, { ChangeEvent, FC } from "react";
 import styles from "./Input.module.scss";
 import { FilterIcon } from "../../assets/icons";
-import classNames from "classnames";
 
 type InputType = {
   title?: string;

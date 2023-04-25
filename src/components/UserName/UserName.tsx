@@ -7,16 +7,12 @@ type UserProps = {
   username: string | undefined;
 };
 const UserName: FC<UserProps> = ({ username }) => {
-  // const shortname = username
-  //   ?.split("")
-  //   .map((word) => word.charAt(0))
-  //   .join("");
+  const shortname = username?.substr(0, 2).toUpperCase();
   const userInfo = useSelector(AuthSelectors.getUserInfo);
   return (
     userInfo && (
       <div className={styles.userFrame}>
-        {/*<p>{shortname}</p>*/}
-        <p>{username}</p>
+        <p>{shortname}</p>
       </div>
     )
   );

@@ -3,15 +3,12 @@ import styles from "./PagesContainer.module.scss";
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
 import SideBar from "../../components/SideBar";
-import { useSelector } from "react-redux";
-import { AuthSelectors } from "../../redux/reducers/authSlice";
 
 const PagesContainer = () => {
-  const userInfo = useSelector(AuthSelectors.getUserInfo);
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        userinfo&& <Header />
+        <Header />
         <SideBar />
         <Outlet />
       </div>
@@ -26,3 +23,5 @@ export default PagesContainer;
 
 /// TODO userinfo удаляется после перезагрузки (я получаю после логина только). надо делать отдельно reducer,saga
 ///под это??? ПРОВЕРКА ИДЕТ ПО token и потом вместо id просто пишу {me} user-profile/id
+/// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/// TODO дохнет токен походу через время (падает ошибка). надо обновлять каждый раз (смотреть)

@@ -55,6 +55,7 @@ function* getUserInfoWorker() {
 }
 function* logoutUserWorker() {
   localStorage.removeItem(ACCESS_TOKEN);
+  yield put(setUserInfo(null));
   yield put(setLoggedIn(false));
 }
 export default function* authSaga() {

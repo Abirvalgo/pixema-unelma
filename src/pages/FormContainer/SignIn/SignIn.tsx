@@ -67,5 +67,4 @@ const SignIn = () => {
     </FormContainer>
   );
 };
-//TODO сделать как child (а не outlet)?????
 export default SignIn;

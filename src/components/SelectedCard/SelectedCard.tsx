@@ -1,17 +1,8 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import styles from "./SelectedCard.module.scss";
 import { ButtonType, SingleCardType } from "../../utils/@globalTypes";
 import Button from "../Button";
 import { DateTime } from "luxon";
-import Loader from "../Loader";
-import CardsList from "../CardsList";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllPosts,
-  getRelatedPosts,
-  getSinglePost,
-  postSelectors,
-} from "../../redux/reducers/postSlice";
 
 export type SelectedMovieProps = {
   singleCard: SingleCardType;
@@ -29,7 +20,6 @@ const SelectedCard: FC<SelectedMovieProps> = ({ singleCard }) => {
     runtime,
     id,
   } = singleCard;
-  const newDate = new Date(release_date);
   return (
     <>
       <div className={styles.container}>
