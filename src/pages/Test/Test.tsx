@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSinglePost, postSelectors } from "../../redux/reducers/postSlice";
+import { getSinglePost, PostSelectors } from "../../redux/reducers/postSlice";
 import Button from "../../components/Button";
 import { ButtonType } from "../../utils/@globalTypes";
 import Switch from "../../components/Switch";
@@ -19,7 +19,7 @@ import Input from "../../components/Input";
 import Home from "../Home";
 
 const Test = () => {
-  const singlePost = useSelector(postSelectors.getSinglePost);
+  const singlePost = useSelector(PostSelectors.getSinglePost);
   const dispatch = useDispatch();
   const onButtonClick = () => {};
 

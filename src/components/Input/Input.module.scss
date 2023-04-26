@@ -20,7 +20,7 @@
   width: 100%;
   background-color: $graphite;
   padding-left: 20px;
-  border: 2px solid rgba(0, 0, 0, 0);
+  outline: 2px solid rgba(0, 0, 0, 0);
   border-radius: 10px;
   color: $white;
 
@@ -31,7 +31,7 @@
     margin-left: 20px;
   }
   &:focus{
-    border: 2px solid $primary;
+    outline: 2px solid $primary;
   }
   &:active:hover{
     border: none;

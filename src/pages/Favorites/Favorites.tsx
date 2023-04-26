@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTrendPosts, postSelectors } from "../../redux/reducers/postSlice";
+import { getTrendPosts, PostSelectors } from "../../redux/reducers/postSlice";
 import CardsList from "../../components/CardsList";
 import Loader from "../../components/Loader";
 
 const Favorites = () => {
-  const trendPosts = useSelector(postSelectors.getTrendPosts);
+  const trendPosts = useSelector(PostSelectors.getTrendPosts);
   const dispatch = useDispatch();
-  const isLoading = useSelector(postSelectors.getIsLoading);
+  const isLoading = useSelector(PostSelectors.getIsLoading);
 
   useEffect(() => {
     dispatch(getTrendPosts({}));
   }, []);
-  //TODO http://localhost:3000/test
+
   return <>{isLoading ? <Loader /> : <CardsList cardsList={trendPosts} />}</>;
 };
 

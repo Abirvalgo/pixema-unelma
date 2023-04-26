@@ -5,8 +5,13 @@ import classNames from "classnames";
 import Switch from "../../components/Switch";
 import Button from "../../components/Button";
 import { ButtonType } from "../../utils/@globalTypes";
+import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
+  const navigate = useNavigate();
+  const onCancelClick = () => {
+    navigate(`/`);
+  };
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -80,7 +85,7 @@ const Settings = () => {
       </div>
       <div className={styles.buttonWrapper}>
         <Button
-          onClick={() => {}}
+          onClick={onCancelClick}
           type={ButtonType.Secondary}
           title={`Cancel`}
         />

@@ -6,6 +6,8 @@ type initialStateType = {
   allPosts: any;
   trendPosts: any;
   relatedPosts: any;
+  searchedPosts: any;
+  searchValue: string;
   isLoading: boolean;
 };
 
@@ -14,6 +16,8 @@ const initialState: initialStateType = {
   allPosts: "",
   trendPosts: "",
   relatedPosts: "",
+  searchedPosts: "",
+  searchValue: "",
   isLoading: false,
 };
 const postSlice = createSlice({
@@ -39,6 +43,12 @@ const postSlice = createSlice({
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
+    getSearchedPosts: (state, action: PayloadAction<any>) => {
+      state.searchValue = action.payload.searchValue;
+    },
+    setSearchedPosts: (state, action: PayloadAction<any>) => {
+      state.searchedPosts = action.payload;
+    },
   },
 });
 
@@ -52,12 +62,15 @@ export const {
   getRelatedPosts,
   setRelatedPosts,
   setLoading,
+  getSearchedPosts,
+  setSearchedPosts,
 } = postSlice.actions;
 export default postSlice.reducer;
-export const postSelectors = {
+export const PostSelectors = {
   getSinglePost: (state: RootState) => state.post.singlePost,
   getAllPosts: (state: RootState) => state.post.allPosts,
   getTrendPosts: (state: RootState) => state.post.trendPosts,
   getRelatedPosts: (state: RootState) => state.post.relatedPosts,
   getIsLoading: (state: RootState) => state.post.isLoading,
+  getSearchedPosts: (state: RootState) => state.post.searchedPosts,
 };

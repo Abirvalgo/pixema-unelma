@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Header.module.scss";
-import { PixemaIcon, UserIcon } from "../../../assets/icons";
+import { PixemaIcon, SearchIcon, UserIcon } from "../../../assets/icons";
 import Input from "../../../components/Input";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,17 +9,23 @@ import UserName from "../../../components/UserName";
 import Button from "../../../components/Button";
 import { ButtonType } from "../../../utils/@globalTypes";
 import classNames from "classnames";
+import {
+  getSearchedPosts,
+  PostSelectors,
+} from "../../../redux/reducers/postSlice";
+import { RoutesList } from "../../Router";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
-  const [search, setSearch] = useState("");
+  const [searchValue, setSearchValue] = useState("");
   const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
   const userInfo = useSelector(AuthSelectors.getUserInfo);
+  const searchedPosts = useSelector(PostSelectors.getSearchedPosts);
   const userName = userInfo?.user.display_name;
-  const onChangeSearch = (search: string) => {
-    setSearch(search);
+  const onChangeSearch = (searchValue: string) => {
+    setSearchValue(searchValue);
   };
   const onSignInClick = () => {
     navigate(`/sign-in`);
@@ -32,6 +38,11 @@ const Header = () => {
   };
   const onLogoutClick = () => {
     dispatch(logoutUser());
+  };
+  const onClickSearchButton = () => {
+    dispatch(getSearchedPosts(searchValue));
+    setSearchValue("");
+    navigate(RoutesList.Search);
   };
   // const onMouseOverEvent = (event: React.MouseEvent<HTMLDivElement>) => {
   //   setActive(true);
@@ -48,10 +59,13 @@ const Header = () => {
         </div>
         <Input
           type={`text`}
-          value={search}
+          value={searchValue}
           placeholder={"Search"}
           onChange={onChangeSearch}
         />
+        <div className={styles.searchBtn} onClick={onClickSearchButton}>
+          <SearchIcon />
+        </div>
         {isLoggedIn ? (
           userInfo && (
             <div className={styles.userIcon} onClick={onUserClick}>

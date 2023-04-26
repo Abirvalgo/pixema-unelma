@@ -12,6 +12,8 @@ import {
   setTrendPosts,
   getRelatedPosts,
   setRelatedPosts,
+  getSearchedPosts,
+  setSearchedPosts,
 } from "../reducers/postSlice";
 
 function* getSinglePostWorker(action: PayloadAction<string>) {
@@ -36,7 +38,6 @@ function* getAllPostsWorker(action: PayloadAction<any>) {
   );
   if (ok && data) {
     yield put(setAllPosts(data.pagination.data));
-    console.log(setAllPosts(data.pagination.data));
   } else {
     console.warn("Error getting post", problem);
   }
@@ -51,7 +52,6 @@ function* getTrendPostsWorker(action: PayloadAction<any>) {
   );
   if (ok && data) {
     yield put(setTrendPosts(data.pagination.data));
-    console.log(setTrendPosts(data.pagination.data));
   } else {
     console.warn("Error getting post", problem);
   }
@@ -71,11 +71,29 @@ function* getRelatedPostsWorker(action: PayloadAction<any>) {
   }
   yield put(setLoading(false));
 }
+
+function* getSearchedPostsWorker(action: PayloadAction<any>) {
+  yield put(setLoading(true));
+  const { searchValue } = action.payload;
+  const { ok, data, problem }: ApiResponse<any> = yield call(
+    API.getSearchedPosts,
+    action.payload,
+    searchValue
+  );
+  if (ok && data) {
+    yield put(setSearchedPosts(data.results));
+  } else {
+    console.warn("Error getting post", problem);
+  }
+  yield put(setLoading(false));
+}
+
 export default function* postsSaga() {
   yield all([
     takeLatest(getSinglePost, getSinglePostWorker),
     takeLatest(getAllPosts, getAllPostsWorker),
     takeLatest(getTrendPosts, getTrendPostsWorker),
     takeLatest(getRelatedPosts, getRelatedPostsWorker),
+    takeLatest(getSearchedPosts, getSearchedPostsWorker),
   ]);
 }

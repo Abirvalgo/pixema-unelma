@@ -12,6 +12,7 @@ import Favorites from "./Favorites";
 import Settings from "./Settings";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthSelectors, getUserInfo } from "../redux/reducers/authSlice";
+import Search from "./Search";
 
 export enum RoutesList {
   Home = "/",
@@ -48,6 +49,7 @@ const Router = () => {
           <Route path={RoutesList.Trends} element={<Trends />}></Route>
           <Route path={RoutesList.Favorites} element={<Favorites />}></Route>
           <Route path={RoutesList.Settings} element={<Settings />}></Route>
+          <Route path={RoutesList.Search} element={<Search />}></Route>
           <Route path={RoutesList.Test} element={<Test />}></Route>
           <Route
             path={RoutesList.SelectedMovie}

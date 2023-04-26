@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getRelatedPosts,
   getSinglePost,
-  postSelectors,
+  PostSelectors,
+  setSinglePost,
 } from "../../redux/reducers/postSlice";
 import SelectedCard from "../../components/SelectedCard";
 import styles from "./SelectedMovie.module.scss";
@@ -12,11 +13,11 @@ import Loader from "../../components/Loader";
 import Related from "../Related";
 
 const SelectedMovie = () => {
-  const singlePost = useSelector(postSelectors.getSinglePost);
+  const singlePost = useSelector(PostSelectors.getSinglePost);
   const dispatch = useDispatch();
   const params = useParams();
   const { id } = params;
-  const isLoading = useSelector(postSelectors.getIsLoading);
+  const isLoading = useSelector(PostSelectors.getIsLoading);
 
   useEffect(() => {
     if (id) {
@@ -24,6 +25,11 @@ const SelectedMovie = () => {
       dispatch(getRelatedPosts(id));
     }
   }, [id]);
+  useEffect(() => {
+    return () => {
+      dispatch(setSinglePost(""));
+    };
+  }, [id]); //TODO 28-32 как-то переделать(мб тупо добавить isloading в сагу setsinglepost
 
   return (
     <>

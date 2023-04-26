@@ -108,6 +108,20 @@ const getSinglePost = (id: string) => {
   );
 };
 
+const getSearchedPosts = (searchValue: string, limit?: number) => {
+  return API.get(
+    `/search/${searchValue}`,
+    {
+      limit: 10,
+    },
+    {
+      headers: {
+        Accept: `application/json`,
+        Authorization: `Bearer ${localStorage.getItem("pixemaToken")}`,
+      },
+    }
+  );
+};
 export default {
   getAllPosts,
   getSinglePost,
@@ -116,4 +130,5 @@ export default {
   signUpUser,
   signInUser,
   getUserInfo,
+  getSearchedPosts,
 };
