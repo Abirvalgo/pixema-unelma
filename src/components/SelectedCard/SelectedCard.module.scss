@@ -54,6 +54,7 @@
       background-color:$graphite ;
       border-radius: 6px;
     }
+
   }
   .description{
     @include b1;
@@ -73,9 +74,31 @@
     }
     .content{
       @include s3;
+      max-width: 600px;
+      display: flex;
+      flex-wrap: wrap;
     }
   }
   }
 }
+.genres{
+  display: flex;
+  flex-direction: row;
+  & > p{
+    @include s2;
+    color: $light;
+  }
+  & > p:not(:last-child)::after {
+    content: '';
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: 3px;
+    width: 4px;
+    height: 4px;
+    border-radius: 4px;
+    background-color: $light;
+  }
+}
+
 
 

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styles from "./SelectedCard.module.scss";
-import { ButtonType, SingleCardType } from "../../utils/@globalTypes";
+import { ButtonType, Credit, SingleCardType } from "../../utils/@globalTypes";
 import Button from "../Button";
 import { DateTime } from "luxon";
 
@@ -15,11 +15,35 @@ const SelectedCard: FC<SelectedMovieProps> = ({ singleCard }) => {
     year,
     release_date,
     revenue,
-    country,
     rating,
     runtime,
-    id,
+    genres,
+    credits,
   } = singleCard;
+
+  const allGenres = genres?.map((genre) => (
+    <p key={genre.id}>
+      {genre.name.charAt(0).toUpperCase() + genre.name.slice(1)}
+    </p>
+  ));
+
+  const getNamesByDepartment = (
+    credits: Credit[] | undefined,
+    department: string
+  ) => {
+    return credits
+      ?.map((item) => {
+        if (item.pivot.department === department) {
+          return item.name;
+        }
+      })
+      .filter((item) => item != undefined)
+      .join(", ");
+  };
+
+  const writers = getNamesByDepartment(credits, "writing");
+  const directors = getNamesByDepartment(credits, "directing");
+  const cast = getNamesByDepartment(credits, "cast");
   return (
     <>
       <div className={styles.container}>
@@ -31,6 +55,7 @@ const SelectedCard: FC<SelectedMovieProps> = ({ singleCard }) => {
           </div>
         </div>
         <div className={styles.infoContainer}>
+          <div className={styles.genres}>{allGenres}</div>
           <div className={styles.name}>{name}</div>
           <div className={styles.ratingWrapper}>
             <div className={styles.rating}>{rating}</div>
@@ -68,26 +93,16 @@ const SelectedCard: FC<SelectedMovieProps> = ({ singleCard }) => {
               </div>
             </div>
             <div className={styles.smallInfoWrapper}>
-              <div className={styles.title}>Country</div>
-              <div className={styles.content}>
-                {country ? country : `Unavailable`}
-              </div>
-            </div>
-            <div className={styles.smallInfoWrapper}>
-              <div className={styles.title}>Production</div>
-              <div className={styles.content}>{`Test`}</div>
-            </div>
-            <div className={styles.smallInfoWrapper}>
               <div className={styles.title}>Actors</div>
-              <div className={styles.content}>{`Test`}</div>
+              <div className={styles.content}>{cast}</div>
             </div>
             <div className={styles.smallInfoWrapper}>
               <div className={styles.title}>Director</div>
-              <div className={styles.content}>{`Test`}</div>
+              <div className={styles.content}>{directors}</div>
             </div>
             <div className={styles.smallInfoWrapper}>
               <div className={styles.title}>Writers</div>
-              <div className={styles.content}>{`Test`}</div>
+              <div className={styles.content}>{writers}</div>
             </div>
           </div>
         </div>

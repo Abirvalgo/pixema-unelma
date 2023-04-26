@@ -6,6 +6,7 @@ import Loader from "../../components/Loader";
 import styles from "./Home.module.scss";
 import { AuthSelectors } from "../../redux/reducers/authSlice";
 import EmptyState from "../../components/EmptyState";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 //TODO если не залогинен, то ставить disabled  поля в Settings
 const Home = () => {
@@ -23,7 +24,15 @@ const Home = () => {
         isLoading ? (
           <Loader />
         ) : (
-          <CardsList cardsList={allPosts} />
+          //TODO react infinite scroll component разобрать че как (урок 53 или ютуб)
+          <InfiniteScroll
+            next={() => {}}
+            hasMore={allPosts < 40}
+            loader={<Loader />}
+            dataLength={allPosts.length}
+          >
+            <CardsList cardsList={allPosts} />
+          </InfiniteScroll>
         )
       ) : (
         <div className={styles.emptyState}>

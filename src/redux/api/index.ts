@@ -41,7 +41,7 @@ const getAllPosts = (
   return API.get(
     `/titles`,
     {
-      perPage: 10,
+      perPage: 50,
       page: 1,
       order: `popularity:desc`,
       released: `2022,2023`,

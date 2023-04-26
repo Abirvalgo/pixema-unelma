@@ -113,20 +113,22 @@ export type SingleCardType = {
       latest_play: null | string;
     }
   ];
-  credits?: {
-    id: number;
-    name: string;
-    poster: string;
-    model_type: string;
-    pivot: {
-      creditable_id: number;
-      person_id: number;
-      creditable_type: string;
-      id: number;
-      job: string;
-      department: string;
-      order: number;
-      character: null | string;
-    }[];
-  };
+  credits?: Credit[];
+};
+export type Credit = {
+  id: number;
+  name: string;
+  poster: string;
+  model_type: string;
+  pivot: Pivot;
+};
+export type Pivot = {
+  creditable_id: number;
+  person_id: number;
+  creditable_type: string;
+  id: number;
+  job: string;
+  department: string;
+  order: number;
+  character: string | null;
 };
