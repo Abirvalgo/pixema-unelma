@@ -1,0 +1,45 @@
+@import "src/assets/colors";
+@import "src/assets/mixins";
+
+.background {
+  background-color: $black;
+  min-height: 100vh;
+  min-width: 100vw;
+  background-image: url("../../assets/background.png");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  padding: 43px 62px;
+  justify-content: space-between;
+
+  .pixema:hover {
+    cursor: pointer;
+  }
+
+  .footer {
+    bottom: 64px;
+    @include s2;
+    font-weight: 500;
+    color: $light;
+    align-self: center;
+  }
+
+  .formWrapper {
+    width: 100%;
+    max-width: 574px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    gap: 40px;
+    background: $dark;
+    border-radius: 10px;
+
+    .formTitle {
+      @include h2;
+    }
+  }
+}
+
+
+

@@ -1,0 +1,42 @@
+@import "src/assets/colors";
+@import "src/assets/mixins";
+
+body{
+  background: $black;
+}
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  padding: 40px 62px 64px;
+  min-height: 100vh;
+}
+//.container{
+//  display: grid;
+//  grid-template-areas:
+//    "sidebar search search"
+//    "sidebar content content"
+//    "sidebar content content"
+//    "footer footer footer";
+//  justify-content: space-between;
+//}
+.container{
+  display: flex;
+  flex-wrap: wrap;
+}
+.footer{
+  display: flex;
+  @include s2;
+  font-weight: 500;
+  color: $light;
+  grid-area: footer;
+}
+.header{
+  width: 1900px;
+}
+.outlet{
+  display: flex;
+}
+.empty{
+  display: flex;
+  flex: 1 1 auto;
+}

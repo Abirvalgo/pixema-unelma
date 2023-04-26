@@ -1,0 +1,104 @@
+@import "src/assets/colors";
+@import "src/assets/mixins";
+
+  .container{
+    display: flex;
+    flex-direction: row;
+    gap: 42px;
+    max-width: 1490px;
+  }
+.posterContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  img {
+    height: 356px;
+    width: 266px;
+    border-radius: 20px;
+  }
+  .buttonWrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+  }
+}
+
+.infoContainer{
+  max-width: 878px;
+  .name{
+    @include h1;
+    margin-bottom: 24px;
+  }
+  .ratingWrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    .rating{
+      @include s3;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 37px;
+      height: 28px;
+      color: $white;
+      background-color:$green ;
+      border-radius: 6px;
+    }
+    .runtime{
+      @include s3;
+      width: 73px;
+      height: 28px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color:$graphite ;
+      border-radius: 6px;
+    }
+
+  }
+  .description{
+    @include b1;
+    margin: 40px 0;
+  }
+  .smallInfoContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  .smallInfoWrapper{
+    display: flex;
+    flex-direction: row;
+    .title{
+      @include s3;
+      color: $light;
+      width: 135px;
+    }
+    .content{
+      @include s3;
+      max-width: 600px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+  }
+}
+.genres{
+  display: flex;
+  flex-direction: row;
+  & > p{
+    @include s2;
+    color: $light;
+  }
+  & > p:not(:last-child)::after {
+    content: '';
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: 3px;
+    width: 4px;
+    height: 4px;
+    border-radius: 4px;
+    background-color: $light;
+  }
+}
+
+
+

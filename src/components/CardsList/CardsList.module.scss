@@ -1,0 +1,13 @@
+@import "src/assets/mixins";
+@import "src/assets/colors";
+.container{
+  display: grid;
+  grid-area: content;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px;
+  flex: 1;
+  max-width: 1490px;
+}
+.error{
+  @include h2;
+}

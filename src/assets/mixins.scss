@@ -1,0 +1,132 @@
+@import "colors";
+
+@mixin font {
+  font-family: 'Exo 2', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  color: $white;
+}
+
+//Primary & focus headlines
+@mixin h1 {
+  @include font();
+  font-size: 40px;
+  line-height: 60px;
+}
+
+//Secondary headlines, Group stacks
+@mixin h2 {
+  @include font();
+  font-size: 24px;
+  line-height: 36px;
+}
+
+//Tertiary headlines,List headlines
+@mixin h3 {
+  @include font();
+  font-size: 20px;
+  line-height: 32px;
+}
+
+//Navigation bar title,List items
+@mixin s1 {
+  @include font();
+  font-size: 18px;
+  line-height: 24px;
+}
+
+//Quaternary headlines,Titles
+@mixin s2 {
+  @include font();
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+//Buttons
+@mixin s3 {
+  @include font();
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin b1 {
+  font-family: 'Exo 2', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: $white;
+}
+
+@mixin button {
+  @include s3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  background: $primary;
+  border-radius: 10px;
+  color: $white;
+  &:hover {
+    cursor: pointer;
+  }
+  &::selection {
+    background: transparent;
+  }
+}
+
+// закрашивает мелкие кнопки (home, trends etc.)
+@mixin svgFill {
+  box-sizing: border-box;
+  display: flex;
+  //width: 24px;
+  //height: 24px;
+  &:active:hover {
+    svg > path {
+      fill: $primary;
+    }
+  }
+  &:active:hover > p {
+    color: $primary;
+  }
+
+  &:hover {
+    cursor: pointer;
+    svg > path {
+      fill: $primary-secondary;
+    }
+  }
+  &:hover > p {
+    color: $primary-secondary;
+  }
+  &:disabled {
+    svg > path {
+      fill: $graphite;
+    }
+  }
+  &:disabled > p {
+    color: $graphite;
+  }
+}
+
+@mixin svgFillBookmark {
+  box-sizing: border-box;
+  display: flex;
+  width: 24px;
+  height: 24px;
+  &:hover {
+    cursor: pointer;
+
+    svg > path {
+      fill: $white;
+      stroke: $white;
+    }
+  }
+  &:disabled {
+    svg > path {
+      fill: $light;
+      stroke: $light;
+    }
+  }
+}
