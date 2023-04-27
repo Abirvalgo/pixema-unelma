@@ -42,7 +42,7 @@ const Router = () => {
     }
   }, [isLoggedIn]);
   return (
-    <BrowserRouter basename={window.location.pathname || ''}>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path={RoutesList.Home} element={<PagesContainer />}>
           <Route path={RoutesList.Home} element={<Home />}></Route>
