@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/pixema-unelma/static/css/main.934c7ffd.css",
-    "main.js": "/pixema-unelma/static/js/main.b7f14e42.js",
+    "main.js": "/pixema-unelma/static/js/main.20128823.js",
     "static/media/background.png": "/pixema-unelma/static/media/background.2109cac4a25194649554.png",
     "static/media/Exo2.ttf": "/pixema-unelma/static/media/Exo2.0305039fee62c2e6a71f.ttf",
     "index.html": "/pixema-unelma/index.html",
     "main.934c7ffd.css.map": "/pixema-unelma/static/css/main.934c7ffd.css.map",
-    "main.b7f14e42.js.map": "/pixema-unelma/static/js/main.b7f14e42.js.map"
+    "main.20128823.js.map": "/pixema-unelma/static/js/main.20128823.js.map"
   },
   "entrypoints": [
     "static/css/main.934c7ffd.css",
-    "static/js/main.b7f14e42.js"
+    "static/js/main.20128823.js"
   ]
 }
