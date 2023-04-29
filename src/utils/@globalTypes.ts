@@ -5,6 +5,11 @@ export enum ButtonType {
   Bookmark = "Bookmark",
   Share = "Share",
 }
+export type CardListType = CardType[];
+export type ScrollListType = {
+  allPosts: CardListType;
+  postsCount: number;
+};
 export type CardType = {
   id: number;
   name: string;

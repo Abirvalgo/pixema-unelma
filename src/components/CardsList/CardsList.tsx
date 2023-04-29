@@ -1,9 +1,8 @@
 import React, { FC } from "react";
 import styles from "./CardsList.module.scss";
-import { CardType } from "../../utils/@globalTypes";
+import { CardListType } from "../../utils/@globalTypes";
 import Card from "../Card";
 
-export type CardListType = CardType[];
 type CardsListProps = {
   cardsList: CardListType;
 };
@@ -11,7 +10,7 @@ type CardsListProps = {
 const CardsList: FC<CardsListProps> = ({ cardsList }) => {
   return cardsList.length > 0 ? (
     <div className={styles.container}>
-      {cardsList.map((item, index) => {
+      {cardsList.map((item) => {
         return <Card key={item.id} card={item} />;
       })}
     </div>

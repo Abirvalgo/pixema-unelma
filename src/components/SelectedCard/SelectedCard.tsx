@@ -3,11 +3,17 @@ import styles from "./SelectedCard.module.scss";
 import { ButtonType, Credit, SingleCardType } from "../../utils/@globalTypes";
 import Button from "../Button";
 import { DateTime } from "luxon";
+import classNames from "classnames";
+import { TrendsIcon } from "../../assets/icons";
+import { useDispatch } from "react-redux";
+import { addFavoritePosts } from "../../redux/reducers/postSlice";
 
 export type SelectedMovieProps = {
   singleCard: SingleCardType;
+  titleId: number;
+  id: number | null;
 };
-const SelectedCard: FC<SelectedMovieProps> = ({ singleCard }) => {
+const SelectedCard: FC<SelectedMovieProps> = ({ singleCard, titleId, id }) => {
   const {
     poster,
     name,
@@ -20,6 +26,7 @@ const SelectedCard: FC<SelectedMovieProps> = ({ singleCard }) => {
     genres,
     credits,
   } = singleCard;
+  const dispatch = useDispatch();
 
   const allGenres = genres?.map((genre) => (
     <p key={genre.id}>
@@ -40,17 +47,21 @@ const SelectedCard: FC<SelectedMovieProps> = ({ singleCard }) => {
       .filter((item) => item != undefined)
       .join(", ");
   };
-
   const writers = getNamesByDepartment(credits, "writing");
   const directors = getNamesByDepartment(credits, "directing");
   const cast = getNamesByDepartment(credits, "cast");
+  const onClickBookmark = () => {
+    dispatch(addFavoritePosts({ id, titleId }));
+  };
+  //TODO строка 53-54 сделать if (id) есть в favoriteslist, то удалить (добавить новый api для delete favorite)
+
   return (
     <>
       <div className={styles.container}>
         <div className={styles.posterContainer}>
           <img src={poster} alt={"Movie Poster"} />
           <div className={styles.buttonWrapper}>
-            <Button onClick={() => {}} type={ButtonType.Bookmark} />
+            <Button onClick={onClickBookmark} type={ButtonType.Bookmark} />
             <Button onClick={() => {}} type={ButtonType.Share} />
           </div>
         </div>
@@ -58,7 +69,17 @@ const SelectedCard: FC<SelectedMovieProps> = ({ singleCard }) => {
           <div className={styles.genres}>{allGenres}</div>
           <div className={styles.name}>{name}</div>
           <div className={styles.ratingWrapper}>
-            <div className={styles.rating}>{rating}</div>
+            <div
+              className={classNames(styles.rating, {
+                [styles.trendsRating]: rating > "7.8",
+                [styles.mediocreRating]: rating < "6",
+                [styles.badRating]: rating < "5",
+                [styles.noneRating]: rating === null,
+              })}
+            >
+              {rating > "7.8" && <TrendsIcon />}
+              {rating}
+            </div>
             <div className={styles.runtime}>{runtime} min</div>
           </div>
           <div className={styles.description}>{description}</div>

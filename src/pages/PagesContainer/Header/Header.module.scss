@@ -29,6 +29,7 @@
   height: 56px;
 
   &:hover {
+    .userName {color: $primary-secondary;}
     cursor: pointer;
   }
 }
@@ -56,9 +57,10 @@
   flex-direction: column;
   gap: 1px;
   position: absolute;
-  top: 70px;
+  top: 110px;
   width: 267px;
   z-index: 3;
+  box-shadow: 0 0 2px 2px;
   & :first-child{
     border-radius: 10px 10px 0 0;
     background-color: $dark;
@@ -87,4 +89,10 @@
   display: flex;
   position: relative;
   left: -50px;
+  &:hover{
+  svg > path  {
+    transition: all 0.3s;
+    stroke: $primary;
+  }
+  }
 }

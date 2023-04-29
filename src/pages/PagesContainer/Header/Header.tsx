@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, KeyboardEvent } from "react";
 import styles from "./Header.module.scss";
 import { PixemaIcon, SearchIcon, UserIcon } from "../../../assets/icons";
 import Input from "../../../components/Input";
@@ -22,7 +22,6 @@ const Header = () => {
   const [searchValue, setSearchValue] = useState("");
   const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
   const userInfo = useSelector(AuthSelectors.getUserInfo);
-  const searchedPosts = useSelector(PostSelectors.getSearchedPosts);
   const userName = userInfo?.user.display_name;
   const onChangeSearch = (searchValue: string) => {
     setSearchValue(searchValue);
@@ -44,6 +43,11 @@ const Header = () => {
     setSearchValue("");
     navigate(RoutesList.Search);
   };
+  const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      onClickSearchButton();
+    }
+  };
   // const onMouseOverEvent = (event: React.MouseEvent<HTMLDivElement>) => {
   //   setActive(true);
   // };
@@ -62,16 +66,23 @@ const Header = () => {
           value={searchValue}
           placeholder={"Search"}
           onChange={onChangeSearch}
+          onKeyDown={onKeyDown}
         />
         <div className={styles.searchBtn} onClick={onClickSearchButton}>
           <SearchIcon />
         </div>
         {isLoggedIn ? (
           userInfo && (
-            <div className={styles.userIcon} onClick={onUserClick}>
-              <UserName username={userName} />
-              {userName}
-              <div className={styles.arrowRight}></div>
+            <div>
+              <div className={styles.userIcon} onClick={onUserClick}>
+                <UserName username={userName} />
+                {<p className={styles.userName}>{userName}</p>}
+                {active ? (
+                  <div className={styles.arrowDown}></div>
+                ) : (
+                  <div className={styles.arrowRight}></div>
+                )}
+              </div>
               <div
                 onMouseLeave={onMouseLeaveEvent}
                 className={classNames(styles.buttonsWrapper, {
@@ -90,7 +101,6 @@ const Header = () => {
                 />
               </div>
             </div>
-
             //   <div className={styles.buttonsWrapper}>
             //     <Button
             //         title={"Edit profile"}

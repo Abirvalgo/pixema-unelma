@@ -21,9 +21,11 @@
   display: flex;
   gap: 23px;
   flex-direction: row;
+
   @include svgFill;
 
   & > p {
-    color: white;
+    transition: all 0.3s;
+    color: $white;
   }
 }

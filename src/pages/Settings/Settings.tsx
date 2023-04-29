@@ -6,9 +6,12 @@ import Switch from "../../components/Switch";
 import Button from "../../components/Button";
 import { ButtonType } from "../../utils/@globalTypes";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { AuthSelectors } from "../../redux/reducers/authSlice";
 
 const Settings = () => {
   const navigate = useNavigate();
+  const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
   const onCancelClick = () => {
     navigate(`/`);
   };
@@ -24,6 +27,7 @@ const Settings = () => {
               value={`Test name`}
               placeholder="Your name"
               onChange={() => {}}
+              disabled={!isLoggedIn}
             />
           </div>
           <div className={styles.inputWrapper}>
@@ -33,6 +37,7 @@ const Settings = () => {
               value={`Test email`}
               placeholder=""
               onChange={() => {}}
+              disabled={!isLoggedIn}
             />
           </div>
         </div>
@@ -48,6 +53,7 @@ const Settings = () => {
                 value={`Test name`}
                 placeholder="Your Password"
                 onChange={() => {}}
+                disabled={!isLoggedIn}
               />
             </div>
           </div>
@@ -59,6 +65,7 @@ const Settings = () => {
                 value={`Test name`}
                 placeholder="New Password"
                 onChange={() => {}}
+                disabled={!isLoggedIn}
               />
             </div>
             <div className={styles.inputWrapper}>
@@ -68,6 +75,7 @@ const Settings = () => {
                 value={`Test name`}
                 placeholder="Confirm Password"
                 onChange={() => {}}
+                disabled={!isLoggedIn}
               />
             </div>
           </div>

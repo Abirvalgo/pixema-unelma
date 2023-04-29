@@ -1,8 +1,8 @@
 @import "src/assets/colors";
 @import "src/assets/mixins";
 
-.test {
-  color: white;
+.cardText {
+  color: $white;
 }
 
 .container {
@@ -14,9 +14,11 @@
   justify-content: space-between;
   width: 266px;
   height: 433px;
-
   &:hover {
     cursor: pointer;
+    .cardText{
+      color: $primary;
+    }
   }
 
   & > img {
@@ -26,7 +28,6 @@
     background: rgba(0, 0, 0, .5);
     opacity: 1;
     transition: opacity .2s linear;
-
   }
 
   & > img:hover {
@@ -47,5 +48,24 @@
   color: $white;
   background-color: $green;
   border-radius: 6px;
+  box-shadow: 0 0 10px 10px rgba(34, 60, 80, 0.2);
   z-index: 2;
+  svg > path {
+    fill: $white;
+  }
 }
+.trendsRating{
+  background-color: $primary;
+  width: 57px;
+}
+.mediocreRating{
+  background-color: $yellow;
+}
+.badRating{
+  background-color: $orange;
+}
+.noneRating{
+  display: none;
+}
+
+

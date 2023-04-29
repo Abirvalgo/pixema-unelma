@@ -15,3 +15,14 @@ export type PayloadWithCallback<Data> = {
   data: Data;
   callback: () => void;
 };
+export type GetAllPostsPayload = {
+  perPage: number;
+  page: number;
+  release_date?: string | undefined;
+  released?: string | undefined;
+  country?: string | undefined;
+};
+export type addFavoritePostsPayload = {
+  id: number;
+  titleId: number;
+};

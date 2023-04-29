@@ -11,6 +11,7 @@ import styles from "./SelectedMovie.module.scss";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 import Related from "../Related";
+import { AuthSelectors } from "../../redux/reducers/authSlice";
 
 const SelectedMovie = () => {
   const singlePost = useSelector(PostSelectors.getSinglePost);
@@ -27,21 +28,31 @@ const SelectedMovie = () => {
   }, [id]);
   useEffect(() => {
     return () => {
-      dispatch(setSinglePost(""));
+      dispatch(setSinglePost(null));
     };
-  }, [id]); //TODO 28-32 как-то переделать(мб тупо добавить isloading в сагу setsinglepost
+  }, [id]);
+  const favoriteListId = useSelector(AuthSelectors.getFavoritesId);
+  //TODO 28-32 как-то переделать(мб тупо добавить isloading в сагу setsinglepost
 
-  return (
+  return singlePost && id ? (
     <>
       <div className={styles.container}>
-        {isLoading ? <Loader /> : <SelectedCard singleCard={singlePost} />}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <SelectedCard
+            singleCard={singlePost}
+            titleId={+id}
+            id={favoriteListId}
+          />
+        )}
         <div className={styles.recommended}>
           <div className={styles.text}>Recommendations</div>
           <Related />
         </div>
       </div>
     </>
-  );
+  ) : null;
 };
 
 export default SelectedMovie;

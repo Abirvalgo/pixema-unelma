@@ -43,6 +43,22 @@
       color: $white;
       background-color:$green ;
       border-radius: 6px;
+      svg > path {
+        fill: $white;
+      }
+    }
+    .trendsRating{
+      background-color: $primary;
+      width: 57px;
+    }
+    .mediocreRating{
+      background-color: $yellow;
+    }
+    .badRating{
+      background-color: $orange;
+    }
+    .noneRating{
+      display: none;
     }
     .runtime{
       @include s3;
@@ -99,6 +115,7 @@
     background-color: $light;
   }
 }
+
 
 
 

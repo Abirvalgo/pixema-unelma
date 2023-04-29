@@ -4,23 +4,38 @@ import { SignInUserPayload, SignUpUserPayload } from "../reducers/@types";
 import { ApiResponse } from "apisauce";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 import {
+  getFavoritesId,
   getUserInfo,
   logoutUser,
+  setFavoritesId,
   setLoggedIn,
   setUserInfo,
   signInUser,
   signUpUser,
 } from "../reducers/authSlice";
-import { GetUserInfo, SignInUserResponse, SignUpUserResponse } from "./@types";
+import {
+  GetFavoritesIdResponse,
+  GetUserInfo,
+  SignInUserResponse,
+  SignUpUserResponse,
+} from "./@types";
 import { ACCESS_TOKEN } from "../../utils/constants";
 
 function* signUpUserWorker(action: PayloadAction<SignUpUserPayload>) {
   const { data, callback } = action.payload;
-  const { ok, problem }: ApiResponse<SignUpUserResponse> = yield call(
-    API.signUpUser,
-    data
-  );
-  if (ok) {
+  const {
+    ok,
+    problem,
+    data: responseData,
+  }: ApiResponse<SignUpUserResponse> = yield call(API.signUpUser, data);
+  if (ok && responseData) {
+    //создание листа favorites при создании аккаунта
+    localStorage.setItem(
+      ACCESS_TOKEN,
+      responseData?.boostrapData.user.access_token
+    );
+    yield call(API.createList);
+    localStorage.removeItem(ACCESS_TOKEN);
     callback();
   } else {
     console.warn("Error sign up user", problem);
@@ -53,6 +68,18 @@ function* getUserInfoWorker() {
     console.warn("Error getting user info ", problem);
   }
 }
+
+function* getFavoritesIdWorker() {
+  const { ok, problem, data }: ApiResponse<GetFavoritesIdResponse> = yield call(
+    API.getFavoritesId
+  );
+  if (ok && data) {
+    yield put(setFavoritesId(data));
+  } else {
+    console.warn("Error getting favorites list id ", problem);
+  }
+}
+
 function* logoutUserWorker() {
   localStorage.removeItem(ACCESS_TOKEN);
   yield put(setUserInfo(null));
@@ -64,5 +91,6 @@ export default function* authSaga() {
     takeLatest(signInUser, signInUserWorker),
     takeLatest(logoutUser, logoutUserWorker),
     takeLatest(getUserInfo, getUserInfoWorker),
+    takeLatest(getFavoritesId, getFavoritesIdWorker),
   ]);
 }

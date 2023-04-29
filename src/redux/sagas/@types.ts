@@ -1,3 +1,23 @@
+import { CardListType, SingleCardType } from "../../utils/@globalTypes";
+// export type CreateListResponse = {
+//   list: {
+//     name: string;
+//     description: string;
+//     autoUpdate: null;
+//     public: boolean;
+//     userID: number;
+//     updatedAt: string;
+//     createdAt: string;
+//     id: number;
+//     modelType: string;
+//   };
+//   status: string;
+// };
+export type FavoritePostsResponse = {
+  list: FavIdDataType;
+  items: Pagination;
+  status: string;
+};
 export type SignUpUserResponse = {
   status: string;
   boostrapData: BoostrapData;
@@ -16,7 +36,6 @@ type BoostrapData = {
   menus: any[];
   locales: Locale[];
 };
-
 type Locale = {
   id: number;
   name: string;
@@ -60,6 +79,11 @@ export type User = {
   model_type: string;
   watchlist: string | null;
 };
+
+export type GetUserInfo = {
+  user: UserLogin;
+  status: string;
+};
 export type UserLogin = {
   id: number;
   username: null;
@@ -94,7 +118,54 @@ export type UserLogin = {
   model_type: string;
 };
 
-export type GetUserInfo = {
-  user: UserLogin;
+export type SinglePostResponse = {
+  title: SingleCardType;
   status: string;
+};
+export type AllPostsResponse = {
+  pagination: Pagination;
+  status: string;
+};
+
+export type Pagination = {
+  currentPage: number;
+  data: CardListType;
+  firstPageURL: string;
+  from: number;
+  lastPage: number;
+  lastPageURL: string;
+  links: Link[];
+  nextPageURL: string;
+  path: string;
+  perPage: number;
+  prevPageURL: null;
+  to: number;
+  total: number;
+};
+export type Link = {
+  url: null | string;
+  label: string;
+  active: boolean;
+};
+
+export type GetFavoritesIdResponse = {
+  pagination: GetFavoritesIdData;
+  status: string;
+};
+export interface GetFavoritesIdData extends Omit<Pagination, "data"> {
+  data: FavIdDataType[];
+}
+export type FavIdDataType = {
+  id: number;
+  name: string;
+  description: null | string;
+  userID: number;
+  system: boolean;
+  public: boolean;
+  autoUpdate: null;
+  createdAt: string;
+  updatedAt: string;
+  style: null;
+  image: null | string;
+  modelType: string;
 };

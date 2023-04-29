@@ -12,13 +12,10 @@ import { signUpUser } from "../../../redux/reducers/authSlice";
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
-  const onChangeName = (value: string) => {
-    setName(value);
-  };
+
   const onChangeEmail = (value: string) => {
     setEmail(value);
   };
@@ -45,13 +42,13 @@ const SignUp = () => {
     <FormContainer formTitle={"Sign Up"}>
       <div className={styles.container}>
         <div className={styles.input}>
-          <Input
-            title={"Name"}
-            type={"text"}
-            value={name}
-            placeholder="Your name"
-            onChange={onChangeName}
-          />
+          {/*<Input*/}
+          {/*  title={"Name"}*/}
+          {/*  type={"text"}*/}
+          {/*  value={name}*/}
+          {/*  placeholder="Your name"*/}
+          {/*  onChange={onChangeName}*/}
+          {/*/>*/}
           <Input
             title={"Email"}
             type={"text"}

@@ -7,7 +7,7 @@ type UserProps = {
   username: string | undefined;
 };
 const UserName: FC<UserProps> = ({ username }) => {
-  const shortname = username?.substr(0, 2).toUpperCase();
+  const shortname = username?.slice(0, 2).toUpperCase();
   const userInfo = useSelector(AuthSelectors.getUserInfo);
   return (
     userInfo && (

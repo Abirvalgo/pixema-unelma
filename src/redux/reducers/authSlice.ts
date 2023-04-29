@@ -2,15 +2,21 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { SignInUserPayload, SignUpUserPayload } from "./@types";
 import { ACCESS_TOKEN } from "../../utils/constants";
-import { GetUserInfo } from "../sagas/@types";
+import {
+  FavIdDataType,
+  GetFavoritesIdResponse,
+  GetUserInfo,
+} from "../sagas/@types";
 
 type AuthType = {
   isLoggedIn: boolean;
   userInfo: GetUserInfo | null;
+  favoritesId: number | null;
 };
 const initialState: AuthType = {
   isLoggedIn: !!localStorage.getItem(ACCESS_TOKEN),
   userInfo: null,
+  favoritesId: null,
 };
 const authSlice = createSlice({
   name: "auth",
@@ -18,6 +24,12 @@ const authSlice = createSlice({
   reducers: {
     signUpUser: (_, __: PayloadAction<SignUpUserPayload>) => {},
     signInUser: (_, __: PayloadAction<SignInUserPayload>) => {},
+    getFavoritesId: (_, __: PayloadAction<undefined>) => {},
+    setFavoritesId: (state, action: PayloadAction<GetFavoritesIdResponse>) => {
+      state.favoritesId = action.payload.pagination.data.filter(
+        (item: FavIdDataType) => item.name === "favorites"
+      )[0].id;
+    },
     setLoggedIn: (state, action: PayloadAction<boolean>) => {
       state.isLoggedIn = action.payload;
     },
@@ -36,10 +48,13 @@ export const {
   setUserInfo,
   getUserInfo,
   logoutUser,
+  getFavoritesId,
+  setFavoritesId,
 } = authSlice.actions;
 export default authSlice.reducer;
 
 export const AuthSelectors = {
   getLoggedIn: (state: RootState) => state.auth.isLoggedIn,
   getUserInfo: (state: RootState) => state.auth.userInfo,
+  getFavoritesId: (state: RootState) => state.auth.favoritesId,
 };

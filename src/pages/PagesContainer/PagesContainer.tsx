@@ -6,8 +6,8 @@ import SideBar from "../../components/SideBar";
 
 const PagesContainer = () => {
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
+    <div  className={styles.wrapper}>
+      <div  className={styles.container}>
         <Header />
         <SideBar />
         <Outlet />

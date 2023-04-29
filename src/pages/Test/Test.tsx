@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSinglePost, PostSelectors } from "../../redux/reducers/postSlice";
-import Button from "../../components/Button";
-import { ButtonType } from "../../utils/@globalTypes";
 import Switch from "../../components/Switch";
 import { HomeIcon } from "../../assets/icons";
 import styles from "./Test.module.scss";
@@ -16,7 +14,6 @@ import {
 } from "../../assets/icons";
 import ShareButton from "../../components/ShareButton";
 import Input from "../../components/Input";
-import Home from "../Home";
 
 const Test = () => {
   const singlePost = useSelector(PostSelectors.getSinglePost);
@@ -24,7 +21,7 @@ const Test = () => {
   const onButtonClick = () => {};
 
   useEffect(() => {
-    dispatch(getSinglePost({}));
+    dispatch(getSinglePost(''));
   }, []);
   const [name, setName] = useState("");
   const onNameChange = (name: string) => {
