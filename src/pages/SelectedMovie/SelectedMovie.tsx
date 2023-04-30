@@ -32,9 +32,9 @@ const SelectedMovie = () => {
     };
   }, [id]);
   const favoriteListId = useSelector(AuthSelectors.getFavoritesId);
-  //TODO 28-32 как-то переделать(мб тупо добавить isloading в сагу setsinglepost
+  const favoritePosts = useSelector(PostSelectors.getFavoritePosts);
 
-  return singlePost && id ? (
+  return singlePost && id && favoritePosts ? (
     <>
       <div className={styles.container}>
         {isLoading ? (
@@ -44,6 +44,7 @@ const SelectedMovie = () => {
             singleCard={singlePost}
             titleId={+id}
             id={favoriteListId}
+            favoritePosts={favoritePosts}
           />
         )}
         <div className={styles.recommended}>
@@ -52,7 +53,8 @@ const SelectedMovie = () => {
         </div>
       </div>
     </>
+  ) : isLoading ? (
+    <Loader />
   ) : null;
 };
-
 export default SelectedMovie;

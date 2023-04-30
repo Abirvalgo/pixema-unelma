@@ -17,12 +17,11 @@ import {
   getFavoritePosts,
   setFavoritePosts,
   addFavoritePosts,
+  removeFavoritePosts,
 } from "../reducers/postSlice";
+import { FavoritePostsPayload, GetAllPostsPayload } from "../reducers/@types";
 import {
-  addFavoritePostsPayload,
-  GetAllPostsPayload,
-} from "../reducers/@types";
-import {
+  AddFavoritePostsResponse,
   AllPostsResponse,
   FavoritePostsResponse,
   SinglePostResponse,
@@ -66,20 +65,31 @@ function* getAllPostsWorker(action: PayloadAction<GetAllPostsPayload>) {
   if (page === 1) yield put(setLoading(false));
 }
 
-function* getTrendPostsWorker(action: PayloadAction<any>) {
-  yield put(setLoading(true));
-  const { ok, data, problem }: ApiResponse<any> = yield call(
+function* getTrendPostsWorker(action: PayloadAction<GetAllPostsPayload>) {
+  const { perPage, page, release_date, released, country } = action.payload;
+  if (page === 1) yield put(setLoading(true));
+  const { ok, data, problem }: ApiResponse<AllPostsResponse> = yield call(
     API.getTrendPosts,
-    action.payload
+    perPage,
+    page,
+    release_date,
+    released,
+    country
   );
   if (ok && data) {
-    yield put(setTrendPosts(data.pagination.data));
+    yield put(
+      setTrendPosts({
+        trendPosts: data.pagination.data,
+        postsCount: data.pagination.total,
+      })
+    );
   } else {
     console.warn("Error getting post", problem);
   }
   yield put(setLoading(false));
 }
 function* getFavoritePostsWorker(action: PayloadAction<number>) {
+  yield put(setLoading(true));
   const { ok, data, problem }: ApiResponse<FavoritePostsResponse> = yield call(
     API.getFavoritePosts,
     action.payload
@@ -89,18 +99,26 @@ function* getFavoritePostsWorker(action: PayloadAction<number>) {
   } else {
     console.warn("Error getting post", problem);
   }
+  yield put(setLoading(false));
 }
-function* addFavoritePostsWorker(
-  action: PayloadAction<addFavoritePostsPayload>
+function* addFavoritePostsWorker(action: PayloadAction<FavoritePostsPayload>) {
+  const { id, titleId } = action.payload;
+  const { ok, data, problem }: ApiResponse<AddFavoritePostsResponse> =
+    yield call(API.addFavoritePosts, id, titleId);
+  if (ok && data) {
+    yield put(setFavoritePosts(data.list.items));
+  } else {
+    console.warn("Error adding post", problem);
+  }
+}
+function* removeFavoritePostsWorker(
+  action: PayloadAction<FavoritePostsPayload>
 ) {
   const { id, titleId } = action.payload;
-  const { ok, data, problem }: ApiResponse<FavoritePostsResponse> = yield call(
-    API.addFavoritePosts,
-    id,
-    titleId
-  );
+  const { ok, data, problem }: ApiResponse<AddFavoritePostsResponse> =
+    yield call(API.removeFavoritePosts, id, titleId);
   if (ok && data) {
-    yield put(setFavoritePosts(data.items.data));
+    yield put(setFavoritePosts(data.list.items));
   } else {
     console.warn("Error adding post", problem);
   }
@@ -145,5 +163,6 @@ export default function* postsSaga() {
     takeLatest(getSearchedPosts, getSearchedPostsWorker),
     takeLatest(getFavoritePosts, getFavoritePostsWorker),
     takeLatest(addFavoritePosts, addFavoritePostsWorker),
+    takeLatest(removeFavoritePosts, removeFavoritePostsWorker),
   ]);
 }

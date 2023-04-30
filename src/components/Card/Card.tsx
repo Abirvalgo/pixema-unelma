@@ -1,20 +1,28 @@
 import React, { FC } from "react";
 import styles from "./Card.module.scss";
-import { CardType } from "../../utils/@globalTypes";
+import { CardListType, CardType } from "../../utils/@globalTypes";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
-import { TrendsIcon } from "../../assets/icons";
+import { BookmarkIcon, TrendsIcon } from "../../assets/icons";
 
 export type CardProps = {
   card: CardType;
+  favoritePosts: CardListType | [];
 };
-const Card: FC<CardProps> = ({ card }) => {
+const Card: FC<CardProps> = ({ card, favoritePosts }) => {
   const { name, poster, rating, year, id } = card;
   const navigate = useNavigate();
   const onCardClick = () => {
     navigate(`/titles/${id}`);
   };
-
+  const checkFavorite = () => {
+    if (favoritePosts && typeof favoritePosts.find === "function") {
+      return favoritePosts.filter((item: CardType) => item.id === id);
+    }
+    return [];
+  };
+  const isFavorite = checkFavorite();
+  //TODO вынести логику checkFavorite(такая-же в selectedCard) наружу (и потом импорт)
   return (
     <>
       <div className={styles.container} onClick={onCardClick}>
@@ -29,6 +37,11 @@ const Card: FC<CardProps> = ({ card }) => {
           {rating > "7.8" && <TrendsIcon />}
           {rating}
         </div>
+        {!!isFavorite.length && (
+          <div className={styles.favorite}>
+            <BookmarkIcon />
+          </div>
+        )}
         <img src={poster} alt={"Movie Poster"} />
         <div className={styles.cardText}>{name}</div>
         <div className={styles.cardText}>{year}</div>

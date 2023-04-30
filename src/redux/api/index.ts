@@ -79,6 +79,21 @@ const addFavoritePosts = (id: number, titleId: number) => {
     }
   );
 };
+const removeFavoritePosts = (id: number, titleId: number) => {
+  return API.post(
+    `/lists/${id}/remove`,
+    {
+      itemId: titleId,
+      itemType: "title",
+    },
+    {
+      headers: {
+        Accept: `application/json`,
+        Authorization: `Bearer ${localStorage.getItem("pixemaToken")}`,
+      },
+    }
+  );
+};
 
 const getUserInfo = () => {
   return API.get(
@@ -119,7 +134,7 @@ const getAllPosts = (
 
 const getTrendPosts = (
   perPage: number,
-  page?: number,
+  page: number,
   release_date?: string,
   released?: string,
   country?: string,
@@ -128,8 +143,8 @@ const getTrendPosts = (
   return API.get(
     `/titles`,
     {
-      perPage: 10,
-      page: 1,
+      perPage,
+      page,
       order: `popularity:desc`,
       released: `2018,2023`,
       country: `us`,
@@ -170,11 +185,12 @@ const getSinglePost = (id: string) => {
   );
 };
 
+// больше 20 в поиске всеравно не возвращает api
 const getSearchedPosts = (searchValue: string, limit?: number) => {
   return API.get(
     `/search/${searchValue}`,
     {
-      limit: 10,
+      limit: 20,
     },
     {
       headers: {
@@ -197,4 +213,5 @@ export default {
   getFavoritesId,
   getFavoritePosts,
   addFavoritePosts,
+  removeFavoritePosts,
 };

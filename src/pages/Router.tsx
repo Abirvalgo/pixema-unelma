@@ -17,6 +17,7 @@ import {
   getUserInfo,
 } from "../redux/reducers/authSlice";
 import Search from "./Search";
+import { getFavoritePosts } from "../redux/reducers/postSlice";
 
 export enum RoutesList {
   Home = "/",
@@ -39,6 +40,7 @@ export enum RoutesList {
 const Router = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
+  const favoriteListId = useSelector(AuthSelectors.getFavoritesId);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -46,6 +48,11 @@ const Router = () => {
       dispatch(getFavoritesId());
     }
   }, [isLoggedIn]);
+  useEffect(() => {
+    if (isLoggedIn && favoriteListId) {
+      dispatch(getFavoritePosts(favoriteListId));
+    }
+  }, [favoriteListId, isLoggedIn]);
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>

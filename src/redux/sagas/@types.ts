@@ -1,23 +1,31 @@
 import { CardListType, SingleCardType } from "../../utils/@globalTypes";
-// export type CreateListResponse = {
-//   list: {
-//     name: string;
-//     description: string;
-//     autoUpdate: null;
-//     public: boolean;
-//     userID: number;
-//     updatedAt: string;
-//     createdAt: string;
-//     id: number;
-//     modelType: string;
-//   };
-//   status: string;
-// };
+
 export type FavoritePostsResponse = {
   list: FavIdDataType;
   items: Pagination;
   status: string;
 };
+
+export type AddFavoritePostsResponse = {
+  list: List;
+  status: string;
+};
+export type List = {
+  id: number;
+  name: string;
+  description: string;
+  userID: number;
+  system: boolean;
+  public: boolean;
+  autoUpdate: null;
+  createdAt: string;
+  updatedAt: string;
+  style: null;
+  image: string;
+  modelType: string;
+  items: CardListType;
+};
+
 export type SignUpUserResponse = {
   status: string;
   boostrapData: BoostrapData;

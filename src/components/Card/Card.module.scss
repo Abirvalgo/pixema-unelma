@@ -68,4 +68,23 @@
   display: none;
 }
 
+.favorite{
+  display: flex;
+  top: 20px;
+  right: 20px;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 37px;
+  height: 28px;
+  color: $white;
+  background-color: $graphite;
+  border-radius: 6px;
+  box-shadow: 0 0 10px 10px rgba(34, 60, 80, 0.2);
+  z-index: 2;
+  svg > path {
+    fill: $primary;
+  }
+}
+
 

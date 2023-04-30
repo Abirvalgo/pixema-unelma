@@ -11,6 +11,7 @@ type ButtonProps = {
   disabled?: boolean;
   onMouseOver?: (e: MouseEvent) => void;
   onMouseOut?: (e: MouseEvent) => void;
+  isHighlighted?: boolean;
 };
 const btnStyles = {
   [ButtonType.Primary]: styles.primaryButton,
@@ -20,7 +21,13 @@ const btnStyles = {
   [ButtonType.Error]: styles.errorButton,
 };
 
-const Button: FC<ButtonProps> = ({ title, onClick, disabled, type }) => {
+const Button: FC<ButtonProps> = ({
+  title,
+  onClick,
+  disabled,
+  type,
+  isHighlighted,
+}) => {
   const buttonClassName = btnStyles[type];
   return (
     <>
@@ -28,6 +35,7 @@ const Button: FC<ButtonProps> = ({ title, onClick, disabled, type }) => {
         <div
           className={classNames(styles.leftPart, {
             [styles.disabledButtonShare]: disabled,
+            [styles.highlightedButtonShare]: isHighlighted,
           })}
           onClick={onClick}
         >

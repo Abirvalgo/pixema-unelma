@@ -4,6 +4,7 @@ import {
   SingleCardType,
   CardListType,
   ScrollListType,
+  CardType,
 } from "../../utils/@globalTypes";
 import { GetAllPostsPayload } from "./@types";
 
@@ -13,7 +14,7 @@ type initialStateType = {
   trendPosts: CardListType;
   relatedPosts: CardListType;
   searchedPosts: CardListType;
-  favoritePosts: CardListType;
+  favoritePosts: CardListType | [];
   searchValue: string;
   isLoading: boolean;
   postsCount: number;
@@ -44,17 +45,30 @@ const postSlice = createSlice({
     setAllPosts: (state, action: PayloadAction<ScrollListType>) => {
       const { allPosts, postsCount } = action.payload;
       state.postsCount = postsCount;
-      state.allPosts.push(...allPosts);
+      allPosts && state.allPosts.push(...allPosts);
     },
-    getTrendPosts: (_, __: PayloadAction<any>) => {},
-    setTrendPosts: (state, action: PayloadAction<CardListType>) => {
-      state.trendPosts = action.payload;
+    resetPosts: (
+      state,
+      action: PayloadAction<{ allPosts: []; trendPosts: []; searchedPosts: [] }>
+    ) => {
+      state.allPosts = action.payload.allPosts;
+      state.trendPosts = action.payload.trendPosts;
+      state.searchedPosts = action.payload.searchedPosts;
+    },
+    getTrendPosts: (_, __: PayloadAction<GetAllPostsPayload>) => {},
+    setTrendPosts: (state, action: PayloadAction<ScrollListType>) => {
+      const { trendPosts, postsCount } = action.payload;
+      state.postsCount = postsCount;
+      trendPosts && state.trendPosts.push(...trendPosts);
     },
     getFavoritePosts: (_, __: PayloadAction<number>) => {},
     setFavoritePosts: (state, action: PayloadAction<CardListType>) => {
       state.favoritePosts = action.payload;
     },
     addFavoritePosts: (state, action: PayloadAction<any>) => {
+      state.favoritePosts = action.payload;
+    },
+    removeFavoritePosts: (state, action: PayloadAction<any>) => {
       state.favoritePosts = action.payload;
     },
     getRelatedPosts: (_, __: PayloadAction<any>) => {},
@@ -67,15 +81,14 @@ const postSlice = createSlice({
     getSearchedPosts: (state, action: PayloadAction<any>) => {
       state.searchValue = action.payload.searchValue;
     },
-    setSearchedPosts: (state, action: PayloadAction<any>) => {
-      state.searchedPosts = action.payload;
+    setSearchedPosts: (state, action: PayloadAction<CardListType>) => {
+      state.searchedPosts = action.payload.filter(
+        (item: CardType) => item.type === "movie" || item.type === "title"
+      );
     },
   },
 });
-// надо добавлять и как-то удалять (делать запрос по id из all posts???) или писать в массив id из singlpost,
-//а потом рендерить через allposts как-то?
-// попробовать cardlist: cardtype1 | cardtype2 и по разному брать данные для отрисовки. хз!!!!!!!!!!!!!!!!!
-//TODO есть в unelmaapi get list, post list (глянуть в переписке с колпаковым)
+
 export const {
   getSinglePost,
   setSinglePost,
@@ -91,6 +104,8 @@ export const {
   getFavoritePosts,
   setFavoritePosts,
   addFavoritePosts,
+  resetPosts,
+  removeFavoritePosts,
 } = postSlice.actions;
 export default postSlice.reducer;
 export const PostSelectors = {

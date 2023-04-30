@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPosts, PostSelectors } from "../../redux/reducers/postSlice";
+import {
+  getAllPosts,
+  PostSelectors,
+  resetPosts,
+} from "../../redux/reducers/postSlice";
 import CardsList from "../../components/CardsList";
 import Loader from "../../components/Loader";
 import styles from "./Home.module.scss";
@@ -9,7 +13,6 @@ import EmptyState from "../../components/EmptyState";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoaderCircle from "../../components/LoaderCircle";
 
-//TODO если не залогинен, то ставить disabled  поля в Settings
 const Home = () => {
   const allPosts = useSelector(PostSelectors.getAllPosts);
   const dispatch = useDispatch();
@@ -23,10 +26,14 @@ const Home = () => {
   //TODO сделать callAuth saga (и там тупо на ошибку 401 делать логаут и перенаправление на логин)
   //TODO react select
   //TODO  <BackToTopButton/>
-  //TODO удаление постов из redux (после перехода в settings они не скидываются)
   useEffect(() => {
     isLoggedIn && dispatch(getAllPosts({ perPage: 10, page: page }));
   }, [isLoggedIn, page]);
+  useEffect(() => {
+    return () => {
+      dispatch(resetPosts({ allPosts: [], trendPosts: [], searchedPosts: [] }));
+    };
+  }, []);
 
   return (
     <>
@@ -57,5 +64,3 @@ const Home = () => {
 };
 
 export default Home;
-
-//TODO isLoading попробовать на didmount повесить

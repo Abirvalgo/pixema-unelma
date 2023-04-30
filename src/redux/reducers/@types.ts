@@ -22,7 +22,7 @@ export type GetAllPostsPayload = {
   released?: string | undefined;
   country?: string | undefined;
 };
-export type addFavoritePostsPayload = {
+export type FavoritePostsPayload = {
   id: number;
   titleId: number;
 };
