@@ -5,6 +5,13 @@ export enum ButtonType {
   Bookmark = "Bookmark",
   Share = "Share",
 }
+export type CardListType = CardType[];
+export type ScrollListType = {
+  allPosts?: CardListType;
+  trendPosts?: CardListType;
+  postsCount: number;
+};
+
 export type CardType = {
   id: number;
   name: string;
@@ -120,9 +127,9 @@ export type Credit = {
   name: string;
   poster: string;
   model_type: string;
-  pivot: Pivot;
+  pivot: Pivot2;
 };
-export type Pivot = {
+export type Pivot2 = {
   creditable_id: number;
   person_id: number;
   creditable_type: string;

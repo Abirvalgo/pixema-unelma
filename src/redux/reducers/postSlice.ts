@@ -1,40 +1,75 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import {
+  SingleCardType,
+  CardListType,
+  ScrollListType,
+  CardType,
+} from "../../utils/@globalTypes";
+import { GetAllPostsPayload } from "./@types";
 
 type initialStateType = {
-  singlePost: any;
-  allPosts: any;
-  trendPosts: any;
-  relatedPosts: any;
-  searchedPosts: any;
+  singlePost: SingleCardType | null;
+  allPosts: CardListType;
+  trendPosts: CardListType;
+  relatedPosts: CardListType;
+  searchedPosts: CardListType;
+  favoritePosts: CardListType | [];
   searchValue: string;
   isLoading: boolean;
+  postsCount: number;
+  savedPosts: CardListType;
 };
 
 const initialState: initialStateType = {
-  singlePost: "",
-  allPosts: "",
-  trendPosts: "",
-  relatedPosts: "",
-  searchedPosts: "",
+  singlePost: null,
+  allPosts: [],
+  trendPosts: [],
+  relatedPosts: [],
+  searchedPosts: [],
+  favoritePosts: [],
   searchValue: "",
   isLoading: false,
+  postsCount: 0,
+  savedPosts: [],
 };
 const postSlice = createSlice({
   name: "post",
   initialState,
   reducers: {
-    getSinglePost: (_, __: PayloadAction<any>) => {},
-    setSinglePost: (state, action: PayloadAction<any>) => {
+    getSinglePost: (_, __: PayloadAction<string>) => {},
+    setSinglePost: (state, action: PayloadAction<SingleCardType | null>) => {
       state.singlePost = action.payload;
     },
-    getAllPosts: (_, __: PayloadAction<any>) => {},
-    setAllPosts: (state, action: PayloadAction<any>) => {
-      state.allPosts = action.payload;
+    getAllPosts: (_, __: PayloadAction<GetAllPostsPayload>) => {},
+    setAllPosts: (state, action: PayloadAction<ScrollListType>) => {
+      const { allPosts, postsCount } = action.payload;
+      state.postsCount = postsCount;
+      allPosts && state.allPosts.push(...allPosts);
     },
-    getTrendPosts: (_, __: PayloadAction<any>) => {},
-    setTrendPosts: (state, action: PayloadAction<any>) => {
-      state.trendPosts = action.payload;
+    resetPosts: (
+      state,
+      action: PayloadAction<{ allPosts: []; trendPosts: []; searchedPosts: [] }>
+    ) => {
+      state.allPosts = action.payload.allPosts;
+      state.trendPosts = action.payload.trendPosts;
+      state.searchedPosts = action.payload.searchedPosts;
+    },
+    getTrendPosts: (_, __: PayloadAction<GetAllPostsPayload>) => {},
+    setTrendPosts: (state, action: PayloadAction<ScrollListType>) => {
+      const { trendPosts, postsCount } = action.payload;
+      state.postsCount = postsCount;
+      trendPosts && state.trendPosts.push(...trendPosts);
+    },
+    getFavoritePosts: (_, __: PayloadAction<number>) => {},
+    setFavoritePosts: (state, action: PayloadAction<CardListType>) => {
+      state.favoritePosts = action.payload;
+    },
+    addFavoritePosts: (state, action: PayloadAction<any>) => {
+      state.favoritePosts = action.payload;
+    },
+    removeFavoritePosts: (state, action: PayloadAction<any>) => {
+      state.favoritePosts = action.payload;
     },
     getRelatedPosts: (_, __: PayloadAction<any>) => {},
     setRelatedPosts: (state, action: PayloadAction<any>) => {
@@ -46,8 +81,10 @@ const postSlice = createSlice({
     getSearchedPosts: (state, action: PayloadAction<any>) => {
       state.searchValue = action.payload.searchValue;
     },
-    setSearchedPosts: (state, action: PayloadAction<any>) => {
-      state.searchedPosts = action.payload;
+    setSearchedPosts: (state, action: PayloadAction<CardListType>) => {
+      state.searchedPosts = action.payload.filter(
+        (item: CardType) => item.type === "movie" || item.type === "title"
+      );
     },
   },
 });
@@ -64,6 +101,11 @@ export const {
   setLoading,
   getSearchedPosts,
   setSearchedPosts,
+  getFavoritePosts,
+  setFavoritePosts,
+  addFavoritePosts,
+  resetPosts,
+  removeFavoritePosts,
 } = postSlice.actions;
 export default postSlice.reducer;
 export const PostSelectors = {
@@ -73,4 +115,6 @@ export const PostSelectors = {
   getRelatedPosts: (state: RootState) => state.post.relatedPosts,
   getIsLoading: (state: RootState) => state.post.isLoading,
   getSearchedPosts: (state: RootState) => state.post.searchedPosts,
+  getPostsCount: (state: RootState) => state.post.postsCount,
+  getFavoritePosts: (state: RootState) => state.post.favoritePosts,
 };

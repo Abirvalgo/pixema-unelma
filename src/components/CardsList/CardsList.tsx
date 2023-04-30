@@ -1,23 +1,23 @@
 import React, { FC } from "react";
 import styles from "./CardsList.module.scss";
-import { CardType } from "../../utils/@globalTypes";
+import { CardListType } from "../../utils/@globalTypes";
 import Card from "../Card";
+import { useSelector } from "react-redux";
+import { PostSelectors } from "../../redux/reducers/postSlice";
 
-export type CardListType = CardType[];
 type CardsListProps = {
   cardsList: CardListType;
 };
 
 const CardsList: FC<CardsListProps> = ({ cardsList }) => {
+  const favoritePosts = useSelector(PostSelectors.getFavoritePosts);
   return cardsList.length > 0 ? (
     <div className={styles.container}>
-      {cardsList.map((item, index) => {
-        return <Card key={item.id} card={item} />;
+      {cardsList.map((item) => {
+        return <Card key={item.id} card={item} favoritePosts={favoritePosts} />;
       })}
     </div>
-  ) : (
-    <div className={styles.error}>Unexpected Error</div>
-  );
+  ) : null;
 };
 
 export default CardsList;

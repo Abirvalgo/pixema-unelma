@@ -1,19 +1,36 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getTrendPosts, PostSelectors } from "../../redux/reducers/postSlice";
+import React from "react";
+import { useSelector } from "react-redux";
+import { PostSelectors } from "../../redux/reducers/postSlice";
 import CardsList from "../../components/CardsList";
 import Loader from "../../components/Loader";
+import EmptyState from "../../components/EmptyState";
+import { AuthSelectors } from "../../redux/reducers/authSlice";
+import styles from "./Favorites.module.scss";
 
 const Favorites = () => {
-  const trendPosts = useSelector(PostSelectors.getTrendPosts);
-  const dispatch = useDispatch();
+  const favoritePosts = useSelector(PostSelectors.getFavoritePosts);
   const isLoading = useSelector(PostSelectors.getIsLoading);
+  const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
 
-  useEffect(() => {
-    dispatch(getTrendPosts({}));
-  }, []);
-
-  return <>{isLoading ? <Loader /> : <CardsList cardsList={trendPosts} />}</>;
+  return favoritePosts.length > 0 ? (
+    <>
+      {isLoggedIn ? (
+        isLoading ? (
+          <Loader />
+        ) : (
+          <CardsList cardsList={favoritePosts} />
+        )
+      ) : (
+        <div className={styles.emptyState}>
+          <EmptyState description="Sign In required to browse this website" />
+        </div>
+      )}
+    </>
+  ) : (
+    <div className={styles.emptyState}>
+      <EmptyState description="Sign In required to browse this website" />
+    </div>
+  );
 };
 
 export default Favorites;

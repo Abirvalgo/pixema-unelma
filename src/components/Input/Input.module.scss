@@ -40,6 +40,7 @@
 
 .inputDisabled{
   background: $secondary;
+  color: $light;
   &::placeholder {
     color: $light;
   }

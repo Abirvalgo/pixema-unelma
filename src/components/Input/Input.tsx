@@ -1,6 +1,7 @@
-import React, { ChangeEvent, FC } from "react";
+import React, { ChangeEvent, FC, KeyboardEvent } from "react";
 import styles from "./Input.module.scss";
 import { FilterIcon } from "../../assets/icons";
+import classNames from "classnames";
 
 type InputType = {
   title?: string;
@@ -8,6 +9,7 @@ type InputType = {
   value: string;
   placeholder: string;
   onChange: (value: string) => void;
+  onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   errorText?: string;
   filters?: string | string[];
@@ -18,6 +20,7 @@ const Input: FC<InputType> = ({
   type,
   value,
   placeholder,
+  onKeyDown,
   onChange,
   disabled,
   errorText,
@@ -31,12 +34,16 @@ const Input: FC<InputType> = ({
       {title && <div className={styles.title}>{title}</div>}
       <div className={styles.container}>
         <input
-          className={styles.input}
+          // className={styles.input}
+          className={classNames(styles.input, {
+            [styles.inputDisabled]: disabled,
+          })}
           type={type}
           value={value}
           placeholder={placeholder}
           disabled={disabled}
           onChange={onChangeInput}
+          onKeyDown={onKeyDown}
         />
         {filters && (
           <div className={styles.filter}>

@@ -1,0 +1,11 @@
+@import "src/assets/colors";
+
+.userFrame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  background-color: $primary;
+}

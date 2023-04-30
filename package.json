@@ -2,6 +2,7 @@
   "name": "pixema-omdb",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://abirvalgo.github.io/pixema-unelma/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.14.1",
@@ -14,6 +15,7 @@
     "@types/react-dom": "^18.0.0",
     "apisauce": "^3.0.0",
     "classnames": "^2.3.2",
+    "gh-pages": "^5.0.0",
     "lottie-react": "^2.4.0",
     "luxon": "^3.3.0",
     "react": "^18.2.0",
@@ -31,7 +33,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

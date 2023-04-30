@@ -94,6 +94,7 @@
   &:hover {
     cursor: pointer;
     svg > path {
+      transition: all 0.3s;
       fill: $primary-secondary;
     }
   }

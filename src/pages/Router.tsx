@@ -11,8 +11,13 @@ import Trends from "./Trends";
 import Favorites from "./Favorites";
 import Settings from "./Settings";
 import { useDispatch, useSelector } from "react-redux";
-import { AuthSelectors, getUserInfo } from "../redux/reducers/authSlice";
+import {
+  AuthSelectors,
+  getFavoritesId,
+  getUserInfo,
+} from "../redux/reducers/authSlice";
 import Search from "./Search";
+import { getFavoritePosts } from "../redux/reducers/postSlice";
 
 export enum RoutesList {
   Home = "/",
@@ -35,14 +40,21 @@ export enum RoutesList {
 const Router = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
+  const favoriteListId = useSelector(AuthSelectors.getFavoritesId);
 
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(getUserInfo());
+      dispatch(getFavoritesId());
     }
   }, [isLoggedIn]);
+  useEffect(() => {
+    if (isLoggedIn && favoriteListId) {
+      dispatch(getFavoritePosts(favoriteListId));
+    }
+  }, [favoriteListId, isLoggedIn]);
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path={RoutesList.Home} element={<PagesContainer />}>
           <Route path={RoutesList.Home} element={<Home />}></Route>
