@@ -40,16 +40,31 @@ function* getSinglePostWorker(action: PayloadAction<string>) {
   }
   yield put(setLoading(false));
 }
-//TODO payload не понял с типами (надо обязательно 1 чтобы был без вопроса?(т.е не undefined в @types.ts)
 function* getAllPostsWorker(action: PayloadAction<GetAllPostsPayload>) {
-  const { perPage, page, release_date, released, country } = action.payload;
+  const {
+    perPage,
+    page,
+    genre,
+    release_date,
+    released,
+    language,
+    country,
+    order,
+    user_score,
+    runtime,
+  } = action.payload;
   if (page === 1) yield put(setLoading(true));
   const { ok, data, problem }: ApiResponse<AllPostsResponse> = yield call(
     API.getAllPosts,
     perPage,
     page,
+    genre,
+    order,
+    user_score,
+    runtime,
     release_date,
     released,
+    language,
     country
   );
   if (ok && data) {
@@ -89,7 +104,7 @@ function* getTrendPostsWorker(action: PayloadAction<GetAllPostsPayload>) {
   yield put(setLoading(false));
 }
 function* getFavoritePostsWorker(action: PayloadAction<number>) {
-  yield put(setLoading(true));
+  // yield put(setLoading(true));
   const { ok, data, problem }: ApiResponse<FavoritePostsResponse> = yield call(
     API.getFavoritePosts,
     action.payload
@@ -99,7 +114,7 @@ function* getFavoritePostsWorker(action: PayloadAction<number>) {
   } else {
     console.warn("Error getting post", problem);
   }
-  yield put(setLoading(false));
+  // yield put(setLoading(false));
 }
 function* addFavoritePostsWorker(action: PayloadAction<FavoritePostsPayload>) {
   const { id, titleId } = action.payload;

@@ -18,23 +18,21 @@ import {
 } from "../redux/reducers/authSlice";
 import Search from "./Search";
 import { getFavoritePosts } from "../redux/reducers/postSlice";
+import Filtered from "./Filtered";
 
 export enum RoutesList {
   Home = "/",
   Trends = "/trends",
   Favorites = "/favorites",
+  Filters = "/filters",
   Settings = "/settings",
   Search = "/search",
   SignIn = "/sign-in",
   SignUp = "/sign-up",
-  Confirm = "/activate/",
-  Success = "/sign-up/success",
   ResetPassword = "/reset-password",
-  NewPassword = "/new-password",
   Default = "*",
   Test = "/test",
   SelectedMovie = "/titles/:id",
-  Account = "/",
 }
 
 const Router = () => {
@@ -60,6 +58,7 @@ const Router = () => {
           <Route path={RoutesList.Home} element={<Home />}></Route>
           <Route path={RoutesList.Trends} element={<Trends />}></Route>
           <Route path={RoutesList.Favorites} element={<Favorites />}></Route>
+          <Route path={RoutesList.Filters} element={<Filtered />}></Route>
           <Route path={RoutesList.Settings} element={<Settings />}></Route>
           <Route path={RoutesList.Search} element={<Search />}></Route>
           <Route path={RoutesList.Test} element={<Test />}></Route>

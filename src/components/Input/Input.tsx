@@ -6,7 +6,7 @@ import classNames from "classnames";
 type InputType = {
   title?: string;
   type: string;
-  value: string;
+  value: any;
   placeholder: string;
   onChange: (value: string) => void;
   onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;

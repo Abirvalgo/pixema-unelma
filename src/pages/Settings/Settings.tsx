@@ -12,6 +12,7 @@ import { AuthSelectors } from "../../redux/reducers/authSlice";
 const Settings = () => {
   const navigate = useNavigate();
   const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
+  const userInfo = useSelector(AuthSelectors.getUserInfo);
   const onCancelClick = () => {
     navigate(`/`);
   };
@@ -24,7 +25,7 @@ const Settings = () => {
             <Input
               title={"Name"}
               type={"text"}
-              value={`Test name`}
+              value={userInfo?.user.display_name}
               placeholder="Your name"
               onChange={() => {}}
               disabled={!isLoggedIn}
@@ -34,7 +35,7 @@ const Settings = () => {
             <Input
               title={"Email"}
               type={"email"}
-              value={`Test email`}
+              value={userInfo?.user.email}
               placeholder=""
               onChange={() => {}}
               disabled={!isLoggedIn}
@@ -53,7 +54,7 @@ const Settings = () => {
                 value={`Test name`}
                 placeholder="Your Password"
                 onChange={() => {}}
-                disabled={!isLoggedIn}
+                disabled
               />
             </div>
           </div>
@@ -65,7 +66,7 @@ const Settings = () => {
                 value={`Test name`}
                 placeholder="New Password"
                 onChange={() => {}}
-                disabled={!isLoggedIn}
+                disabled
               />
             </div>
             <div className={styles.inputWrapper}>
@@ -75,7 +76,7 @@ const Settings = () => {
                 value={`Test name`}
                 placeholder="Confirm Password"
                 onChange={() => {}}
-                disabled={!isLoggedIn}
+                disabled
               />
             </div>
           </div>

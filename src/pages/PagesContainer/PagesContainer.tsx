@@ -6,8 +6,8 @@ import SideBar from "../../components/SideBar";
 
 const PagesContainer = () => {
   return (
-    <div  className={styles.wrapper}>
-      <div  className={styles.container}>
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
         <Header />
         <SideBar />
         <Outlet />
@@ -19,9 +19,3 @@ const PagesContainer = () => {
 };
 
 export default PagesContainer;
-/// TODO разобраться со скачущим при загрузке footer и шириной Outlet (почему не влазит 1490px)
-
-/// TODO userinfo удаляется после перезагрузки (я получаю после логина только). надо делать отдельно reducer,saga
-///под это??? ПРОВЕРКА ИДЕТ ПО token и потом вместо id просто пишу {me} user-profile/id
-/// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-/// TODO дохнет токен походу через время (падает ошибка). надо обновлять каждый раз (смотреть)

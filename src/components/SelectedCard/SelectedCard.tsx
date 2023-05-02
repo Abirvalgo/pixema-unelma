@@ -44,7 +44,7 @@ const SelectedCard: FC<SelectedMovieProps> = ({
   const dispatch = useDispatch();
 
   const allGenres = genres?.map((genre) => (
-    <p key={genre.id}>
+    <p key={genre.id + name}>
       {genre.name.charAt(0).toUpperCase() + genre.name.slice(1)}
     </p>
   ));

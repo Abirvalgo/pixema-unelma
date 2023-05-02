@@ -23,11 +23,16 @@ const Home = () => {
   const onNextReached = () => {
     setPage(page + 1);
   };
-  //TODO сделать callAuth saga (и там тупо на ошибку 401 делать логаут и перенаправление на логин)
-  //TODO react select
-  //TODO  <BackToTopButton/>
   useEffect(() => {
-    isLoggedIn && dispatch(getAllPosts({ perPage: 10, page: page }));
+    isLoggedIn &&
+      dispatch(
+        getAllPosts({
+          perPage: 10,
+          page: page,
+          order: `popularity:desc`,
+          country: "us",
+        })
+      );
   }, [isLoggedIn, page]);
   useEffect(() => {
     return () => {

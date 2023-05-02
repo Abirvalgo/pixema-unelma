@@ -31,7 +31,11 @@ input{
     flex-direction: column;
     width: 100%;
     flex: 1;
+    & > :first-child{
+      margin-bottom: 15px;
+    }
   }
+
   .inputWrapperLeft{
     display: flex;
     width: 50%;

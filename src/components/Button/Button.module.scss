@@ -45,6 +45,10 @@
     fill: $white;
   }
 }
+.highlightedButton{
+  background-color: $dark;
+  color: $secondary;
+}
 .rightPart{
   display: flex;
   width: 132px;

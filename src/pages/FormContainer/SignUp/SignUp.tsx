@@ -8,7 +8,7 @@ import { RoutesList } from "../../Router";
 import FormContainer from "../FormContainer";
 import { useDispatch } from "react-redux";
 import { signUpUser } from "../../../redux/reducers/authSlice";
-//TODO name не используется при отправке на сервер
+
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

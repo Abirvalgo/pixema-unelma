@@ -19,6 +19,7 @@ type initialStateType = {
   isLoading: boolean;
   postsCount: number;
   savedPosts: CardListType;
+  filtersVisible: boolean;
 };
 
 const initialState: initialStateType = {
@@ -32,6 +33,7 @@ const initialState: initialStateType = {
   isLoading: false,
   postsCount: 0,
   savedPosts: [],
+  filtersVisible: false,
 };
 const postSlice = createSlice({
   name: "post",
@@ -86,6 +88,9 @@ const postSlice = createSlice({
         (item: CardType) => item.type === "movie" || item.type === "title"
       );
     },
+    setFiltersVisible: (state, action: PayloadAction<boolean>) => {
+      state.filtersVisible = action.payload;
+    },
   },
 });
 
@@ -106,6 +111,7 @@ export const {
   addFavoritePosts,
   resetPosts,
   removeFavoritePosts,
+  setFiltersVisible,
 } = postSlice.actions;
 export default postSlice.reducer;
 export const PostSelectors = {
@@ -117,4 +123,5 @@ export const PostSelectors = {
   getSearchedPosts: (state: RootState) => state.post.searchedPosts,
   getPostsCount: (state: RootState) => state.post.postsCount,
   getFavoritePosts: (state: RootState) => state.post.favoritePosts,
+  getFiltersVisible: (state: RootState) => state.post.filtersVisible,
 };

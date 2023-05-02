@@ -7,6 +7,8 @@ import {
   TrendsIcon,
 } from "../../assets/icons";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { AuthSelectors } from "../../redux/reducers/authSlice";
 
 const SideBar = () => {
   const navigate = useNavigate();
@@ -22,6 +24,7 @@ const SideBar = () => {
   const onSettingsClick = () => {
     navigate(`/settings`);
   };
+  const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
 
   return (
     <div className={styles.leftContainer}>
@@ -30,18 +33,22 @@ const SideBar = () => {
           <HomeIcon />
           <p>Home</p>
         </div>
-        <div className={styles.svgFill} onClick={onTrendsClick}>
-          <TrendsIcon />
-          <p>Trends</p>
-        </div>
-        <div className={styles.svgFill} onClick={onFavoritesClick}>
-          <FavoritesIcon />
-          <p>Favorites</p>
-        </div>
-        <div className={styles.svgFill} onClick={onSettingsClick}>
-          <SettingsIcon />
-          <p>Settings</p>
-        </div>
+        {isLoggedIn && (
+          <>
+            <div className={styles.svgFill} onClick={onTrendsClick}>
+              <TrendsIcon />
+              <p>Trends</p>
+            </div>
+            <div className={styles.svgFill} onClick={onFavoritesClick}>
+              <FavoritesIcon />
+              <p>Favorites</p>
+            </div>
+            <div className={styles.svgFill} onClick={onSettingsClick}>
+              <SettingsIcon />
+              <p>Settings</p>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

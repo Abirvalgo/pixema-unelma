@@ -57,6 +57,7 @@ const Button: FC<ButtonProps> = ({
           onClick={onClick}
           className={classNames(buttonClassName, {
             [styles.disabledButton]: disabled,
+            [styles.highlightedButton]: isHighlighted,
           })}
         >
           {title}

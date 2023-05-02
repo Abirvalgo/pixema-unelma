@@ -88,11 +88,38 @@
 .searchBtn{
   display: flex;
   position: relative;
-  left: -50px;
+  left: -70px;
   &:hover{
   svg > path  {
     transition: all 0.3s;
     stroke: $primary;
   }
   }
+}
+.filterBtn{
+  display: flex;
+  position: relative;
+  left: -60px;
+  &:hover{
+    svg > path  {
+      transition: all 0.3s;
+      stroke: $primary;
+    }
+  }
+}
+
+.select{
+  position: fixed;
+  width: 300px;
+  z-index: 3;
+}
+.selectContainer{
+  position: fixed;
+  z-index: 5;
+}
+.modalBackground{
+  position: fixed;
+  background-color: rgba(0,0,0,0.9);;
+  width: 100% ;
+  height: 100%;
 }

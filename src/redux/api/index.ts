@@ -110,8 +110,13 @@ const getUserInfo = () => {
 const getAllPosts = (
   perPage: number,
   page: number,
+  genre?: string,
+  order?: string,
+  user_score?: string,
+  runtime?: string,
   release_date?: string,
   released?: string,
+  language?: string,
   country?: string
 ) => {
   return API.get(
@@ -119,9 +124,16 @@ const getAllPosts = (
     {
       perPage,
       page,
-      order: `popularity:desc`,
-      released: `2022,2023`,
-      country: `us`,
+      genre,
+      order,
+      user_score,
+      runtime,
+      released,
+      language,
+      country,
+      // order: `popularity:desc`,
+      // released: `2022,2023`,
+      // country: `us`,
     },
     {
       headers: {
@@ -135,6 +147,7 @@ const getAllPosts = (
 const getTrendPosts = (
   perPage: number,
   page: number,
+  order?: string,
   release_date?: string,
   released?: string,
   country?: string,
@@ -145,10 +158,14 @@ const getTrendPosts = (
     {
       perPage,
       page,
-      order: `popularity:desc`,
+      order,
       released: `2018,2023`,
       country: `us`,
-      score: "7.8,9.9",
+      score: "7.9,9.9",
+      // order: `popularity:desc`,
+      // released: `2018,2023`,
+      // country: `us`,
+      // score: "7.8,9.9",
     },
     {
       headers: {

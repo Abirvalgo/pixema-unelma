@@ -18,8 +18,13 @@ export type PayloadWithCallback<Data> = {
 export type GetAllPostsPayload = {
   perPage: number;
   page: number;
+  genre?: string | undefined;
+  order: string;
+  user_score?: string | undefined;
+  runtime?: string | undefined;
   release_date?: string | undefined;
   released?: string | undefined;
+  language?: any;
   country?: string | undefined;
 };
 export type FavoritePostsPayload = {
