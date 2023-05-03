@@ -31,7 +31,7 @@ const Input: FC<InputType> = ({
   };
   return (
     <>
-      {title && <div className={styles.title}>{title}</div>}
+      {title && <p className={styles.title}>{title}</p>}
       <div className={styles.container}>
         <input
           // className={styles.input}

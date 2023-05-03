@@ -14,6 +14,14 @@
   margin-bottom: 64px;
 }
 
+.headerLight {
+  & input {
+    color: $dark;
+    background-color: $white;
+    outline: 2px solid $light;
+  }
+}
+
 .siteLogo {
   margin-right: 126px;
 }
@@ -29,9 +37,18 @@
   height: 56px;
 
   &:hover {
-    .userName {color: $primary-secondary;}
+    .userName {
+      color: $primary-secondary;
+    }
+
     cursor: pointer;
   }
+}
+.userIconLight{
+  color: $dark;
+}
+.userNameLight{
+  color: $dark;
 }
 
 .arrowRight {
@@ -61,65 +78,99 @@
   width: 267px;
   z-index: 3;
   box-shadow: 0 0 2px 2px;
-  & :first-child{
+
+  & :first-child {
     border-radius: 10px 10px 0 0;
     background-color: $dark;
   }
-  & :last-child{
+
+  & :last-child {
     border-radius: 0 0 10px 10px;
     background-color: $dark;
   }
-  & :first-child:not(.disabledButton):hover{
+
+  & :first-child:not(.disabledButton):hover {
     background-color: $dark;
     color: $primary;
   }
-  & :last-child:not(.disabledButton):hover{
+
+  & :last-child:not(.disabledButton):hover {
     background-color: $dark;
     color: $primary;
   }
 }
-.userIcon>.buttonsWrapper:first-child:hover{
+.buttonsLight{
+  & :first-child {
+    color: $dark;
+    background-color: $white;
+  }
+
+  & :last-child {
+    color: $dark;
+    background-color: $white;
+  }
+  & :first-child:not(.disabledButton):hover {
+    background-color: $light;
+    color: $primary;
+  }
+
+  & :last-child:not(.disabledButton):hover {
+    background-color: $light;
+    color: $primary;
+  }
+}
+
+.userIcon > .buttonsWrapper:first-child:hover {
   color: green;
 }
-.hidden{
+
+.hidden {
   display: none;
 }
 
-.searchBtn{
+.searchBtn {
   display: flex;
   position: relative;
   left: -70px;
-  &:hover{
-  svg > path  {
-    transition: all 0.3s;
-    stroke: $primary;
-  }
-  }
-}
-.filterBtn{
-  display: flex;
-  position: relative;
-  left: -60px;
-  &:hover{
-    svg > path  {
+
+  &:hover {
+    svg > path {
       transition: all 0.3s;
       stroke: $primary;
     }
   }
 }
 
-.select{
+.filterBtn {
+  display: flex;
+  position: relative;
+  left: -60px;
+
+  &:hover {
+    svg > path {
+      transition: all 0.3s;
+      stroke: $primary;
+    }
+  }
+}
+
+.select {
   position: fixed;
   width: 300px;
   z-index: 3;
 }
-.selectContainer{
+
+.selectContainer {
   position: fixed;
   z-index: 5;
 }
-.modalBackground{
+
+.modalBackground {
   position: fixed;
-  background-color: rgba(0,0,0,0.9);;
-  width: 100% ;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);;
+  width: 100%;
   height: 100%;
 }
+

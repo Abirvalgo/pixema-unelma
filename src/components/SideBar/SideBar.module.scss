@@ -6,10 +6,8 @@
 }
 .leftContainer {
   display: flex;
-  //grid-area: sidebar;
   flex-direction: column;
   width: 280px;
-  //border: 1px solid white;
 }
 .iconsWrapper{
   display: flex;
@@ -28,4 +26,7 @@
     transition: all 0.3s;
     color: $white;
   }
+}
+.themeLight > p{
+  color: $secondary;
 }

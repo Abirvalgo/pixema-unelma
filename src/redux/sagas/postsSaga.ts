@@ -26,13 +26,12 @@ import {
   FavoritePostsResponse,
   SinglePostResponse,
 } from "./@types";
+import callCheckingAuth from "./callCheckingAuth";
 
 function* getSinglePostWorker(action: PayloadAction<string>) {
   yield put(setLoading(true));
-  const { ok, data, problem }: ApiResponse<SinglePostResponse> = yield call(
-    API.getSinglePost,
-    action.payload
-  );
+  const { ok, data, problem }: ApiResponse<SinglePostResponse> =
+    yield callCheckingAuth(API.getSinglePost, action.payload);
   if (ok && data) {
     yield put(setSinglePost(data.title));
   } else {
@@ -54,19 +53,20 @@ function* getAllPostsWorker(action: PayloadAction<GetAllPostsPayload>) {
     runtime,
   } = action.payload;
   if (page === 1) yield put(setLoading(true));
-  const { ok, data, problem }: ApiResponse<AllPostsResponse> = yield call(
-    API.getAllPosts,
-    perPage,
-    page,
-    genre,
-    order,
-    user_score,
-    runtime,
-    release_date,
-    released,
-    language,
-    country
-  );
+  const { ok, data, problem }: ApiResponse<AllPostsResponse> =
+    yield callCheckingAuth(
+      API.getAllPosts,
+      perPage,
+      page,
+      genre,
+      order,
+      user_score,
+      runtime,
+      release_date,
+      released,
+      language,
+      country
+    );
   if (ok && data) {
     yield put(
       setAllPosts({
@@ -83,14 +83,15 @@ function* getAllPostsWorker(action: PayloadAction<GetAllPostsPayload>) {
 function* getTrendPostsWorker(action: PayloadAction<GetAllPostsPayload>) {
   const { perPage, page, release_date, released, country } = action.payload;
   if (page === 1) yield put(setLoading(true));
-  const { ok, data, problem }: ApiResponse<AllPostsResponse> = yield call(
-    API.getTrendPosts,
-    perPage,
-    page,
-    release_date,
-    released,
-    country
-  );
+  const { ok, data, problem }: ApiResponse<AllPostsResponse> =
+    yield callCheckingAuth(
+      API.getTrendPosts,
+      perPage,
+      page,
+      release_date,
+      released,
+      country
+    );
   if (ok && data) {
     yield put(
       setTrendPosts({
@@ -105,10 +106,8 @@ function* getTrendPostsWorker(action: PayloadAction<GetAllPostsPayload>) {
 }
 function* getFavoritePostsWorker(action: PayloadAction<number>) {
   // yield put(setLoading(true));
-  const { ok, data, problem }: ApiResponse<FavoritePostsResponse> = yield call(
-    API.getFavoritePosts,
-    action.payload
-  );
+  const { ok, data, problem }: ApiResponse<FavoritePostsResponse> =
+    yield callCheckingAuth(API.getFavoritePosts, action.payload);
   if (ok && data) {
     yield put(setFavoritePosts(data.items.data));
   } else {
@@ -156,7 +155,7 @@ function* getRelatedPostsWorker(action: PayloadAction<any>) {
 function* getSearchedPostsWorker(action: PayloadAction<any>) {
   yield put(setLoading(true));
   const { searchValue } = action.payload;
-  const { ok, data, problem }: ApiResponse<any> = yield call(
+  const { ok, data, problem }: ApiResponse<any> = yield callCheckingAuth(
     API.getSearchedPosts,
     action.payload,
     searchValue

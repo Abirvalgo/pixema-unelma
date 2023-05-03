@@ -3,12 +3,13 @@ import createSagaMiddleware from "redux-saga";
 import rootSaga from "./sagas/rootSaga";
 import postReducer from "./reducers/postSlice";
 import authReducer from "./reducers/authSlice";
+import themeReducer from "./reducers/themeSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore({
   reducer: {
-    // theme: themeReducer,
+    theme: themeReducer,
     auth: authReducer,
     post: postReducer,
   },

@@ -48,7 +48,7 @@ const SignIn = () => {
           />
         </div>
         <div className={styles.forgot} onClick={() => {}}>
-          Forgot password?
+          {/*Forgot password?*/}
         </div>
         <div className={styles.button}>
           <Button

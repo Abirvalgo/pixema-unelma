@@ -6,14 +6,22 @@
     &:not(.disabledButton):hover{
     background: $primary-secondary;
   }
+  &:hover:active{
+    background: $primary;
+    box-shadow: inset 0px 0px 5px $dark;
+  }
 }
 
 .secondaryButton{
   @include button;
   background: $graphite;
   &:not(.disabledButton):hover{
-    color: $light;
+    color: $white;
+    background: $graphite-secondary;
+  }
+  &:hover:active{
     background: $graphite;
+
   }
 }
 
@@ -38,7 +46,12 @@
     svg > path {
       fill: $white;
     }
-  }}
+  }
+  &:hover:active{
+    background: $primary;
+  }
+}
+
 .highlightedButtonShare{
   background-color: $primary;
   svg > path {
@@ -66,6 +79,9 @@
     svg > circle {
       stroke:$white;
     }
+  }
+  &:hover:active{
+    background: $primary;
   }}
 
 .disabledButtonShare{
@@ -77,4 +93,10 @@
       stroke:$light;
     }
   }
+}
+
+.buttonLight{
+  background-color: $white;
+  outline: 1px solid $dark;
+  border-right: none;
 }

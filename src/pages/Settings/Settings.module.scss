@@ -10,6 +10,9 @@
   @include h2;
   margin-bottom: 16px;
 }
+.inputNameLight{
+  color: $dark;
+}
 input{
   height: 56px;
   :hover{
@@ -46,6 +49,18 @@ input{
     width: 50%;
   }
 }
+.boxWrapperLight{
+  background: $white;
+  outline: 2px solid $light;
+  & p {
+    color: $dark
+  }
+  & input {
+    color: $dark;
+    background-color: $white;
+    outline: 2px solid $light;
+  }
+}
 .boxWrapperHeight{
   height: 280px;
 }
@@ -58,7 +73,10 @@ input{
   background: $dark;
   border-radius: 10px;
   margin-bottom: 40px;
-
+}
+.switchWrapperLight{
+  background: $white;
+  outline: 2px solid $light;
 }
 .themeTextWrapper{
   display: flex;
@@ -70,7 +88,16 @@ input{
     @include b1;
     color: $light;
   }
+  .themeTextTopLight{
+    @include s2;
+    color: $dark;
+  }
+  .themeTextBottomLight{
+    @include b1;
+    color: $light;
+  }
 }
+
 .buttonWrapper{
   display: flex;
   flex-direction: row;

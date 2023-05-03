@@ -4,12 +4,14 @@ import { CardListType, CardType } from "../../utils/@globalTypes";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
 import { BookmarkIcon, TrendsIcon } from "../../assets/icons";
+import { useThemeContext } from "../../context/Theme/Context";
 
 export type CardProps = {
   card: CardType;
   favoritePosts: CardListType | [];
 };
 const Card: FC<CardProps> = ({ card, favoritePosts }) => {
+  const { theme } = useThemeContext();
   const { name, poster, rating, year, id } = card;
   const navigate = useNavigate();
   const onCardClick = () => {
@@ -43,8 +45,20 @@ const Card: FC<CardProps> = ({ card, favoritePosts }) => {
           </div>
         )}
         <img src={poster} alt={"Movie Poster"} />
-        <div className={styles.cardText}>{name}</div>
-        <div className={styles.cardText}>{year}</div>
+        <div
+          className={classNames(styles.cardText, {
+            [styles.cardTextLight]: !theme,
+          })}
+        >
+          {name}
+        </div>
+        <div
+          className={classNames(styles.cardText, {
+            [styles.cardTextLight]: !theme,
+          })}
+        >
+          {year}
+        </div>
       </div>
     </>
   );

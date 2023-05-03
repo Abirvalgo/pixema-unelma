@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import styles from "./ResetPassword.module.scss";
-import { NavLink } from "react-router-dom";
 import Input from "../../../components/Input";
 import { ButtonType } from "../../../utils/@globalTypes";
 import Button from "../../../components/Button";
-import { RoutesList } from "../../Router";
 import FormContainer from "../FormContainer";
 
 const ResetPassword = () => {

@@ -12,8 +12,11 @@ import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 import Related from "../Related";
 import { AuthSelectors } from "../../redux/reducers/authSlice";
+import { useThemeContext } from "../../context/Theme/Context";
+import classNames from "classnames";
 
 const SelectedMovie = () => {
+  const { theme } = useThemeContext();
   const singlePost = useSelector(PostSelectors.getSinglePost);
   const dispatch = useDispatch();
   const params = useParams();
@@ -48,7 +51,13 @@ const SelectedMovie = () => {
           />
         )}
         <div className={styles.recommended}>
-          <div className={styles.text}>Recommendations</div>
+          <div
+            className={classNames(styles.text, {
+              [styles.textLight]: !theme,
+            })}
+          >
+            Recommendations
+          </div>
           <Related />
         </div>
       </div>

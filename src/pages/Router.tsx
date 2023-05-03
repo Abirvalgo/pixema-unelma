@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Home";
-import Test from "./Test";
 import PagesContainer from "./PagesContainer";
 import SelectedMovie from "./SelectedMovie";
 import SignIn from "./FormContainer/SignIn";
@@ -29,9 +28,8 @@ export enum RoutesList {
   Search = "/search",
   SignIn = "/sign-in",
   SignUp = "/sign-up",
-  ResetPassword = "/reset-password",
+  // ResetPassword = "/reset-password",
   Default = "*",
-  Test = "/test",
   SelectedMovie = "/titles/:id",
 }
 
@@ -61,7 +59,6 @@ const Router = () => {
           <Route path={RoutesList.Filters} element={<Filtered />}></Route>
           <Route path={RoutesList.Settings} element={<Settings />}></Route>
           <Route path={RoutesList.Search} element={<Search />}></Route>
-          <Route path={RoutesList.Test} element={<Test />}></Route>
           <Route
             path={RoutesList.SelectedMovie}
             element={<SelectedMovie />}
@@ -69,10 +66,11 @@ const Router = () => {
         </Route>
         <Route path={RoutesList.SignIn} element={<SignIn />}></Route>
         <Route path={RoutesList.SignUp} element={<SignUp />}></Route>
-        <Route
-          path={RoutesList.ResetPassword}
-          element={<ResetPassword />}
-        ></Route>
+        {/*нет функционала в api*/}
+        {/*<Route*/}
+        {/*  path={RoutesList.ResetPassword}*/}
+        {/*  element={<ResetPassword />}*/}
+        {/*></Route>*/}
       </Routes>
     </BrowserRouter>
   );

@@ -24,8 +24,10 @@ import {
 import { RoutesList } from "../../Router";
 import ModalFilters from "../../../components/ModalFilters";
 import { selectGenres, selectLanguages } from "../../../utils/constants";
+import { useThemeContext } from "../../../context/Theme/Context";
 
 const Header = () => {
+  const { theme } = useThemeContext();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
@@ -76,6 +78,7 @@ const Header = () => {
     navigate(`/settings`);
   };
   const onLogoutClick = () => {
+    navigate(`/`);
     dispatch(logoutUser());
   };
   const onClickSearchButton = () => {
@@ -188,7 +191,12 @@ const Header = () => {
           isHighlighted={sort === "release_date:desc"}
         />
       </div>
-      <div className={styles.header}>
+      {/*<div className={styles.header}>*/}
+      <div
+        className={classNames(styles.header, {
+          [styles.headerLight]: !theme,
+        })}
+      >
         <div className={styles.siteLogo}>
           <PixemaIcon />
         </div>
@@ -216,7 +224,15 @@ const Header = () => {
             <div>
               <div className={styles.userIcon} onClick={onUserClick}>
                 <UserName username={userName} />
-                {<p className={styles.userName}>{userName}</p>}
+                {
+                  <p
+                    className={classNames(styles.userName, {
+                      [styles.userNameLight]: !theme,
+                    })}
+                  >
+                    {userName}
+                  </p>
+                }
                 {active ? (
                   <div className={styles.arrowDown}></div>
                 ) : (
@@ -226,7 +242,8 @@ const Header = () => {
               <div
                 onMouseLeave={onMouseLeaveEvent}
                 className={classNames(styles.buttonsWrapper, {
-                  [styles.hidden]: active === false,
+                  [styles.hidden]: !active,
+                  [styles.buttonsLight]: !theme,
                 })}
               >
                 <Button
@@ -243,9 +260,20 @@ const Header = () => {
             </div>
           )
         ) : (
-          <div className={styles.userIcon} onClick={onSignInClick}>
+          <div
+            className={classNames(styles.userIcon, {
+              [styles.userIconLight]: !theme,
+            })}
+            onClick={onSignInClick}
+          >
             <UserIcon />
-            Sign In
+            <p
+              className={classNames(styles.userName, {
+                [styles.userNameLight]: !theme,
+              })}
+            >
+              Sign In
+            </p>
             <div className={styles.arrowRight}></div>
           </div>
         )}
