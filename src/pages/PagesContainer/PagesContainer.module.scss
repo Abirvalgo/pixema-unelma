@@ -1,8 +1,83 @@
 @import "src/assets/colors";
 @import "src/assets/mixins";
 
+@media (min-width:415px) and (max-width: 1600px) {
+  :root .wrapper{
+    padding: 40px;
+  }
+}
+@media (max-width: 414px) {
+  :root .wrapper{
+    padding: 24px;
+  }
+}
+@media (max-width: 1920px) {
+  :root .sideBar{
+    max-width: 14.8vw;
+    width: 100%;
+  }
+}
+@media (min-width:961px) and (max-width: 1260px) {
+  :root .sideBar{
+    max-width: 200px;
+    width: 100%;
+  }
+}
+@media  (max-width: 960px) {
+  :root .sideBar{
+    display: none;
+  }
+  :root .siteLogoTablet{
+    display: flex;
+  }
+  :root .footer{
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  :root .main > :last-child{
+    width: 540px;
+    align-self: center;
+  }
+  :root .siteLogoTablet{
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  :root .main > :last-child{
+    width: 266px;
+  }
+}
+.sideBar{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  max-width: 284px;
+  width: 100%;
+  gap: 64px;
+}
+.siteLogoTablet{
+  display: none;
+}
+.tabletHeader{
+  display: flex;
+  flex-direction: row;
+  gap: 70px;
+}
+.main{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 64px;
+  max-width: 1490px;
+  width: 100%;
+}
+
+
+
 .background{
   background: $black;
+
 }
 .backgroundLight{
   background: $white;
@@ -14,22 +89,32 @@
   padding: 40px 62px 64px;
   min-height: 100vh;
 }
+//.container{
+//  display: flex;
+//  flex-wrap: wrap;
+//}
 .container{
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+.contentWrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 .footer{
   display: flex;
   position: sticky;
   bottom: 64px;
-  left: 64px;
   @include s2;
   font-weight: 500;
   color: $light;
   grid-area: footer;
 }
 .header{
-  width: 1900px;
+  max-width: 1900px;
+  width: 100%;
 }
 .outlet{
   display: flex;

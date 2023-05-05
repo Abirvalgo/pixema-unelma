@@ -1,6 +1,7 @@
 import React, { KeyboardEvent, useState } from "react";
 import styles from "./Header.module.scss";
 import {
+  BurgerMenu,
   FilterIcon,
   PixemaIcon,
   SearchIcon,
@@ -25,6 +26,7 @@ import { RoutesList } from "../../Router";
 import ModalFilters from "../../../components/ModalFilters";
 import { selectGenres, selectLanguages } from "../../../utils/constants";
 import { useThemeContext } from "../../../context/Theme/Context";
+import SideBar from "../../../components/SideBar";
 
 const Header = () => {
   const { theme } = useThemeContext();
@@ -191,73 +193,101 @@ const Header = () => {
           isHighlighted={sort === "release_date:desc"}
         />
       </div>
-      {/*<div className={styles.header}>*/}
       <div
         className={classNames(styles.header, {
           [styles.headerLight]: !theme,
         })}
       >
-        <div className={styles.siteLogo}>
-          <PixemaIcon />
+        <div className={styles.searchWrapper}>
+          <Input
+            type={`text`}
+            value={searchValue}
+            placeholder={"Search"}
+            onChange={onChangeSearch}
+            onKeyDown={onKeyDown}
+            disabled={!isLoggedIn}
+          />
+          {isLoggedIn && (
+            <>
+              <div className={styles.searchBtn} onClick={onClickSearchButton}>
+                <SearchIcon />
+              </div>
+              <div className={styles.filterBtn} onClick={onClickFilters}>
+                <FilterIcon />
+              </div>
+            </>
+          )}
         </div>
-        <Input
-          type={`text`}
-          value={searchValue}
-          placeholder={"Search"}
-          onChange={onChangeSearch}
-          onKeyDown={onKeyDown}
-          disabled={!isLoggedIn}
-        />
-        {isLoggedIn && (
-          <>
-            <div className={styles.searchBtn} onClick={onClickSearchButton}>
-              <SearchIcon />
-            </div>
-            <div className={styles.filterBtn} onClick={onClickFilters}>
-              <FilterIcon />
-            </div>
-          </>
-        )}
-
         {isLoggedIn ? (
           userInfo && (
-            <div>
-              <div className={styles.userIcon} onClick={onUserClick}>
-                <UserName username={userName} />
-                {
-                  <p
-                    className={classNames(styles.userName, {
-                      [styles.userNameLight]: !theme,
-                    })}
-                  >
-                    {userName}
-                  </p>
-                }
-                {active ? (
-                  <div className={styles.arrowDown}></div>
-                ) : (
-                  <div className={styles.arrowRight}></div>
-                )}
+            <>
+              {/*burger menu mobile start*/}
+              <div className={styles.burgerMenu} onClick={onUserClick}>
+                <BurgerMenu />
+                <div
+                  className={classNames(styles.userMobileHidden, {
+                    [styles.userMobile]: active,
+                  })}
+                >
+                  <div className={styles.userNameMobile}>
+                    <UserName username={userName} />
+                  </div>
+                  <div>
+                    <SideBar />
+                  </div>
+
+                  <div className={styles.btn123}>
+                    <Button
+                      title={"Log Out"}
+                      type={ButtonType.Primary}
+                      onClick={onLogoutClick}
+                    />
+                  </div>
+                </div>
+                <div className={styles.siteLogoTablet}>
+                  <PixemaIcon />
+                </div>
               </div>
-              <div
-                onMouseLeave={onMouseLeaveEvent}
-                className={classNames(styles.buttonsWrapper, {
-                  [styles.hidden]: !active,
-                  [styles.buttonsLight]: !theme,
-                })}
-              >
-                <Button
-                  title={"Edit profile"}
-                  type={ButtonType.Secondary}
-                  onClick={onEditClick}
-                />
-                <Button
-                  title={"Log Out"}
-                  type={ButtonType.Secondary}
-                  onClick={onLogoutClick}
-                />
+
+              {/*burger menu mobile end*/}
+              <div className={styles.userBlock}>
+                <div className={styles.userIcon} onClick={onUserClick}>
+                  <UserName username={userName} />
+                  {
+                    <p
+                      className={classNames(styles.userName, {
+                        [styles.userNameLight]: !theme,
+                      })}
+                    >
+                      {userName}
+                    </p>
+                  }
+                  {active ? (
+                    <div className={styles.arrowDown}></div>
+                  ) : (
+                    <div className={styles.arrowRight}></div>
+                  )}
+                </div>
+                <div
+                  onMouseLeave={onMouseLeaveEvent}
+                  className={classNames(styles.buttonsWrapper, {
+                    [styles.hidden]: !active,
+                    [styles.buttonsLight]: !theme,
+                  })}
+                >
+                  <Button
+                    title={"Edit profile"}
+                    type={ButtonType.Secondary}
+                    onClick={onEditClick}
+                  />
+                  <Button
+                    title={"Log Out"}
+                    type={ButtonType.Secondary}
+                    onClick={onLogoutClick}
+                  />
+                </div>
               </div>
-            </div>
+            </>
           )
         ) : (
           <div

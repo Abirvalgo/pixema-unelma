@@ -9,3 +9,4 @@ export { FilterIcon } from "./FilterIcon";
 export { PixemaIcon } from "./PixemaIcon";
 export { SearchIcon } from "./SearchIcon";
 export { CloseIcon } from "./CloseIcon";
+export { BurgerMenu } from "./BurgerMenu";

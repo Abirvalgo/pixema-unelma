@@ -1,12 +1,35 @@
 @import "src/assets/mixins";
 @import "src/assets/colors";
+
+@media  (max-width: 1600px) {
+  :root .container{
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media  (max-width: 1200px) {
+  :root .container{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media  (max-width: 768px) {
+  :root .container{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media  (max-width: 600px) {
+  :root .container{
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
 .container{
   display: grid;
-  grid-area: content;
   grid-template-columns: repeat(5, 1fr);
+  //display: flex;
+  //flex-wrap: wrap;
   gap: 40px;
   flex: 1;
   max-width: 1490px;
+  width: 100%;
 }
 .error{
   @include h2;

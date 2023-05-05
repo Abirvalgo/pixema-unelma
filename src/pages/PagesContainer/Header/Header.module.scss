@@ -11,8 +11,12 @@
   flex-direction: row;
   height: 56px;
   width: 100%;
-  margin-bottom: 64px;
-}
+  gap: 40px;
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    gap: 10px;
+    height: 100%;
+}}
 
 .headerLight {
   & input {
@@ -23,7 +27,71 @@
 }
 
 .siteLogo {
-  margin-right: 126px;
+  max-width: 284px;
+  width: 100%;
+  //margin-right: 126px;
+}
+
+.userBlock {
+  display: flex;
+  max-width: 266px;
+  width: 100%;
+  @media (max-width: 960px) {
+    display: none;
+  }
+}
+
+.burgerMenu {
+  display: none;
+  @media (max-width: 960px) {
+    display: flex;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}
+.siteLogoTablet{
+  display: none;
+  width: 158px;
+  @media (max-width: 768px) {
+    display: flex;
+  }
+}
+.userMobileHidden {
+  display: none;
+  position: absolute;
+  top: 110px;
+  right: 40px;
+  width: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  outline: 2px solid $primary-secondary;
+  background-color: $graphite;
+  z-index: 3;
+}
+
+.userMobile {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.userNameMobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include h3;
+}
+
+.btn123 {
+  & :first-child {
+    display: flex;
+    width: 150px;
+    height: 30px;
+  }
 }
 
 .userIcon {
@@ -33,7 +101,6 @@
   flex-direction: row;
   align-items: center;
   gap: 20px;
-  margin-left: 40px;
   height: 56px;
 
   &:hover {
@@ -44,10 +111,12 @@
     cursor: pointer;
   }
 }
-.userIconLight{
+
+.userIconLight {
   color: $dark;
 }
-.userNameLight{
+
+.userNameLight {
   color: $dark;
 }
 
@@ -99,7 +168,8 @@
     color: $primary;
   }
 }
-.buttonsLight{
+
+.buttonsLight {
   & :first-child {
     color: $dark;
     background-color: $white;
@@ -109,6 +179,7 @@
     color: $dark;
     background-color: $white;
   }
+
   & :first-child:not(.disabledButton):hover {
     background-color: $light;
     color: $primary;
@@ -130,8 +201,8 @@
 
 .searchBtn {
   display: flex;
-  position: relative;
-  left: -70px;
+  position: absolute;
+  right: 50px;
 
   &:hover {
     svg > path {
@@ -143,8 +214,8 @@
 
 .filterBtn {
   display: flex;
-  position: relative;
-  left: -60px;
+  position: absolute;
+  right: 20px;
 
   &:hover {
     svg > path {
@@ -174,3 +245,14 @@
   height: 100%;
 }
 
+.searchWrapper {
+  position: relative;
+  max-width: 1184px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  & input{
+    padding-right: 75px;
+  }
+}

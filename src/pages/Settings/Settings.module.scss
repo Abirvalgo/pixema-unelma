@@ -4,6 +4,9 @@
 .container {
   max-width: 1184px;
   width: 100%;
+  @media (max-width: 768px) {
+    width: 100% !important;
+  }
 }
 
 .inputName {
@@ -24,10 +27,16 @@ input{
   flex-direction: row;
   padding: 40px;
   background: $dark;
-  height: 168px;
+  min-height: 168px;
   gap: 40px;
   border-radius: 10px;
   margin-bottom: 40px;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    padding: 10px;
+    margin: 0;
+    gap: 0;
+  }
 
   .inputWrapper {
     display: flex;
@@ -42,11 +51,18 @@ input{
   .inputWrapperLeft{
     display: flex;
     width: 50%;
+    @media (max-width: 768px) {
+      width: 100%
+    }
+
   }
   .inputWrapperRight{
     display: flex;
     flex-direction: column;
     width: 50%;
+    @media (max-width: 768px) {
+      width: 100%
+    }
   }
 }
 .boxWrapperLight{
@@ -63,6 +79,9 @@ input{
 }
 .boxWrapperHeight{
   height: 280px;
+  @media (max-width: 768px) {
+    height: 100%;
+  }
 }
 .switchWrapper{
   display: flex;
@@ -103,6 +122,7 @@ input{
   flex-direction: row;
   justify-content: flex-end;
   gap: 40px;
+
   &>div{
     width: 266px;
   }
