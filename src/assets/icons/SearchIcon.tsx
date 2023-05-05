@@ -3,7 +3,7 @@ import React from "react";
 export const SearchIcon = ({
   width = "24",
   height = "24",
-  stroke = "#ffffff",
+  stroke = "#AFB2B6",
 }) => {
   return (
     <svg

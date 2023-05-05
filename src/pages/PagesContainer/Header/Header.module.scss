@@ -11,11 +11,87 @@
   flex-direction: row;
   height: 56px;
   width: 100%;
-  margin-bottom: 64px;
+  gap: 40px;
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    gap: 10px;
+    height: 100%;
+}}
+
+.headerLight {
+  & input {
+    color: $dark;
+    background-color: $white;
+    outline: 2px solid $light;
+  }
 }
 
 .siteLogo {
-  margin-right: 126px;
+  max-width: 284px;
+  width: 100%;
+  //margin-right: 126px;
+}
+
+.userBlock {
+  display: flex;
+  max-width: 266px;
+  width: 100%;
+  @media (max-width: 960px) {
+    display: none;
+  }
+}
+
+.burgerMenu {
+  display: none;
+  @media (max-width: 960px) {
+    display: flex;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+}
+.siteLogoTablet{
+  display: none;
+  width: 158px;
+  @media (max-width: 768px) {
+    display: flex;
+  }
+}
+.userMobileHidden {
+  display: none;
+  position: absolute;
+  top: 110px;
+  right: 40px;
+  width: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  outline: 2px solid $primary-secondary;
+  background-color: $graphite;
+  z-index: 3;
+}
+
+.userMobile {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.userNameMobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include h3;
+}
+
+.btn123 {
+  & :first-child {
+    display: flex;
+    width: 150px;
+    height: 30px;
+  }
 }
 
 .userIcon {
@@ -25,13 +101,23 @@
   flex-direction: row;
   align-items: center;
   gap: 20px;
-  margin-left: 40px;
   height: 56px;
 
   &:hover {
-    .userName {color: $primary-secondary;}
+    .userName {
+      color: $primary-secondary;
+    }
+
     cursor: pointer;
   }
+}
+
+.userIconLight {
+  color: $dark;
+}
+
+.userNameLight {
+  color: $dark;
 }
 
 .arrowRight {
@@ -61,38 +147,112 @@
   width: 267px;
   z-index: 3;
   box-shadow: 0 0 2px 2px;
-  & :first-child{
+
+  & :first-child {
     border-radius: 10px 10px 0 0;
     background-color: $dark;
   }
-  & :last-child{
+
+  & :last-child {
     border-radius: 0 0 10px 10px;
     background-color: $dark;
   }
-  & :first-child:not(.disabledButton):hover{
+
+  & :first-child:not(.disabledButton):hover {
     background-color: $dark;
     color: $primary;
   }
-  & :last-child:not(.disabledButton):hover{
+
+  & :last-child:not(.disabledButton):hover {
     background-color: $dark;
     color: $primary;
   }
 }
-.userIcon>.buttonsWrapper:first-child:hover{
+
+.buttonsLight {
+  & :first-child {
+    color: $dark;
+    background-color: $white;
+  }
+
+  & :last-child {
+    color: $dark;
+    background-color: $white;
+  }
+
+  & :first-child:not(.disabledButton):hover {
+    background-color: $light;
+    color: $primary;
+  }
+
+  & :last-child:not(.disabledButton):hover {
+    background-color: $light;
+    color: $primary;
+  }
+}
+
+.userIcon > .buttonsWrapper:first-child:hover {
   color: green;
 }
-.hidden{
+
+.hidden {
   display: none;
 }
 
-.searchBtn{
+.searchBtn {
   display: flex;
-  position: relative;
-  left: -50px;
-  &:hover{
-  svg > path  {
-    transition: all 0.3s;
-    stroke: $primary;
+  position: absolute;
+  right: 50px;
+
+  &:hover {
+    svg > path {
+      transition: all 0.3s;
+      stroke: $primary;
+    }
   }
+}
+
+.filterBtn {
+  display: flex;
+  position: absolute;
+  right: 20px;
+
+  &:hover {
+    svg > path {
+      transition: all 0.3s;
+      stroke: $primary;
+    }
+  }
+}
+
+.select {
+  position: fixed;
+  width: 300px;
+  z-index: 3;
+}
+
+.selectContainer {
+  position: fixed;
+  z-index: 5;
+}
+
+.modalBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);;
+  width: 100%;
+  height: 100%;
+}
+
+.searchWrapper {
+  position: relative;
+  max-width: 1184px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  & input{
+    padding-right: 75px;
   }
 }

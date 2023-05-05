@@ -6,11 +6,18 @@
     flex-direction: row;
     gap: 42px;
     max-width: 1490px;
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
   }
+
 .posterContainer{
   display: flex;
   flex-direction: column;
   gap: 32px;
+  @media (max-width: 768px) {
+    align-self: center;
+  }
   img {
     height: 356px;
     width: 266px;
@@ -20,6 +27,15 @@
     display: flex;
     flex-direction: row;
     gap: 1px;
+    @media (max-width: 768px) {
+      max-width: 268px;
+      width: 100%;
+    }
+  }
+  .buttonLight{
+   & button{
+
+    }
   }
 }
 
@@ -76,6 +92,9 @@
     @include b1;
     margin: 40px 0;
   }
+  .themeLight{
+    color: $dark;
+  }
   .smallInfoContainer{
     display: flex;
     flex-direction: column;
@@ -86,7 +105,10 @@
     .title{
       @include s3;
       color: $light;
-      width: 135px;
+      min-width: 135px;
+      @media (max-width: 768px) {
+        min-width: 90px;
+      }
     }
     .content{
       @include s3;
@@ -94,12 +116,21 @@
       display: flex;
       flex-wrap: wrap;
     }
+    .themeLight{
+      color: $dark;
+    }
   }
+  }
+  .themeLight{
+    color: $dark;
   }
 }
 .genres{
   display: flex;
   flex-direction: row;
+  @media (max-width: 1260px) {
+    flex-wrap: wrap;
+  }
   & > p{
     @include s2;
     color: $light;

@@ -8,23 +8,36 @@ import { ButtonType } from "../../utils/@globalTypes";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AuthSelectors } from "../../redux/reducers/authSlice";
+import { useThemeContext } from "../../context/Theme/Context";
 
 const Settings = () => {
+  const { theme } = useThemeContext();
   const navigate = useNavigate();
   const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
+  const userInfo = useSelector(AuthSelectors.getUserInfo);
   const onCancelClick = () => {
     navigate(`/`);
   };
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <div className={styles.inputName}>Profile</div>
-        <div className={styles.boxWrapper}>
+        <div
+          className={classNames(styles.inputName, {
+            [styles.inputNameLight]: !theme,
+          })}
+        >
+          Profile
+        </div>
+        <div
+          className={classNames(styles.boxWrapper, {
+            [styles.boxWrapperLight]: !theme,
+          })}
+        >
           <div className={styles.inputWrapper}>
             <Input
               title={"Name"}
               type={"text"}
-              value={`Test name`}
+              value={userInfo?.user.display_name}
               placeholder="Your name"
               onChange={() => {}}
               disabled={!isLoggedIn}
@@ -34,7 +47,7 @@ const Settings = () => {
             <Input
               title={"Email"}
               type={"email"}
-              value={`Test email`}
+              value={userInfo?.user.email}
               placeholder=""
               onChange={() => {}}
               disabled={!isLoggedIn}
@@ -43,8 +56,18 @@ const Settings = () => {
         </div>
       </div>
       <div className={styles.wrapper}>
-        <div className={styles.inputName}>Password</div>
-        <div className={classNames(styles.boxWrapper, styles.boxWrapperHeight)}>
+        <div
+          className={classNames(styles.inputName, {
+            [styles.inputNameLight]: !theme,
+          })}
+        >
+          Password
+        </div>
+        <div
+          className={classNames(styles.boxWrapper, styles.boxWrapperHeight, {
+            [styles.boxWrapperLight]: !theme,
+          })}
+        >
           <div className={styles.inputWrapperLeft}>
             <div className={styles.inputWrapper}>
               <Input
@@ -53,7 +76,7 @@ const Settings = () => {
                 value={`Test name`}
                 placeholder="Your Password"
                 onChange={() => {}}
-                disabled={!isLoggedIn}
+                disabled
               />
             </div>
           </div>
@@ -65,7 +88,7 @@ const Settings = () => {
                 value={`Test name`}
                 placeholder="New Password"
                 onChange={() => {}}
-                disabled={!isLoggedIn}
+                disabled
               />
             </div>
             <div className={styles.inputWrapper}>
@@ -75,19 +98,36 @@ const Settings = () => {
                 value={`Test name`}
                 placeholder="Confirm Password"
                 onChange={() => {}}
-                disabled={!isLoggedIn}
+                disabled
               />
             </div>
           </div>
         </div>
       </div>
       <div className={styles.wrapper}>
-        <div className={styles.inputName}>Color mode</div>
-        <div className={styles.switchWrapper}>
-          <div className={styles.themeTextWrapper}>
-            <div className={styles.themeTextTop}>Dark</div>
-            <div className={styles.themeTextBottom}>Use dark theme</div>
-          </div>
+        <div
+          className={classNames(styles.inputName, {
+            [styles.inputNameLight]: !theme,
+          })}
+        >
+          Color mode
+        </div>
+        <div
+          className={classNames(styles.switchWrapper, {
+            [styles.switchWrapperLight]: !theme,
+          })}
+        >
+          {theme ? (
+            <div className={styles.themeTextWrapper}>
+              <div className={styles.themeTextTop}>Dark</div>
+              <div className={styles.themeTextBottom}>Use dark theme</div>
+            </div>
+          ) : (
+            <div className={styles.themeTextWrapper}>
+              <div className={styles.themeTextTopLight}>Light</div>
+              <div className={styles.themeTextBottomLight}>Use light theme</div>
+            </div>
+          )}
           <Switch />
         </div>
       </div>

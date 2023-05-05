@@ -20,6 +20,7 @@ import {
   SignUpUserResponse,
 } from "./@types";
 import { ACCESS_TOKEN } from "../../utils/constants";
+import callCheckingAuth from "./callCheckingAuth";
 
 function* signUpUserWorker(action: PayloadAction<SignUpUserPayload>) {
   const { data, callback } = action.payload;
@@ -59,9 +60,8 @@ function* signInUserWorker(action: PayloadAction<SignInUserPayload>) {
 }
 
 function* getUserInfoWorker() {
-  const { ok, problem, data }: ApiResponse<GetUserInfo> = yield call(
-    API.getUserInfo
-  );
+  const { ok, problem, data }: ApiResponse<GetUserInfo> =
+    yield callCheckingAuth(API.getUserInfo);
   if (ok && data) {
     yield put(setUserInfo(data));
   } else {

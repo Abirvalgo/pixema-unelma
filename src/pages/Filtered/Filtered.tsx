@@ -1,39 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getTrendPosts,
-  PostSelectors,
-  resetPosts,
-} from "../../redux/reducers/postSlice";
+import { PostSelectors, resetPosts } from "../../redux/reducers/postSlice";
 import CardsList from "../../components/CardsList";
 import Loader from "../../components/Loader";
+import styles from "./Filtered.module.scss";
+import { AuthSelectors } from "../../redux/reducers/authSlice";
+import EmptyState from "../../components/EmptyState";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoaderCircle from "../../components/LoaderCircle";
-import { AuthSelectors } from "../../redux/reducers/authSlice";
-import styles from "./Trends.module.scss";
-import EmptyState from "../../components/EmptyState";
 
-const Trends = () => {
-  const trendPosts = useSelector(PostSelectors.getTrendPosts);
+const Filtered = () => {
+  const allPosts = useSelector(PostSelectors.getAllPosts);
   const dispatch = useDispatch();
-  const isLoading = useSelector(PostSelectors.getIsLoading);
   const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
+  const isLoading = useSelector(PostSelectors.getIsLoading);
   const postsCount = useSelector(PostSelectors.getPostsCount);
   const [page, setPage] = useState(1);
   const onNextReached = () => {
     setPage(page + 1);
   };
   useEffect(() => {
-    isLoggedIn &&
-      dispatch(
-        getTrendPosts({ perPage: 10, page: page, order: `popularity:desc` })
-      );
-  }, [isLoggedIn, page]);
-  useEffect(() => {
     return () => {
       dispatch(resetPosts({ allPosts: [], trendPosts: [], searchedPosts: [] }));
     };
   }, []);
+
   return (
     <>
       {isLoggedIn ? (
@@ -44,12 +35,12 @@ const Trends = () => {
             <InfiniteScroll
               style={{ overflowY: "hidden" }}
               next={onNextReached}
-              hasMore={trendPosts.length < postsCount}
+              hasMore={allPosts.length < postsCount}
               loader={<LoaderCircle />}
-              dataLength={trendPosts.length}
+              dataLength={allPosts.length}
               scrollThreshold={0.8}
             >
-              <CardsList cardsList={trendPosts} />
+              <CardsList cardsList={allPosts} />
             </InfiniteScroll>
           </>
         )
@@ -62,4 +53,4 @@ const Trends = () => {
   );
 };
 
-export default Trends;
+export default Filtered;

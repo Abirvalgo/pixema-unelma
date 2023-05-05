@@ -7,8 +7,15 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  @media (max-width: 500px) {
+    & svg{
+      width: 283px;
+      height: 252px;
+    }
+  }
 }
 .description{
 @include h3;
   color: $secondary;
 }
+

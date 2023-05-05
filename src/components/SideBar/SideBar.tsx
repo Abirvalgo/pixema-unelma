@@ -7,8 +7,13 @@ import {
   TrendsIcon,
 } from "../../assets/icons";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { AuthSelectors } from "../../redux/reducers/authSlice";
+import { useThemeContext } from "../../context/Theme/Context";
+import classNames from "classnames";
 
 const SideBar = () => {
+  const { theme } = useThemeContext();
   const navigate = useNavigate();
   const onHomeClick = () => {
     navigate(`/`);
@@ -22,26 +27,51 @@ const SideBar = () => {
   const onSettingsClick = () => {
     navigate(`/settings`);
   };
+  const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
 
   return (
     <div className={styles.leftContainer}>
       <div className={styles.iconsWrapper}>
-        <div className={styles.svgFill} onClick={onHomeClick}>
+        <div
+          className={classNames(styles.svgFill, {
+            [styles.themeLight]: !theme,
+          })}
+          onClick={onHomeClick}
+        >
           <HomeIcon />
           <p>Home</p>
         </div>
-        <div className={styles.svgFill} onClick={onTrendsClick}>
-          <TrendsIcon />
-          <p>Trends</p>
-        </div>
-        <div className={styles.svgFill} onClick={onFavoritesClick}>
-          <FavoritesIcon />
-          <p>Favorites</p>
-        </div>
-        <div className={styles.svgFill} onClick={onSettingsClick}>
-          <SettingsIcon />
-          <p>Settings</p>
-        </div>
+        {isLoggedIn && (
+          <>
+            <div
+              className={classNames(styles.svgFill, {
+                [styles.themeLight]: !theme,
+              })}
+              onClick={onTrendsClick}
+            >
+              <TrendsIcon />
+              <p>Trends</p>
+            </div>
+            <div
+              className={classNames(styles.svgFill, {
+                [styles.themeLight]: !theme,
+              })}
+              onClick={onFavoritesClick}
+            >
+              <FavoritesIcon />
+              <p>Favorites</p>
+            </div>
+            <div
+              className={classNames(styles.svgFill, {
+                [styles.themeLight]: !theme,
+              })}
+              onClick={onSettingsClick}
+            >
+              <SettingsIcon />
+              <p>Settings</p>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

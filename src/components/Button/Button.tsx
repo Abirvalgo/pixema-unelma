@@ -3,6 +3,7 @@ import classNames from "classnames";
 import styles from "./Button.module.scss";
 import { ButtonType } from "../../utils/@globalTypes";
 import { BookmarkIcon, ShareIcon } from "../../assets/icons";
+import { useThemeContext } from "../../context/Theme/Context";
 
 type ButtonProps = {
   title?: string;
@@ -28,6 +29,7 @@ const Button: FC<ButtonProps> = ({
   type,
   isHighlighted,
 }) => {
+  const { theme } = useThemeContext();
   const buttonClassName = btnStyles[type];
   return (
     <>
@@ -36,6 +38,7 @@ const Button: FC<ButtonProps> = ({
           className={classNames(styles.leftPart, {
             [styles.disabledButtonShare]: disabled,
             [styles.highlightedButtonShare]: isHighlighted,
+            [styles.buttonLight]: !theme,
           })}
           onClick={onClick}
         >
@@ -46,6 +49,7 @@ const Button: FC<ButtonProps> = ({
         <div
           className={classNames(styles.rightPart, {
             [styles.disabledButtonShare]: disabled,
+            [styles.buttonLight]: !theme,
           })}
           onClick={onClick}
         >
@@ -57,6 +61,7 @@ const Button: FC<ButtonProps> = ({
           onClick={onClick}
           className={classNames(buttonClassName, {
             [styles.disabledButton]: disabled,
+            [styles.highlightedButton]: isHighlighted,
           })}
         >
           {title}

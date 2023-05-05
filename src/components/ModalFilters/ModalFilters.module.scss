@@ -1,0 +1,87 @@
+@import "src/assets/mixins";
+@import "src/assets/colors";
+
+.container {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  max-width: 518px;
+  width: 100%;
+  background-color: $dark;
+  border-radius: 20px 0 0 20px;
+  animation: slide-out 0.5s forwards;
+  @keyframes slide-out {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(0%); }
+  }
+  p{
+    @include s3;
+  }
+  overflow-y:scroll;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 48px 40px;
+
+  .topWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    .text {
+      @include h2;
+    }
+    .closeBtn {
+      &:hover {
+        cursor: pointer;
+        svg > path {
+          fill: $white;
+        }
+      }
+    }
+  }
+  .sortWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .buttonsWrapper{
+    display: flex;
+    width: 100%;
+    outline: 2px solid $graphite;
+    border-radius: 10px;
+    & :first-child{
+      width: 50%;
+      border-radius: 10px 0 0 10px;
+    }
+    & :last-child{
+      width: 50%;
+      border-radius: 0 10px 10px 0;
+    }
+  }
+}
+.inputWrapper{
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+.bottomBtnWrapper{
+  margin-top: 70px;
+  display:flex ;
+  flex-direction: row;
+  gap: 40px;
+  & :first-child{
+    width: 50%;
+
+  }
+  & :last-child{
+    width: 50%;
+
+  }
+}

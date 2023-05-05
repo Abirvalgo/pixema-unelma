@@ -6,7 +6,7 @@ import classNames from "classnames";
 type InputType = {
   title?: string;
   type: string;
-  value: string;
+  value: any;
   placeholder: string;
   onChange: (value: string) => void;
   onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
@@ -31,7 +31,7 @@ const Input: FC<InputType> = ({
   };
   return (
     <>
-      {title && <div className={styles.title}>{title}</div>}
+      {title && <p className={styles.title}>{title}</p>}
       <div className={styles.container}>
         <input
           // className={styles.input}

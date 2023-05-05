@@ -4,6 +4,9 @@
 .cardText {
   color: $white;
 }
+.cardTextLight{
+  color: $dark;
+}
 
 .container {
   display: flex;
@@ -12,8 +15,11 @@
   align-items: center;
   box-sizing: border-box;
   justify-content: space-between;
-  width: 266px;
-  height: 433px;
+  max-width: 266px;
+  width: 100%;
+  max-height: 433px;
+  height: 100%;
+  gap: 20px;
   &:hover {
     cursor: pointer;
     .cardText{
@@ -22,8 +28,10 @@
   }
 
   & > img {
-    width: 266px;
-    height: 357px;
+    max-width:266px ;
+    width: 100%;
+    max-height: 357px;
+    height: 100%;
     border-radius: 20px;
     background: rgba(0, 0, 0, .5);
     opacity: 1;

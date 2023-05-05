@@ -34,7 +34,10 @@
     gap: 40px;
     background: $dark;
     border-radius: 10px;
-
+    @media (max-width: 480px) {
+      padding: 20px;
+      gap: 20px;
+    }
     .formTitle {
       @include h2;
     }

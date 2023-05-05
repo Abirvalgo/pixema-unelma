@@ -1,22 +1,18 @@
 @import "src/assets/colors";
 @import "src/assets/mixins";
 
-.container{
-  display: flex;
-}
 .leftContainer {
   display: flex;
-  //grid-area: sidebar;
   flex-direction: column;
-  width: 280px;
-  //border: 1px solid white;
 }
-.iconsWrapper{
+
+.iconsWrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 40px;
 }
+
 .svgFill {
   display: flex;
   gap: 23px;
@@ -28,4 +24,8 @@
     transition: all 0.3s;
     color: $white;
   }
+}
+
+.themeLight > p {
+  color: $secondary;
 }

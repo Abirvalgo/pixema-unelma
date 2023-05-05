@@ -16,6 +16,7 @@ import {
   addFavoritePosts,
   removeFavoritePosts,
 } from "../../redux/reducers/postSlice";
+import { useThemeContext } from "../../context/Theme/Context";
 
 export type SelectedMovieProps = {
   singleCard: SingleCardType;
@@ -41,10 +42,11 @@ const SelectedCard: FC<SelectedMovieProps> = ({
     genres,
     credits,
   } = singleCard;
+  const { theme } = useThemeContext();
   const dispatch = useDispatch();
 
   const allGenres = genres?.map((genre) => (
-    <p key={genre.id}>
+    <p key={genre.id + name}>
       {genre.name.charAt(0).toUpperCase() + genre.name.slice(1)}
     </p>
   ));
@@ -89,18 +91,35 @@ const SelectedCard: FC<SelectedMovieProps> = ({
       <div className={styles.container}>
         <div className={styles.posterContainer}>
           <img src={poster} alt={"Movie Poster"} />
-          <div className={styles.buttonWrapper}>
+          <div
+            className={classNames(styles.buttonWrapper, {
+              [styles.buttonLight]: !theme,
+            })}
+          >
             <Button
               onClick={onClickBookmark}
               type={ButtonType.Bookmark}
               isHighlighted={!!isFavorite.length}
             />
-            <Button onClick={() => {}} type={ButtonType.Share} />
+            <Button
+              onClick={() => {
+                navigator.clipboard.writeText(window.location.href);
+              }}
+              type={ButtonType.Share}
+            />
           </div>
         </div>
         <div className={styles.infoContainer}>
           {allGenres && <div className={styles.genres}>{allGenres}</div>}
-          {name && <div className={styles.name}>{name}</div>}
+          {name && (
+            <div
+              className={classNames(styles.name, {
+                [styles.themeLight]: !theme,
+              })}
+            >
+              {name}
+            </div>
+          )}
           <div className={styles.ratingWrapper}>
             {rating && (
               <div
@@ -117,18 +136,34 @@ const SelectedCard: FC<SelectedMovieProps> = ({
             )}
             {runtime && <div className={styles.runtime}>{runtime} min</div>}
           </div>
-          <div className={styles.description}>{description}</div>
+          <p
+            className={classNames(styles.description, {
+              [styles.themeLight]: !theme,
+            })}
+          >
+            {description}
+          </p>
           <div className={styles.smallInfoContainer}>
             {year && (
               <div className={styles.smallInfoWrapper}>
                 <div className={styles.title}>Year</div>
-                <div className={styles.content}>{year}</div>
+                <div
+                  className={classNames(styles.content, {
+                    [styles.themeLight]: !theme,
+                  })}
+                >
+                  {year}
+                </div>
               </div>
             )}
             {release_date && (
               <div className={styles.smallInfoWrapper}>
                 <div className={styles.title}>Released</div>
-                <div className={styles.content}>
+                <div
+                  className={classNames(styles.content, {
+                    [styles.themeLight]: !theme,
+                  })}
+                >
                   {DateTime.fromISO(release_date)
                     .setLocale("en")
                     .toFormat("dd MMMM yyyy")}
@@ -138,7 +173,11 @@ const SelectedCard: FC<SelectedMovieProps> = ({
             {revenue && (
               <div className={styles.smallInfoWrapper}>
                 <div className={styles.title}>BoxOffice</div>
-                <div className={styles.content}>
+                <div
+                  className={classNames(styles.content, {
+                    [styles.themeLight]: !theme,
+                  })}
+                >
                   {
                     revenue
                       .toLocaleString("en-US", {
@@ -153,19 +192,37 @@ const SelectedCard: FC<SelectedMovieProps> = ({
             {cast && (
               <div className={styles.smallInfoWrapper}>
                 <div className={styles.title}>Actors</div>
-                <div className={styles.content}>{cast}</div>
+                <div
+                  className={classNames(styles.content, {
+                    [styles.themeLight]: !theme,
+                  })}
+                >
+                  {cast}
+                </div>
               </div>
             )}
             {directors && (
               <div className={styles.smallInfoWrapper}>
                 <div className={styles.title}>Director</div>
-                <div className={styles.content}>{directors}</div>
+                <div
+                  className={classNames(styles.content, {
+                    [styles.themeLight]: !theme,
+                  })}
+                >
+                  {directors}
+                </div>
               </div>
             )}
             {writers && (
               <div className={styles.smallInfoWrapper}>
                 <div className={styles.title}>Writers</div>
-                <div className={styles.content}>{writers}</div>
+                <div
+                  className={classNames(styles.content, {
+                    [styles.themeLight]: !theme,
+                  })}
+                >
+                  {writers}
+                </div>
               </div>
             )}
           </div>

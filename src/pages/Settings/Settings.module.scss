@@ -4,11 +4,17 @@
 .container {
   max-width: 1184px;
   width: 100%;
+  @media (max-width: 768px) {
+    width: 100% !important;
+  }
 }
 
 .inputName {
   @include h2;
   margin-bottom: 16px;
+}
+.inputNameLight{
+  color: $dark;
 }
 input{
   height: 56px;
@@ -21,29 +27,61 @@ input{
   flex-direction: row;
   padding: 40px;
   background: $dark;
-  height: 168px;
+  min-height: 168px;
   gap: 40px;
   border-radius: 10px;
   margin-bottom: 40px;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    padding: 10px;
+    margin: 0;
+    gap: 0;
+  }
 
   .inputWrapper {
     display: flex;
     flex-direction: column;
     width: 100%;
     flex: 1;
+    & > :first-child{
+      margin-bottom: 15px;
+    }
   }
+
   .inputWrapperLeft{
     display: flex;
     width: 50%;
+    @media (max-width: 768px) {
+      width: 100%
+    }
+
   }
   .inputWrapperRight{
     display: flex;
     flex-direction: column;
     width: 50%;
+    @media (max-width: 768px) {
+      width: 100%
+    }
+  }
+}
+.boxWrapperLight{
+  background: $white;
+  outline: 2px solid $light;
+  & p {
+    color: $dark
+  }
+  & input {
+    color: $dark;
+    background-color: $white;
+    outline: 2px solid $light;
   }
 }
 .boxWrapperHeight{
   height: 280px;
+  @media (max-width: 768px) {
+    height: 100%;
+  }
 }
 .switchWrapper{
   display: flex;
@@ -54,7 +92,10 @@ input{
   background: $dark;
   border-radius: 10px;
   margin-bottom: 40px;
-
+}
+.switchWrapperLight{
+  background: $white;
+  outline: 2px solid $light;
 }
 .themeTextWrapper{
   display: flex;
@@ -66,12 +107,22 @@ input{
     @include b1;
     color: $light;
   }
+  .themeTextTopLight{
+    @include s2;
+    color: $dark;
+  }
+  .themeTextBottomLight{
+    @include b1;
+    color: $light;
+  }
 }
+
 .buttonWrapper{
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   gap: 40px;
+
   &>div{
     width: 266px;
   }
