@@ -1,0 +1,33 @@
+@import "src/assets/mixins";
+@import "src/assets/colors";
+
+.relatedHidden{
+  display: none;
+}
+.relatedVisible{
+  display: flex;
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.arrows{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 20px;
+}
+.next:hover> svg > path{
+  stroke: $primary;
+}
+.previous > svg > path{
+  stroke: $light;
+}
+.next > svg >path{
+  stroke: $white;
+}
+.themeLight >svg >path{
+  stroke: $primary-secondary;
+}

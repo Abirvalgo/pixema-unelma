@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from "./SignUp.module.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 import Input from "../../../components/Input";
@@ -15,6 +15,17 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
+
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [passwordTouched, setPasswordTouched] = useState(false);
+  const [emailTouched, setEmailTouched] = useState(false);
+  const onBlurEmail = () => {
+    setEmailTouched(true);
+  };
+  const onBlurPassword = () => {
+    setPasswordTouched(true);
+  };
 
   const onChangeEmail = (value: string) => {
     setEmail(value);
@@ -38,23 +49,44 @@ const SignUp = () => {
       })
     );
   };
+  useEffect(() => {
+    if (email.length === 0 && emailTouched) {
+      setEmailError("Email is a required field");
+    } else {
+      setEmailError("");
+    }
+  }, [email, emailTouched]);
+  useEffect(() => {
+    if (passwordTouched) {
+      if (password !== confirmPass) {
+        setPasswordError("Passwords must match");
+      } else if (password.length === 0 || confirmPass.length === 0) {
+        setPasswordError("Password is required field");
+      } else {
+        setPasswordError("");
+      }
+    }
+  }, [confirmPass, password, passwordTouched]);
+  const isValid = useMemo(() => {
+    return (
+      emailError.length === 0 &&
+      passwordError.length === 0 &&
+      emailTouched &&
+      passwordTouched
+    );
+  }, [emailError, passwordError, emailTouched, passwordTouched]);
   return (
     <FormContainer formTitle={"Sign Up"}>
       <div className={styles.container}>
         <div className={styles.input}>
-          {/*<Input*/}
-          {/*  title={"Name"}*/}
-          {/*  type={"text"}*/}
-          {/*  value={name}*/}
-          {/*  placeholder="Your name"*/}
-          {/*  onChange={onChangeName}*/}
-          {/*/>*/}
           <Input
             title={"Email"}
             type={"text"}
             value={email}
             placeholder="Your email"
             onChange={onChangeEmail}
+            errorText={emailError}
+            onBlur={onBlurEmail}
           />
           <Input
             title={"Password"}
@@ -62,6 +94,8 @@ const SignUp = () => {
             value={password}
             placeholder="Your password"
             onChange={onChangePassword}
+            errorText={passwordError}
+            onBlur={onBlurPassword}
           />
           <Input
             title={"Confirm Password"}
@@ -69,6 +103,8 @@ const SignUp = () => {
             value={confirmPass}
             placeholder="Confirm Password"
             onChange={onChangeConfirmPass}
+            errorText={passwordError}
+            onBlur={onBlurPassword}
           />
         </div>
         <div className={styles.button}>
@@ -76,6 +112,7 @@ const SignUp = () => {
             title={"Sign Up"}
             type={ButtonType.Primary}
             onClick={onSignUpClick}
+            disabled={!isValid}
           />
         </div>
         <div className={styles.text}>

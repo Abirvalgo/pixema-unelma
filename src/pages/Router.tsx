@@ -18,6 +18,7 @@ import {
 import Search from "./Search";
 import { getFavoritePosts } from "../redux/reducers/postSlice";
 import Filtered from "./Filtered";
+import EmptyState from "../components/EmptyState";
 
 export enum RoutesList {
   Home = "/",
@@ -62,6 +63,14 @@ const Router = () => {
           <Route
             path={RoutesList.SelectedMovie}
             element={<SelectedMovie />}
+          ></Route>
+          <Route
+            path={RoutesList.Default}
+            element={
+              <EmptyState
+                description={"THE PAGE YOU WERE LOOKING FOR DOESN'T EXIT"}
+              />
+            }
           ></Route>
         </Route>
         <Route path={RoutesList.SignIn} element={<SignIn />}></Route>

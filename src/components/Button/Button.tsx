@@ -38,7 +38,7 @@ const Button: FC<ButtonProps> = ({
           className={classNames(styles.leftPart, {
             [styles.disabledButtonShare]: disabled,
             [styles.highlightedButtonShare]: isHighlighted,
-            [styles.buttonLight]: !theme,
+            [styles.buttonLight]: !theme && !isHighlighted,
           })}
           onClick={onClick}
         >

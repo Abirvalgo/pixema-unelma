@@ -10,3 +10,6 @@ export { PixemaIcon } from "./PixemaIcon";
 export { SearchIcon } from "./SearchIcon";
 export { CloseIcon } from "./CloseIcon";
 export { BurgerMenu } from "./BurgerMenu";
+export { RelatedArrowLeft } from "./RelatedArrowLeft";
+export { RelatedArrowRight } from "./RelatedArrowRight";
+export { BackToTop } from "./BackToTop";

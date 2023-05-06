@@ -133,7 +133,7 @@ const Header = () => {
     dispatch(resetPosts({ allPosts: [], trendPosts: [], searchedPosts: [] }));
     dispatch(
       getAllPosts({
-        perPage: 10,
+        perPage: 20,
         page: page,
         genre: genreMap.toString(),
         language: selectedLanguage?.value,
@@ -236,7 +236,7 @@ const Header = () => {
                     <SideBar />
                   </div>
 
-                  <div className={styles.btn123}>
+                  <div className={styles.logoutMobile}>
                     <Button
                       title={"Log Out"}
                       type={ButtonType.Primary}
@@ -290,21 +290,26 @@ const Header = () => {
             </>
           )
         ) : (
-          <div
-            className={classNames(styles.userIcon, {
-              [styles.userIconLight]: !theme,
-            })}
-            onClick={onSignInClick}
-          >
-            <UserIcon />
-            <p
-              className={classNames(styles.userName, {
-                [styles.userNameLight]: !theme,
+          <div className={styles.headerMobileSignIn}>
+            <div className={styles.siteLogoTablet}>
+              <PixemaIcon />
+            </div>
+            <div
+              className={classNames(styles.userIcon, {
+                [styles.userIconLight]: !theme,
               })}
+              onClick={onSignInClick}
             >
-              Sign In
-            </p>
-            <div className={styles.arrowRight}></div>
+              <UserIcon />
+              <p
+                className={classNames(styles.userName, {
+                  [styles.userNameLight]: !theme,
+                })}
+              >
+                Sign In
+              </p>
+              <div className={styles.arrowRight}></div>
+            </div>
           </div>
         )}
       </div>

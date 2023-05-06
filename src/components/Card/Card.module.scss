@@ -37,10 +37,18 @@
     opacity: 1;
     transition: opacity .2s linear;
   }
-
   & > img:hover {
     opacity: 0.7;
   }
+  //заглушка если нет картинки
+  & > img:after{content: ' ';
+    display: block;
+    height: 357px;
+    width: 266px;
+    background-image: url('../../assets/oops.png');
+    background-position: center;
+  }
+
 }
 
 .rating {

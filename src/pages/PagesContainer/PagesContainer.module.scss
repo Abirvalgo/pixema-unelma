@@ -123,3 +123,25 @@
   display: flex;
   flex: 1 1 auto;
 }
+.backToTop{
+  display: flex;
+  position: sticky;
+  bottom: 0;
+  left: calc(50% - 25px);
+  width: 50px;
+  height: 50px;
+  animation: slide-out 0.5s forwards;
+  @keyframes slide-out {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(0%); }
+  }
+  &:hover > svg{
+    cursor: pointer;
+    fill: $primary-secondary;
+  }
+}
+.footer{
+  display: flex;
+  position: sticky;
+  bottom: 64px;
+}

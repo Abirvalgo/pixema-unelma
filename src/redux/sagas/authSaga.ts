@@ -55,7 +55,7 @@ function* signInUserWorker(action: PayloadAction<SignInUserPayload>) {
     yield put(setLoggedIn(true));
     callback();
   } else {
-    console.warn("Error activate user", problem);
+    console.warn("Error activating user", problem);
   }
 }
 

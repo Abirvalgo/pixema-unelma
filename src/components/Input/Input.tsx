@@ -12,6 +12,7 @@ type InputType = {
   onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   errorText?: string;
+  onBlur?: () => void;
   filters?: string | string[];
 };
 
@@ -24,6 +25,7 @@ const Input: FC<InputType> = ({
   onChange,
   disabled,
   errorText,
+  onBlur,
   filters,
 }) => {
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -37,6 +39,7 @@ const Input: FC<InputType> = ({
           // className={styles.input}
           className={classNames(styles.input, {
             [styles.inputDisabled]: disabled,
+            [styles.error]: errorText,
           })}
           type={type}
           value={value}
@@ -44,6 +47,7 @@ const Input: FC<InputType> = ({
           disabled={disabled}
           onChange={onChangeInput}
           onKeyDown={onKeyDown}
+          onBlur={onBlur}
         />
         {filters && (
           <div className={styles.filter}>
@@ -51,6 +55,7 @@ const Input: FC<InputType> = ({
           </div>
         )}
       </div>
+      {errorText && <div className={styles.errorText}>{errorText}</div>}
     </>
   );
 };

@@ -54,6 +54,7 @@
 
 .highlightedButtonShare{
   background-color: $primary;
+  outline: 1px solid;
   svg > path {
     fill: $white;
   }

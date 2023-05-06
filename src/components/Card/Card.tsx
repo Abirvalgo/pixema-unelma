@@ -24,7 +24,7 @@ const Card: FC<CardProps> = ({ card, favoritePosts }) => {
     return [];
   };
   const isFavorite = checkFavorite();
-  //TODO вынести логику checkFavorite(такая-же в selectedCard) наружу (и потом импорт)
+
   return (
     <>
       <div className={styles.container} onClick={onCardClick}>
