@@ -5,7 +5,7 @@ import PagesContainer from "./PagesContainer";
 import SelectedMovie from "./SelectedMovie";
 import SignIn from "./FormContainer/SignIn";
 import SignUp from "./FormContainer/SignUp";
-import ResetPassword from "./FormContainer/ResetPassword";
+// import ResetPassword from "./FormContainer/ResetPassword";
 import Trends from "./Trends";
 import Favorites from "./Favorites";
 import Settings from "./Settings";
@@ -26,7 +26,7 @@ export enum RoutesList {
   Favorites = "/favorites",
   Filters = "/filters",
   Settings = "/settings",
-  Search = "/search",
+  Search = "/search/:query",
   SignIn = "/sign-in",
   SignUp = "/sign-up",
   // ResetPassword = "/reset-password",

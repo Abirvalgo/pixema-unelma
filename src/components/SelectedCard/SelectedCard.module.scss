@@ -21,8 +21,17 @@
 
   img {
     height: 356px;
-    width: 266px;
+    max-width: 266px;
+    width: 100%;
     border-radius: 20px;
+  }
+  img:after{content: ' ';
+    display: block;
+    height: 357px;
+    max-width: 266px;
+    width: 100%;
+    background-image: url('../../assets/oops.png');
+    background-position: center;
   }
 
   .buttonWrapper {

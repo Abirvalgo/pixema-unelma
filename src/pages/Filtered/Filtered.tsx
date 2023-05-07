@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PostSelectors, resetPosts } from "../../redux/reducers/postSlice";
 import CardsList from "../../components/CardsList";
@@ -32,7 +32,13 @@ const Filtered = () => {
           <Loader />
         ) : (
           <>
-            <CardsList cardsList={allPosts} />
+            {allPosts.length > 0 ? (
+              <CardsList cardsList={allPosts} />
+            ) : (
+              <div className={styles.emptyState}>
+                <EmptyState description="Use filters to start another search" />
+              </div>
+            )}
           </>
         )
       ) : (

@@ -35,15 +35,15 @@ const PagesContainer = () => {
       <div className={styles.wrapper} onScroll={onScroll}>
         <div className={styles.container}>
           <div className={styles.sideBar}>
-            <div className={styles.siteLogo}>
-              <PixemaIcon />
+            <div className={styles.pixema}>
+              {theme ? <PixemaIcon /> : <PixemaIcon fill="#242426" />}
             </div>
             <SideBar />
           </div>
           <div className={styles.main}>
             <div className={styles.tabletHeader}>
               <div className={styles.siteLogoTablet}>
-                <PixemaIcon />
+                {theme ? <PixemaIcon /> : <PixemaIcon fill="#242426" />}
               </div>
               <Header />
             </div>

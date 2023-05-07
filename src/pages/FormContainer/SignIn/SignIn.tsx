@@ -33,8 +33,8 @@ const SignIn = () => {
   const onSignInClick = () => {
     dispatch(
       signInUser({
-        data: { email, password, token_name: "random" },
         callback: () => navigate(RoutesList.Home),
+        data: { email, password, token_name: "random" },
       })
     );
   };
@@ -55,10 +55,8 @@ const SignIn = () => {
     }
   }, [password, passwordTouched]);
   const isValid = useMemo(() => {
-    return (
-      emailError.length === 0 && passwordError.length === 0 && emailTouched
-    );
-  }, [emailError, passwordError, emailTouched]);
+    return emailError.length === 0 && passwordError.length === 0;
+  }, [emailError, passwordError]);
   return (
     <FormContainer formTitle={"Sign In"}>
       <div className={styles.container}>

@@ -17,12 +17,10 @@ import { ButtonType } from "../../../utils/@globalTypes";
 import classNames from "classnames";
 import {
   getAllPosts,
-  getSearchedPosts,
   PostSelectors,
   resetPosts,
   setFiltersVisible,
 } from "../../../redux/reducers/postSlice";
-import { RoutesList } from "../../Router";
 import ModalFilters from "../../../components/ModalFilters";
 import { selectGenres, selectLanguages } from "../../../utils/constants";
 import { useThemeContext } from "../../../context/Theme/Context";
@@ -64,9 +62,9 @@ const Header = () => {
   const isVisible = useSelector(PostSelectors.getFiltersVisible);
   const userInfo = useSelector(AuthSelectors.getUserInfo);
   const userName = userInfo?.user.display_name;
-  const onNextReached = () => {
-    setPage(page + 1);
-  };
+  // const onNextReached = () => {
+  //   setPage(page + 1);
+  // };
   const onChangeSearch = (searchValue: string) => {
     setSearchValue(searchValue);
   };
@@ -85,9 +83,8 @@ const Header = () => {
   };
   const onClickSearchButton = () => {
     if (searchValue) {
-      dispatch(getSearchedPosts(searchValue));
+      navigate(`/search/${searchValue}`);
       setSearchValue("");
-      navigate(RoutesList.Search);
     }
   };
   const onClickFilters = () => {
@@ -109,7 +106,7 @@ const Header = () => {
   const onMouseLeaveEvent = (event: React.MouseEvent<HTMLDivElement>) => {
     setActive(false);
   };
-  const [selectedGenre, setSelectedGenre] = useState<any[]>([]);
+  const [selectedGenre, setSelectedGenre] = useState<string[]>([]);
   const [selectedLanguage, setSelectedLanguage] = useState<{
     value: string | ``;
     label: string | ``;
@@ -167,8 +164,8 @@ const Header = () => {
 
         <ModalFilters
           isVisible={isVisible}
-          value={selectedGenre}
-          onChange={handleSelectGenre}
+          genreValue={selectedGenre}
+          onGenreChange={handleSelectGenre}
           options={selectGenres}
           onCloseClick={onClickFilters}
           onRatingClick={OnRatingClick}
@@ -245,7 +242,7 @@ const Header = () => {
                   </div>
                 </div>
                 <div className={styles.siteLogoTablet}>
-                  <PixemaIcon />
+                  {theme ? <PixemaIcon /> : <PixemaIcon fill="#242426" />}
                 </div>
               </div>
 
@@ -292,7 +289,7 @@ const Header = () => {
         ) : (
           <div className={styles.headerMobileSignIn}>
             <div className={styles.siteLogoTablet}>
-              <PixemaIcon />
+              {theme ? <PixemaIcon /> : <PixemaIcon fill="#242426" />}
             </div>
             <div
               className={classNames(styles.userIcon, {

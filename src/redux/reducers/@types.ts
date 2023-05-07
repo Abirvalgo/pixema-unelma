@@ -24,10 +24,10 @@ export type GetAllPostsPayload = {
   runtime?: string | undefined;
   release_date?: string | undefined;
   released?: string | undefined;
-  language?: any;
+  language?: string | undefined;
   country?: string | undefined;
 };
 export type FavoritePostsPayload = {
-  id: number;
+  id: number | null;
   titleId: number;
 };

@@ -203,9 +203,9 @@ const getSinglePost = (id: string) => {
 };
 
 // больше 20 в поиске всеравно не возвращает api
-const getSearchedPosts = (searchValue: string, limit?: number) => {
+const getSearchedPosts = (query: string) => {
   return API.get(
-    `/search/${searchValue}`,
+    `/search/${query}`,
     {
       limit: 20,
     },

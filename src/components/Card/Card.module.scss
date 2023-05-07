@@ -42,11 +42,14 @@
   }
   //заглушка если нет картинки
   & > img:after{content: ' ';
-    display: block;
-    height: 357px;
-    width: 266px;
+    display: flex;
+    height: 330px;
+    max-width: 266px;
+    width: 100%;
+    border-radius: 10px;
     background-image: url('../../assets/oops.png');
     background-position: center;
+    background-size: auto;
   }
 
 }

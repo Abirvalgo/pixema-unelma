@@ -34,7 +34,6 @@
 .userBlock {
   display: flex;
   max-width: 266px;
-  width: 100%;
   @media (max-width: 960px) {
     display: none;
   }
@@ -54,6 +53,7 @@
 .siteLogoTablet{
   display: none;
   width: 158px;
+  height: 56px;
   @media (max-width: 768px) {
     display: flex;
   }
@@ -107,6 +107,7 @@
 }
 
 .userIcon {
+  width: 155px;
   position: relative;
   @include s2;
   display: flex;
@@ -114,12 +115,13 @@
   align-items: center;
   gap: 20px;
   height: 56px;
-
+  @media (max-width: 400px) {
+    gap: 10px;
+  }
   &:hover {
     .userName {
       color: $primary-secondary;
     }
-
     cursor: pointer;
   }
 }

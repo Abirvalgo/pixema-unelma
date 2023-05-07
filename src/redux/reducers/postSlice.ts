@@ -6,7 +6,7 @@ import {
   ScrollListType,
   CardType,
 } from "../../utils/@globalTypes";
-import { GetAllPostsPayload } from "./@types";
+import { FavoritePostsPayload, GetAllPostsPayload } from "./@types";
 
 type initialStateType = {
   singlePost: SingleCardType | null;
@@ -67,22 +67,16 @@ const postSlice = createSlice({
     setFavoritePosts: (state, action: PayloadAction<CardListType>) => {
       state.favoritePosts = action.payload;
     },
-    addFavoritePosts: (state, action: PayloadAction<any>) => {
-      state.favoritePosts = action.payload;
-    },
-    removeFavoritePosts: (state, action: PayloadAction<any>) => {
-      state.favoritePosts = action.payload;
-    },
-    getRelatedPosts: (_, __: PayloadAction<any>) => {},
-    setRelatedPosts: (state, action: PayloadAction<any>) => {
+    addFavoritePosts: (_, __: PayloadAction<FavoritePostsPayload>) => {},
+    removeFavoritePosts: (_, __: PayloadAction<FavoritePostsPayload>) => {},
+    getRelatedPosts: (_, __: PayloadAction<string>) => {},
+    setRelatedPosts: (state, action: PayloadAction<CardListType>) => {
       state.relatedPosts = action.payload;
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
-    getSearchedPosts: (state, action: PayloadAction<any>) => {
-      state.searchValue = action.payload.searchValue;
-    },
+    getSearchedPosts: (_, __: PayloadAction<string>) => {},
     setSearchedPosts: (state, action: PayloadAction<CardListType>) => {
       state.searchedPosts = action.payload.filter(
         (item: CardType) => item.type === "movie" || item.type === "title"

@@ -12,8 +12,11 @@
   padding: 43px 62px;
   justify-content: space-between;
 
-  .pixema:hover {
-    cursor: pointer;
+  .pixema {
+    height: 56px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .footer {
@@ -42,6 +45,9 @@
       @include h2;
     }
   }
+}
+.pixemaLight > svg >path{
+  fill: $dark;
 }
 
 
