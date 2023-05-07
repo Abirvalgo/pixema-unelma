@@ -1,6 +1,5 @@
 @import "src/assets/mixins";
 @import "src/assets/colors";
-
 .container {
   position: fixed;
   right: 0;
@@ -17,6 +16,9 @@
   }
   p{
     @include s3;
+  }
+  &::-webkit-scrollbar {
+    display: none;
   }
   overflow-y:scroll;
 }
