@@ -1,6 +1,5 @@
 import { call, put } from "redux-saga/effects";
 import { ApiResponse } from "apisauce";
-import API from "../api";
 import { logoutUser } from "../reducers/authSlice";
 import { ACCESS_TOKEN } from "../../utils/constants";
 
@@ -11,12 +10,14 @@ function* callCheckingAuth(apiCall: any, ...params: any) {
       apiCall,
       ...params,
       accessToken
+      // местами поменять
     );
     if (response.status === 401) {
       yield put(logoutUser());
     } else {
       return response;
     }
+    return response;
   } else {
     yield put(logoutUser());
   }

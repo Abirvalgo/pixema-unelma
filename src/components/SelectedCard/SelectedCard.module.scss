@@ -1,29 +1,40 @@
 @import "src/assets/colors";
 @import "src/assets/mixins";
 
-  .container{
-    display: flex;
-    flex-direction: row;
-    gap: 42px;
-    max-width: 1490px;
-    @media (max-width: 768px) {
-      flex-direction: column;
-    }
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 42px;
+  max-width: 1490px;
+  @media (max-width: 768px) {
+    flex-direction: column;
   }
+}
 
-.posterContainer{
+.posterContainer {
   display: flex;
   flex-direction: column;
   gap: 32px;
   @media (max-width: 768px) {
     align-self: center;
   }
+
   img {
     height: 356px;
-    width: 266px;
+    max-width: 266px;
+    width: 100%;
     border-radius: 20px;
   }
-  .buttonWrapper{
+  img:after{content: ' ';
+    display: block;
+    height: 357px;
+    max-width: 266px;
+    width: 100%;
+    background-image: url('../../assets/oops.png');
+    background-position: center;
+  }
+
+  .buttonWrapper {
     display: flex;
     flex-direction: row;
     gap: 1px;
@@ -32,24 +43,22 @@
       width: 100%;
     }
   }
-  .buttonLight{
-   & button{
-
-    }
-  }
 }
 
-.infoContainer{
+.infoContainer {
   max-width: 878px;
-  .name{
+
+  .name {
     @include h1;
     margin-bottom: 24px;
   }
-  .ratingWrapper{
+
+  .ratingWrapper {
     display: flex;
     flex-direction: row;
     gap: 20px;
-    .rating{
+
+    .rating {
       @include s3;
       display: flex;
       justify-content: center;
@@ -57,84 +66,101 @@
       width: 37px;
       height: 28px;
       color: $white;
-      background-color:$green ;
+      background-color: $green;
       border-radius: 6px;
+
       svg > path {
         fill: $white;
       }
     }
-    .trendsRating{
+
+    .trendsRating {
       background-color: $primary;
       width: 57px;
     }
-    .mediocreRating{
+
+    .mediocreRating {
       background-color: $yellow;
     }
-    .badRating{
+
+    .badRating {
       background-color: $orange;
     }
-    .noneRating{
+
+    .noneRating {
       display: none;
     }
-    .runtime{
+
+    .runtime {
       @include s3;
       width: 73px;
       height: 28px;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color:$graphite ;
+      background-color: $graphite;
       border-radius: 6px;
     }
 
   }
-  .description{
+
+  .description {
     @include b1;
     margin: 40px 0;
   }
-  .themeLight{
+
+  .themeLight {
     color: $dark;
   }
-  .smallInfoContainer{
+
+  .smallInfoContainer {
     display: flex;
     flex-direction: column;
     gap: 20px;
-  .smallInfoWrapper{
-    display: flex;
-    flex-direction: row;
-    .title{
-      @include s3;
-      color: $light;
-      min-width: 135px;
-      @media (max-width: 768px) {
-        min-width: 90px;
+
+    .smallInfoWrapper {
+      display: flex;
+      flex-direction: row;
+
+      .title {
+        @include s3;
+        color: $light;
+        min-width: 135px;
+        @media (max-width: 768px) {
+          min-width: 90px;
+        }
+      }
+
+      .content {
+        @include s3;
+        max-width: 600px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .themeLight {
+        color: $dark;
       }
     }
-    .content{
-      @include s3;
-      max-width: 600px;
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .themeLight{
-      color: $dark;
-    }
   }
-  }
-  .themeLight{
+
+  .themeLight {
     color: $dark;
   }
 }
-.genres{
+
+.genres {
   display: flex;
   flex-direction: row;
   @media (max-width: 1260px) {
     flex-wrap: wrap;
   }
-  & > p{
+
+  & > p {
     @include s2;
     color: $light;
   }
+
   & > p:not(:last-child)::after {
     content: '';
     display: inline-block;

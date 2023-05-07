@@ -9,14 +9,26 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AuthSelectors } from "../../redux/reducers/authSlice";
 import { useThemeContext } from "../../context/Theme/Context";
+import { THEME_VALUE } from "../../utils/constants";
 
 const Settings = () => {
-  const { theme } = useThemeContext();
+  const { theme, onChangeTheme } = useThemeContext();
+  const onClick = (value: boolean) => () => onChangeTheme(value);
+
   const navigate = useNavigate();
   const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
   const userInfo = useSelector(AuthSelectors.getUserInfo);
   const onCancelClick = () => {
     navigate(`/`);
+  };
+  const onSaveClick = () => {
+    let themeValue = ``;
+    if (theme) {
+      themeValue = ``;
+    } else {
+      themeValue = `light`;
+    }
+    localStorage.setItem(THEME_VALUE, themeValue);
   };
   return (
     <div className={styles.container}>
@@ -128,7 +140,7 @@ const Settings = () => {
               <div className={styles.themeTextBottomLight}>Use light theme</div>
             </div>
           )}
-          <Switch />
+          <Switch checked={theme} onClick={onClick(!theme)} />
         </div>
       </div>
       <div className={styles.buttonWrapper}>
@@ -137,7 +149,11 @@ const Settings = () => {
           type={ButtonType.Secondary}
           title={`Cancel`}
         />
-        <Button onClick={() => {}} type={ButtonType.Primary} title={`Save`} />
+        <Button
+          onClick={onSaveClick}
+          type={ButtonType.Primary}
+          title={`Save`}
+        />
       </div>
     </div>
   );

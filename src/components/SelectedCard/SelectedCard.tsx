@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import styles from "./SelectedCard.module.scss";
 import {
   ButtonType,
@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import {
   addFavoritePosts,
   removeFavoritePosts,
+  resetPosts,
 } from "../../redux/reducers/postSlice";
 import { useThemeContext } from "../../context/Theme/Context";
 
@@ -85,6 +86,10 @@ const SelectedCard: FC<SelectedMovieProps> = ({
       dispatch(addFavoritePosts({ id, titleId }));
     }
   };
+  const onClickShare = () => {
+    navigator.clipboard.writeText(window.location.href);
+    alert("Copied to clipboard");
+  };
 
   return (
     <>
@@ -101,12 +106,7 @@ const SelectedCard: FC<SelectedMovieProps> = ({
               type={ButtonType.Bookmark}
               isHighlighted={!!isFavorite.length}
             />
-            <Button
-              onClick={() => {
-                navigator.clipboard.writeText(window.location.href);
-              }}
-              type={ButtonType.Share}
-            />
+            <Button onClick={onClickShare} type={ButtonType.Share} />
           </div>
         </div>
         <div className={styles.infoContainer}>

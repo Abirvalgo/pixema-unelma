@@ -29,13 +29,11 @@
 .siteLogo {
   max-width: 284px;
   width: 100%;
-  //margin-right: 126px;
 }
 
 .userBlock {
   display: flex;
   max-width: 266px;
-  width: 100%;
   @media (max-width: 960px) {
     display: none;
   }
@@ -55,21 +53,35 @@
 .siteLogoTablet{
   display: none;
   width: 158px;
+  height: 56px;
   @media (max-width: 768px) {
     display: flex;
+  }
+}
+.headerMobileSignIn{
+  @media (max-width: 768px) {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
 .userMobileHidden {
   display: none;
   position: absolute;
   top: 110px;
-  right: 40px;
+  right: 0;
   width: 200px;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 10px 0 0 10px;
   outline: 2px solid $primary-secondary;
   background-color: $graphite;
   z-index: 3;
+  animation: slide-out 0.5s forwards;
+  @keyframes slide-out {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(0%); }
+  }
 }
 
 .userMobile {
@@ -86,7 +98,7 @@
   @include h3;
 }
 
-.btn123 {
+.logoutMobile {
   & :first-child {
     display: flex;
     width: 150px;
@@ -95,6 +107,7 @@
 }
 
 .userIcon {
+  width: 155px;
   position: relative;
   @include s2;
   display: flex;
@@ -102,12 +115,13 @@
   align-items: center;
   gap: 20px;
   height: 56px;
-
+  @media (max-width: 400px) {
+    gap: 10px;
+  }
   &:hover {
     .userName {
       color: $primary-secondary;
     }
-
     cursor: pointer;
   }
 }

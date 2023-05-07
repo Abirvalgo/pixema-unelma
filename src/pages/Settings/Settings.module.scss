@@ -2,10 +2,15 @@
 @import "src/assets/mixins.scss";
 
 .container {
+  display: flex;
+  flex-direction: column;
   max-width: 1184px;
   width: 100%;
   @media (max-width: 768px) {
     width: 100% !important;
+  }
+  @media (max-width: 600px) {
+    gap: 10px;
   }
 }
 
@@ -18,24 +23,19 @@
 }
 input{
   height: 56px;
-  :hover{
-    height: 56px;
-  }
 }
 .boxWrapper {
   display: flex;
   flex-direction: row;
-  padding: 40px;
+  padding: 20px;
   background: $dark;
-  min-height: 168px;
   gap: 40px;
   border-radius: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   @media (max-width: 600px) {
     flex-direction: column;
-    padding: 10px;
     margin: 0;
-    gap: 0;
+    gap: 10px;
   }
 
   .inputWrapper {
@@ -60,6 +60,7 @@ input{
     display: flex;
     flex-direction: column;
     width: 50%;
+    gap: 20px;
     @media (max-width: 768px) {
       width: 100%
     }
@@ -77,18 +78,12 @@ input{
     outline: 2px solid $light;
   }
 }
-.boxWrapperHeight{
-  height: 280px;
-  @media (max-width: 768px) {
-    height: 100%;
-  }
-}
 .switchWrapper{
   display: flex;
   flex-direction: row;
   justify-content:space-between;
   align-items: center;
-  padding: 24px 40px;
+  padding: 20px;
   background: $dark;
   border-radius: 10px;
   margin-bottom: 40px;

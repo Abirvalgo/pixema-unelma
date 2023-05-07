@@ -9,9 +9,9 @@ import { customSelectStyles } from "../../utils/constants";
 
 type ModalFiltersProps = {
   isVisible: boolean;
-  value: any;
+  genreValue: string | string[];
   langValue: any;
-  onChange: (data: any) => void;
+  onGenreChange: (data: any) => void;
   onLangChange: (data: any) => void;
   options: any;
   langOptions: any;
@@ -37,9 +37,9 @@ type ModalFiltersProps = {
 
 export const ModalFilters: FC<ModalFiltersProps> = ({
   isVisible,
-  value,
+  genreValue,
   langValue,
-  onChange,
+  onGenreChange,
   onLangChange,
   options,
   langOptions,
@@ -94,8 +94,8 @@ export const ModalFilters: FC<ModalFiltersProps> = ({
             <Select
               styles={customSelectStyles}
               isMulti
-              value={value}
-              onChange={onChange}
+              value={genreValue}
+              onChange={onGenreChange}
               options={options}
             />
           </div>

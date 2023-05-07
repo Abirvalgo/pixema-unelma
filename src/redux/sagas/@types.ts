@@ -5,11 +5,17 @@ export type FavoritePostsResponse = {
   items: Pagination;
   status: string;
 };
+export type SearchPostsResponse = { query: string; results: CardListType };
 
 export type AddFavoritePostsResponse = {
   list: List;
   status: string;
 };
+export type GetRelatedPostsResponse = {
+  titles: CardListType;
+  status: string;
+};
+
 export type List = {
   id: number;
   name: string;

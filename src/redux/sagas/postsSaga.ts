@@ -24,6 +24,8 @@ import {
   AddFavoritePostsResponse,
   AllPostsResponse,
   FavoritePostsResponse,
+  GetRelatedPostsResponse,
+  SearchPostsResponse,
   SinglePostResponse,
 } from "./@types";
 import callCheckingAuth from "./callCheckingAuth";
@@ -118,7 +120,7 @@ function* getFavoritePostsWorker(action: PayloadAction<number>) {
 function* addFavoritePostsWorker(action: PayloadAction<FavoritePostsPayload>) {
   const { id, titleId } = action.payload;
   const { ok, data, problem }: ApiResponse<AddFavoritePostsResponse> =
-    yield call(API.addFavoritePosts, id, titleId);
+    yield callCheckingAuth(API.addFavoritePosts, id, titleId);
   if (ok && data) {
     yield put(setFavoritePosts(data.list.items));
   } else {
@@ -130,7 +132,7 @@ function* removeFavoritePostsWorker(
 ) {
   const { id, titleId } = action.payload;
   const { ok, data, problem }: ApiResponse<AddFavoritePostsResponse> =
-    yield call(API.removeFavoritePosts, id, titleId);
+    yield callCheckingAuth(API.removeFavoritePosts, id, titleId);
   if (ok && data) {
     yield put(setFavoritePosts(data.list.items));
   } else {
@@ -138,12 +140,10 @@ function* removeFavoritePostsWorker(
   }
 }
 
-function* getRelatedPostsWorker(action: PayloadAction<any>) {
+function* getRelatedPostsWorker(action: PayloadAction<string>) {
   yield put(setLoading(true));
-  const { ok, data, problem }: ApiResponse<any> = yield call(
-    API.getRelatedPosts,
-    action.payload
-  );
+  const { ok, data, problem }: ApiResponse<GetRelatedPostsResponse> =
+    yield callCheckingAuth(API.getRelatedPosts, action.payload);
   if (ok && data) {
     yield put(setRelatedPosts(data.titles));
   } else {
@@ -152,14 +152,10 @@ function* getRelatedPostsWorker(action: PayloadAction<any>) {
   yield put(setLoading(false));
 }
 
-function* getSearchedPostsWorker(action: PayloadAction<any>) {
+function* getSearchedPostsWorker(action: PayloadAction<string>) {
   yield put(setLoading(true));
-  const { searchValue } = action.payload;
-  const { ok, data, problem }: ApiResponse<any> = yield callCheckingAuth(
-    API.getSearchedPosts,
-    action.payload,
-    searchValue
-  );
+  const { ok, data, problem }: ApiResponse<SearchPostsResponse> =
+    yield callCheckingAuth(API.getSearchedPosts, action.payload);
   if (ok && data) {
     yield put(setSearchedPosts(data.results));
   } else {

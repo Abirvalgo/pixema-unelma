@@ -55,7 +55,7 @@ function* signInUserWorker(action: PayloadAction<SignInUserPayload>) {
     yield put(setLoggedIn(true));
     callback();
   } else {
-    console.warn("Error activate user", problem);
+    console.warn("Error activating user", problem);
   }
 }
 
@@ -70,9 +70,8 @@ function* getUserInfoWorker() {
 }
 
 function* getFavoritesIdWorker() {
-  const { ok, problem, data }: ApiResponse<GetFavoritesIdResponse> = yield call(
-    API.getFavoritesId
-  );
+  const { ok, problem, data }: ApiResponse<GetFavoritesIdResponse> =
+    yield callCheckingAuth(API.getFavoritesId);
   if (ok && data) {
     yield put(setFavoritesId(data));
   } else {
@@ -82,8 +81,8 @@ function* getFavoritesIdWorker() {
 
 function* logoutUserWorker() {
   localStorage.removeItem(ACCESS_TOKEN);
-  yield put(setUserInfo(null));
   yield put(setLoggedIn(false));
+  yield put(setUserInfo(null));
 }
 export default function* authSaga() {
   yield all([

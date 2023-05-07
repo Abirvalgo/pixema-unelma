@@ -7,7 +7,6 @@
   align-items: center;
   height: 56px;
   width: 100%;
-  //max-width: 438px;
   max-width: 1184px;
 }
 .title{
@@ -59,4 +58,16 @@ border: 2px solid $error;
     svg > path {
       stroke: $white;
     }}
+}
+.error {
+  outline: 2px solid $error;
+  &:focus {
+    outline: 2px solid $error;
+  }
+}
+.errorText {
+  @include b1;
+  margin-top: -15px;
+  color: $error;
+
 }

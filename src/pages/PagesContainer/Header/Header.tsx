@@ -17,12 +17,10 @@ import { ButtonType } from "../../../utils/@globalTypes";
 import classNames from "classnames";
 import {
   getAllPosts,
-  getSearchedPosts,
   PostSelectors,
   resetPosts,
   setFiltersVisible,
 } from "../../../redux/reducers/postSlice";
-import { RoutesList } from "../../Router";
 import ModalFilters from "../../../components/ModalFilters";
 import { selectGenres, selectLanguages } from "../../../utils/constants";
 import { useThemeContext } from "../../../context/Theme/Context";
@@ -64,9 +62,9 @@ const Header = () => {
   const isVisible = useSelector(PostSelectors.getFiltersVisible);
   const userInfo = useSelector(AuthSelectors.getUserInfo);
   const userName = userInfo?.user.display_name;
-  const onNextReached = () => {
-    setPage(page + 1);
-  };
+  // const onNextReached = () => {
+  //   setPage(page + 1);
+  // };
   const onChangeSearch = (searchValue: string) => {
     setSearchValue(searchValue);
   };
@@ -85,9 +83,8 @@ const Header = () => {
   };
   const onClickSearchButton = () => {
     if (searchValue) {
-      dispatch(getSearchedPosts(searchValue));
+      navigate(`/search/${searchValue}`);
       setSearchValue("");
-      navigate(RoutesList.Search);
     }
   };
   const onClickFilters = () => {
@@ -109,7 +106,7 @@ const Header = () => {
   const onMouseLeaveEvent = (event: React.MouseEvent<HTMLDivElement>) => {
     setActive(false);
   };
-  const [selectedGenre, setSelectedGenre] = useState<any[]>([]);
+  const [selectedGenre, setSelectedGenre] = useState<string[]>([]);
   const [selectedLanguage, setSelectedLanguage] = useState<{
     value: string | ``;
     label: string | ``;
@@ -133,7 +130,7 @@ const Header = () => {
     dispatch(resetPosts({ allPosts: [], trendPosts: [], searchedPosts: [] }));
     dispatch(
       getAllPosts({
-        perPage: 10,
+        perPage: 20,
         page: page,
         genre: genreMap.toString(),
         language: selectedLanguage?.value,
@@ -167,8 +164,8 @@ const Header = () => {
 
         <ModalFilters
           isVisible={isVisible}
-          value={selectedGenre}
-          onChange={handleSelectGenre}
+          genreValue={selectedGenre}
+          onGenreChange={handleSelectGenre}
           options={selectGenres}
           onCloseClick={onClickFilters}
           onRatingClick={OnRatingClick}
@@ -236,7 +233,7 @@ const Header = () => {
                     <SideBar />
                   </div>
 
-                  <div className={styles.btn123}>
+                  <div className={styles.logoutMobile}>
                     <Button
                       title={"Log Out"}
                       type={ButtonType.Primary}
@@ -245,7 +242,7 @@ const Header = () => {
                   </div>
                 </div>
                 <div className={styles.siteLogoTablet}>
-                  <PixemaIcon />
+                  {theme ? <PixemaIcon /> : <PixemaIcon fill="#242426" />}
                 </div>
               </div>
 
@@ -290,21 +287,26 @@ const Header = () => {
             </>
           )
         ) : (
-          <div
-            className={classNames(styles.userIcon, {
-              [styles.userIconLight]: !theme,
-            })}
-            onClick={onSignInClick}
-          >
-            <UserIcon />
-            <p
-              className={classNames(styles.userName, {
-                [styles.userNameLight]: !theme,
+          <div className={styles.headerMobileSignIn}>
+            <div className={styles.siteLogoTablet}>
+              {theme ? <PixemaIcon /> : <PixemaIcon fill="#242426" />}
+            </div>
+            <div
+              className={classNames(styles.userIcon, {
+                [styles.userIconLight]: !theme,
               })}
+              onClick={onSignInClick}
             >
-              Sign In
-            </p>
-            <div className={styles.arrowRight}></div>
+              <UserIcon />
+              <p
+                className={classNames(styles.userName, {
+                  [styles.userNameLight]: !theme,
+                })}
+              >
+                Sign In
+              </p>
+              <div className={styles.arrowRight}></div>
+            </div>
           </div>
         )}
       </div>

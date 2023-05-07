@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from "./SignIn.module.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 import Input from "../../../components/Input";
@@ -14,6 +14,16 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [passwordTouched, setPasswordTouched] = useState(false);
+  const [emailTouched, setEmailTouched] = useState(false);
+  const onBlurEmail = () => {
+    setEmailTouched(true);
+  };
+  const onBlurPassword = () => {
+    setPasswordTouched(true);
+  };
   const onChangeEmail = (value: string) => {
     setEmail(value);
   };
@@ -23,11 +33,30 @@ const SignIn = () => {
   const onSignInClick = () => {
     dispatch(
       signInUser({
-        data: { email, password, token_name: "random" },
         callback: () => navigate(RoutesList.Home),
+        data: { email, password, token_name: "random" },
       })
     );
   };
+  useEffect(() => {
+    if (email.length === 0 && emailTouched) {
+      setEmailError("Email is a required field");
+    } else {
+      setEmailError("");
+    }
+  }, [email, emailTouched]);
+  useEffect(() => {
+    if (passwordTouched) {
+      if (password.length === 0) {
+        setPasswordError("Password is required field");
+      } else {
+        setPasswordError("");
+      }
+    }
+  }, [password, passwordTouched]);
+  const isValid = useMemo(() => {
+    return emailError.length === 0 && passwordError.length === 0;
+  }, [emailError, passwordError]);
   return (
     <FormContainer formTitle={"Sign In"}>
       <div className={styles.container}>
@@ -38,6 +67,8 @@ const SignIn = () => {
             value={email}
             placeholder="Your email"
             onChange={onChangeEmail}
+            errorText={emailError}
+            onBlur={onBlurEmail}
           />
           <Input
             title={"Password"}
@@ -45,6 +76,8 @@ const SignIn = () => {
             value={password}
             placeholder="Your password"
             onChange={onChangePassword}
+            errorText={passwordError}
+            onBlur={onBlurPassword}
           />
         </div>
         <div className={styles.forgot} onClick={() => {}}>
@@ -55,6 +88,7 @@ const SignIn = () => {
             title={"Sign In"}
             type={ButtonType.Primary}
             onClick={onSignInClick}
+            disabled={!isValid}
           />
         </div>
         <div className={styles.text}>

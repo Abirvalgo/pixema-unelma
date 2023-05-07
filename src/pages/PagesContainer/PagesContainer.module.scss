@@ -29,6 +29,7 @@
   }
   :root .siteLogoTablet{
     display: flex;
+    align-items: center;
   }
   :root .footer{
     display: none;
@@ -53,6 +54,7 @@
   position: relative;
   flex-direction: column;
   max-width: 284px;
+  min-width: 200px;
   width: 100%;
   gap: 64px;
 }
@@ -71,6 +73,11 @@
   gap: 64px;
   max-width: 1490px;
   width: 100%;
+}
+.pixema{
+  display: flex;
+  align-items: center;
+  height: 56px;
 }
 
 
@@ -107,6 +114,7 @@
   display: flex;
   position: sticky;
   bottom: 64px;
+  max-width: 160px;
   @include s2;
   font-weight: 500;
   color: $light;
@@ -122,4 +130,26 @@
 .empty{
   display: flex;
   flex: 1 1 auto;
+}
+.backToTop{
+  display: flex;
+  position: sticky;
+  bottom: 0;
+  left: calc(50% - 25px);
+  width: 50px;
+  height: 50px;
+  animation: slide-out 0.5s forwards;
+  @keyframes slide-out {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(0%); }
+  }
+  &:hover > svg{
+    cursor: pointer;
+    fill: $primary-secondary;
+  }
+}
+.footer{
+  display: flex;
+  position: sticky;
+  bottom: 64px;
 }

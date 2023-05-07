@@ -5,7 +5,7 @@ import PagesContainer from "./PagesContainer";
 import SelectedMovie from "./SelectedMovie";
 import SignIn from "./FormContainer/SignIn";
 import SignUp from "./FormContainer/SignUp";
-import ResetPassword from "./FormContainer/ResetPassword";
+// import ResetPassword from "./FormContainer/ResetPassword";
 import Trends from "./Trends";
 import Favorites from "./Favorites";
 import Settings from "./Settings";
@@ -18,6 +18,7 @@ import {
 import Search from "./Search";
 import { getFavoritePosts } from "../redux/reducers/postSlice";
 import Filtered from "./Filtered";
+import EmptyState from "../components/EmptyState";
 
 export enum RoutesList {
   Home = "/",
@@ -25,7 +26,7 @@ export enum RoutesList {
   Favorites = "/favorites",
   Filters = "/filters",
   Settings = "/settings",
-  Search = "/search",
+  Search = "/search/:query",
   SignIn = "/sign-in",
   SignUp = "/sign-up",
   // ResetPassword = "/reset-password",
@@ -62,6 +63,14 @@ const Router = () => {
           <Route
             path={RoutesList.SelectedMovie}
             element={<SelectedMovie />}
+          ></Route>
+          <Route
+            path={RoutesList.Default}
+            element={
+              <EmptyState
+                description={"THE PAGE YOU WERE LOOKING FOR DOESN'T EXIT"}
+              />
+            }
           ></Route>
         </Route>
         <Route path={RoutesList.SignIn} element={<SignIn />}></Route>
