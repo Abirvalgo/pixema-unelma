@@ -62,9 +62,7 @@ const Header = () => {
   const isVisible = useSelector(PostSelectors.getFiltersVisible);
   const userInfo = useSelector(AuthSelectors.getUserInfo);
   const userName = userInfo?.user.display_name;
-  // const onNextReached = () => {
-  //   setPage(page + 1);
-  // };
+
   const onChangeSearch = (searchValue: string) => {
     setSearchValue(searchValue);
   };

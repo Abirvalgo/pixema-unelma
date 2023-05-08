@@ -7,12 +7,12 @@ export type FavoritePostsResponse = {
 };
 export type SearchPostsResponse = { query: string; results: CardListType };
 
-export type AddFavoritePostsResponse = {
-  list: List;
-  status: string;
-};
 export type GetRelatedPostsResponse = {
   titles: CardListType;
+  status: string;
+};
+export type AddFavoritePostsResponse = {
+  list: List;
   status: string;
 };
 

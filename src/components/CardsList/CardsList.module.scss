@@ -24,8 +24,6 @@
 .container{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  //display: flex;
-  //flex-wrap: wrap;
   gap: 40px;
   flex: 1;
   max-width: 1490px;

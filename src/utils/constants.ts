@@ -1,9 +1,7 @@
 export const ACCESS_TOKEN = "pixemaToken";
 export const THEME_VALUE = "themeValue";
-
 export const themeBoolean = localStorage.getItem(THEME_VALUE);
-// export const pixemaToken = localStorage.getItem("pixemaToken");
-// не работает через импорт в api, тольк если прописывать полностью там сразу
+
 export const selectGenres = [
   { value: "drama", label: "Drama" },
   { value: "comedy", label: "Comedy" },
@@ -27,6 +25,7 @@ export const selectLanguages = [
   { value: "it", label: "Italian" },
 ];
 
+//react select styles
 export const customSelectStyles = {
   menuList: (styles: any) => ({
     ...styles,

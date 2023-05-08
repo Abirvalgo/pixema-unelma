@@ -127,9 +127,9 @@ export type Credit = {
   name: string;
   poster: string;
   model_type: string;
-  pivot: Pivot2;
+  pivot: PivotAlt;
 };
-export type Pivot2 = {
+export type PivotAlt = {
   creditable_id: number;
   person_id: number;
   creditable_type: string;

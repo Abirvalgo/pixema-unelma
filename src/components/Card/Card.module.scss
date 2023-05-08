@@ -40,7 +40,7 @@
   & > img:hover {
     opacity: 0.7;
   }
-  //заглушка если нет картинки
+  //backup image on error
   & > img:after{content: ' ';
     display: flex;
     height: 330px;
