@@ -1,21 +1,23 @@
 @import "src/assets/colors";
 @import "src/assets/mixins.scss";
 
-.container{
+.container {
   display: flex;
   width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.input{
+
+.input {
   width: 100%;
   display: flex;
   flex-direction: column;
   color: white;
   gap: 20px;
 }
-.forgot{
+
+.forgot {
   @include b1;
   display: flex;
   margin-top: 8px;
@@ -23,28 +25,33 @@
   color: $secondary;
   align-self: flex-start;
 }
-.button{
-  margin-top: 40px ;
+
+.button {
+  margin-top: 40px;
   margin-bottom: 32px;
-width: 100%;
+  width: 100%;
 }
 
-.signUpBtn{
-text-decoration: none;
+.signUpBtn {
+  text-decoration: none;
   font-family: 'Exo 2', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
   margin-left: 4px;
-  &:visited{
+  color: $primary;
+
+  &:visited {
     color: $primary;
   }
-  &:hover{
+
+  &:hover {
     color: $primary-secondary;
   }
 }
-.text{
+
+.text {
   @include b1;
   color: $secondary;
 }
