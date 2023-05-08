@@ -131,9 +131,6 @@ const getAllPosts = (
       released,
       language,
       country,
-      // order: `popularity:desc`,
-      // released: `2022,2023`,
-      // country: `us`,
     },
     {
       headers: {
@@ -162,10 +159,6 @@ const getTrendPosts = (
       released: `2018,2023`,
       country: `us`,
       score: "7.9,9.9",
-      // order: `popularity:desc`,
-      // released: `2018,2023`,
-      // country: `us`,
-      // score: "7.8,9.9",
     },
     {
       headers: {
@@ -176,7 +169,7 @@ const getTrendPosts = (
   );
 };
 
-//Related посты для single post
+//Related posts for single post
 const getRelatedPosts = (id: string) => {
   return API.get(
     `/titles/${id}/related`,
@@ -202,7 +195,6 @@ const getSinglePost = (id: string) => {
   );
 };
 
-// больше 20 в поиске всеравно не возвращает api
 const getSearchedPosts = (query: string) => {
   return API.get(
     `/search/${query}`,

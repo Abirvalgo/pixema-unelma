@@ -7,7 +7,7 @@ import {
 } from "../../redux/reducers/postSlice";
 import CardsList from "../../components/CardsList";
 import Loader from "../../components/Loader";
-import styles from "./Home.module.scss";
+// import styles from "./Home.module.scss";
 import { AuthSelectors } from "../../redux/reducers/authSlice";
 import EmptyState from "../../components/EmptyState";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -60,7 +60,7 @@ const Home = () => {
           </>
         )
       ) : (
-        <div className={styles.emptyState}>
+        <div>
           <EmptyState description="Sign In required to browse this website" />
         </div>
       )}

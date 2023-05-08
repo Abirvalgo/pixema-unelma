@@ -10,7 +10,6 @@ import { useThemeContext } from "../../context/Theme/Context";
 const Trends = () => {
   const { theme } = useThemeContext();
   const relatedPosts = useSelector(PostSelectors.getRelatedPosts);
-  const isLoading = useSelector(PostSelectors.getIsLoading);
   const [active, setActive] = useState(1);
 
   return relatedPosts.length > 0 ? (
@@ -62,10 +61,3 @@ const Trends = () => {
 };
 
 export default Trends;
-// isLoading ? (
-//     <Loader />
-// ) : (
-//     <CardsList cardsList={relatedPosts} />
-// )
-// )
-// : null;

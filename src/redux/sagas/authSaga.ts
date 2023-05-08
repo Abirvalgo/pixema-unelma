@@ -30,7 +30,7 @@ function* signUpUserWorker(action: PayloadAction<SignUpUserPayload>) {
     data: responseData,
   }: ApiResponse<SignUpUserResponse> = yield call(API.signUpUser, data);
   if (ok && responseData) {
-    //создание листа favorites при создании аккаунта
+    //create favorite list during account sign up
     localStorage.setItem(
       ACCESS_TOKEN,
       responseData?.boostrapData.user.access_token

@@ -10,8 +10,8 @@ import Loader from "../../components/Loader";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoaderCircle from "../../components/LoaderCircle";
 import { AuthSelectors } from "../../redux/reducers/authSlice";
-import styles from "./Trends.module.scss";
 import EmptyState from "../../components/EmptyState";
+// import styles from "./Trends.module.scss";
 
 const Trends = () => {
   const trendPosts = useSelector(PostSelectors.getTrendPosts);
@@ -54,7 +54,7 @@ const Trends = () => {
           </>
         )
       ) : (
-        <div className={styles.emptyState}>
+        <div>
           <EmptyState description="Sign In required to browse this website" />
         </div>
       )}

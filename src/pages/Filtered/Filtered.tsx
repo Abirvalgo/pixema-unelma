@@ -3,22 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { PostSelectors, resetPosts } from "../../redux/reducers/postSlice";
 import CardsList from "../../components/CardsList";
 import Loader from "../../components/Loader";
-import styles from "./Filtered.module.scss";
 import { AuthSelectors } from "../../redux/reducers/authSlice";
 import EmptyState from "../../components/EmptyState";
-// import InfiniteScroll from "react-infinite-scroll-component";
-// import LoaderCircle from "../../components/LoaderCircle";
+// import styles from "./Filtered.module.scss";
 
 const Filtered = () => {
   const allPosts = useSelector(PostSelectors.getAllPosts);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(AuthSelectors.getLoggedIn);
   const isLoading = useSelector(PostSelectors.getIsLoading);
-  // const postsCount = useSelector(PostSelectors.getPostsCount);
-  // const [page, setPage] = useState(1);
-  // const onNextReached = () => {
-  //   setPage(page + 1);
-  // };
+
   useEffect(() => {
     return () => {
       dispatch(resetPosts({ allPosts: [], trendPosts: [], searchedPosts: [] }));
@@ -35,14 +29,14 @@ const Filtered = () => {
             {allPosts.length > 0 ? (
               <CardsList cardsList={allPosts} />
             ) : (
-              <div className={styles.emptyState}>
+              <div>
                 <EmptyState description="Use filters to start another search" />
               </div>
             )}
           </>
         )
       ) : (
-        <div className={styles.emptyState}>
+        <div>
           <EmptyState description="Sign In required to browse this website" />
         </div>
       )}
@@ -51,16 +45,3 @@ const Filtered = () => {
 };
 
 export default Filtered;
-
-// <>
-//   <InfiniteScroll
-//       style={{ overflowY: "hidden" }}
-//       next={onNextReached}
-//       hasMore={allPosts.length < postsCount}
-//       loader={<LoaderCircle />}
-//       dataLength={allPosts.length}
-//       scrollThreshold={0.8}
-//   >
-//     <CardsList cardsList={allPosts} />
-//   </InfiniteScroll>
-// </>

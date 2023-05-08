@@ -5,7 +5,7 @@ import CardsList from "../../components/CardsList";
 import Loader from "../../components/Loader";
 import EmptyState from "../../components/EmptyState";
 import { AuthSelectors } from "../../redux/reducers/authSlice";
-import styles from "./Favorites.module.scss";
+// import styles from "./Favorites.module.scss";
 
 const Favorites = () => {
   const favoritePosts = useSelector(PostSelectors.getFavoritePosts);
@@ -21,13 +21,13 @@ const Favorites = () => {
           <CardsList cardsList={favoritePosts} />
         )
       ) : (
-        <div className={styles.emptyState}>
+        <div>
           <EmptyState description="Sign In required to browse this website" />
         </div>
       )}
     </>
   ) : (
-    <div className={styles.emptyState}>
+    <div>
       <EmptyState description="Sign In required to browse this website" />
     </div>
   );
