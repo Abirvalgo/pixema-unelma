@@ -28,7 +28,7 @@ const Favorites = () => {
     </>
   ) : (
     <div>
-      <EmptyState description="Sign In required to browse this website" />
+      <EmptyState description="No favorite posts" />
     </div>
   );
 };
