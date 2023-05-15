@@ -25,6 +25,9 @@ const Card: FC<CardProps> = ({ card, favoritePosts }) => {
   };
   const isFavorite = checkFavorite();
 
+  const imageSize = /original/gi;
+  const smallPoster = poster ? poster.replace(imageSize, "w300") : "";
+
   return (
     <>
       <div className={styles.container} onClick={onCardClick}>
@@ -44,7 +47,7 @@ const Card: FC<CardProps> = ({ card, favoritePosts }) => {
             <BookmarkIcon />
           </div>
         )}
-        <img src={poster} alt={"Movie Poster"} />
+        <img src={smallPoster} alt={"Movie Poster"} />
         <div
           className={classNames(styles.cardText, {
             [styles.cardTextLight]: !theme,
