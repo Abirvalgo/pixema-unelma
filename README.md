@@ -1,4 +1,4 @@
-# For images to load you might need vpn/proxy.
+**For images to load you might need vpn/proxy.**
 https://abirvalgo.github.io/pixema-unelma/
 
 # Getting Started with Create React App
