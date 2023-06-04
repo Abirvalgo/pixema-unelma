@@ -10,7 +10,6 @@ function* callCheckingAuth(apiCall: any, ...params: any) {
       apiCall,
       ...params,
       accessToken
-      // местами поменять
     );
     if (response.status === 401) {
       yield put(logoutUser());

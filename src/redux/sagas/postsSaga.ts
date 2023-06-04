@@ -107,7 +107,6 @@ function* getTrendPostsWorker(action: PayloadAction<GetAllPostsPayload>) {
   yield put(setLoading(false));
 }
 function* getFavoritePostsWorker(action: PayloadAction<number>) {
-  // yield put(setLoading(true));
   const { ok, data, problem }: ApiResponse<FavoritePostsResponse> =
     yield callCheckingAuth(API.getFavoritePosts, action.payload);
   if (ok && data) {
@@ -115,7 +114,6 @@ function* getFavoritePostsWorker(action: PayloadAction<number>) {
   } else {
     console.warn("Error getting post", problem);
   }
-  // yield put(setLoading(false));
 }
 function* addFavoritePostsWorker(action: PayloadAction<FavoritePostsPayload>) {
   const { id, titleId } = action.payload;

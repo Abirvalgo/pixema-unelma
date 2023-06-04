@@ -5,7 +5,6 @@ import CardsList from "../../components/CardsList";
 import Loader from "../../components/Loader";
 import EmptyState from "../../components/EmptyState";
 import { AuthSelectors } from "../../redux/reducers/authSlice";
-// import styles from "./Favorites.module.scss";
 
 const Favorites = () => {
   const favoritePosts = useSelector(PostSelectors.getFavoritePosts);

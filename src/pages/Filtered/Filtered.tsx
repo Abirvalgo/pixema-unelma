@@ -5,7 +5,6 @@ import CardsList from "../../components/CardsList";
 import Loader from "../../components/Loader";
 import { AuthSelectors } from "../../redux/reducers/authSlice";
 import EmptyState from "../../components/EmptyState";
-// import styles from "./Filtered.module.scss";
 
 const Filtered = () => {
   const allPosts = useSelector(PostSelectors.getAllPosts);

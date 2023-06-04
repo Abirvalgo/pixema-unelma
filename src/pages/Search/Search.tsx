@@ -7,7 +7,6 @@ import {
 } from "../../redux/reducers/postSlice";
 import CardsList from "../../components/CardsList";
 import Loader from "../../components/Loader";
-// import styles from "./Search.module.scss";
 import { AuthSelectors } from "../../redux/reducers/authSlice";
 import EmptyState from "../../components/EmptyState";
 import { useParams } from "react-router-dom";
