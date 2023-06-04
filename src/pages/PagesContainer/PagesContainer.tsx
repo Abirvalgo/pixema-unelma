@@ -63,23 +63,3 @@ const PagesContainer = () => {
 };
 
 export default PagesContainer;
-// return (
-//     <div
-//         className={classNames(styles.background, {
-//           [styles.backgroundLight]: !theme,
-//         })}
-//     >
-//       <div className={styles.wrapper}>
-//         <div className={styles.container}>
-//           <Header />
-//           <div className={styles.contentWrapper}>
-//             <SideBar />
-//             <Outlet />
-//           </div>
-//         </div>
-//         <div className={styles.empty}></div>
-//         <div className={styles.footer}>© All Rights Reserved</div>
-//       </div>
-//     </div>
-// );
-// };

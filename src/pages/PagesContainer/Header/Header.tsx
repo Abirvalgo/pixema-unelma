@@ -98,9 +98,7 @@ const Header = () => {
       onClickSearchButton();
     }
   };
-  // const onMouseOverEvent = (event: React.MouseEvent<HTMLDivElement>) => {
-  //   setActive(true);
-  // };
+
   const onMouseLeaveEvent = (event: React.MouseEvent<HTMLDivElement>) => {
     setActive(false);
   };

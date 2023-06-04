@@ -11,7 +11,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import LoaderCircle from "../../components/LoaderCircle";
 import { AuthSelectors } from "../../redux/reducers/authSlice";
 import EmptyState from "../../components/EmptyState";
-// import styles from "./Trends.module.scss";
 
 const Trends = () => {
   const trendPosts = useSelector(PostSelectors.getTrendPosts);

@@ -24,6 +24,7 @@
 .container{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
   gap: 40px;
   flex: 1;
   max-width: 1490px;
