@@ -47,7 +47,11 @@ const Card: FC<CardProps> = ({ card, favoritePosts }) => {
             <BookmarkIcon />
           </div>
         )}
-        <img src={smallPoster} alt={"Movie Poster"} />
+        <img
+          src={smallPoster}
+          alt={"Movie Poster"}
+          style={{ minHeight: "351px" }}
+        />
         <div
           className={classNames(styles.cardText, {
             [styles.cardTextLight]: !theme,
