@@ -1,6 +1,10 @@
 **For images to load you might need vpn/proxy.**
 https://abirvalgo.github.io/pixema-unelma/
 
+A full-fledged service with a huge number of movies. To use it, you need to register. The site provides all the available information on movies, 
+recommended movies, movies in trend, the ability to add a movie to favorites list. In addition, there is infinite pagination, search and
+a convenient system with many filters, the ability to change the theme (light / dark), loaders, fields validation.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
